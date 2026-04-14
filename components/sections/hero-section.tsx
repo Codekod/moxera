@@ -12,23 +12,43 @@ export function HeroSection() {
   useEffect(() => {
     if (!sectionRef.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches || window.innerWidth < 768) return;
     const ctx = gsap.context(() => {
-      gsap.fromTo(".hero-line", { yPercent: 120 }, { yPercent: 0, duration: 1, stagger: 0.12, ease: "power3.out" });
+      const intro = gsap.timeline();
+      intro
+        .fromTo(".hero-kicker", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" })
+        .fromTo(".hero-line", { yPercent: 115, opacity: 0.2 }, { yPercent: 0, opacity: 1, duration: 1, stagger: 0.11, ease: "power3.out" }, "-=0.35")
+        .fromTo(".hero-sub", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, "-=0.35")
+        .fromTo(".hero-cta", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.65, stagger: 0.09, ease: "power2.out" }, "-=0.28");
+
       gsap.to(".hero-glow", { x: 180, y: 80, repeat: -1, yoyo: true, duration: 6, ease: "sine.inOut" });
+      gsap.to(".hero-sweep", { xPercent: 30, opacity: 0.34, repeat: -1, yoyo: true, duration: 5.6, ease: "sine.inOut" });
+      gsap.to(".hero-depth-card", {
+        yPercent: -14,
+        scale: 1.04,
+        ease: "none",
+        scrollTrigger: { trigger: sectionRef.current, start: "top top", end: "bottom top", scrub: 1 }
+      });
       gsap.fromTo(
         ".hero-trail-path",
         { strokeDashoffset: 1, opacity: 0.15 },
         { strokeDashoffset: 0, opacity: 0.9, duration: 2.4, ease: "power2.out" }
       );
       gsap.to(".hero-trail-dot", { x: 680, y: 110, duration: 3.2, repeat: -1, yoyo: true, ease: "sine.inOut" });
+      gsap.to(".hero-cta-primary", { boxShadow: "0 0 0 0 rgba(102,230,218,0.0), 0 0 36px 4px rgba(46,211,198,0.12)", repeat: -1, yoyo: true, duration: 2.8, ease: "sine.inOut" });
+
+      const heroScroll = gsap.timeline({
+        scrollTrigger: { trigger: sectionRef.current, start: "top top", end: "+=90%", scrub: 1.1, pin: true }
+      });
+      heroScroll.to(".hero-copy", { yPercent: -10, opacity: 0.74 }, 0).to(".hero-bg-right", { xPercent: -8, yPercent: -6 }, 0);
     }, sectionRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section id="hero" ref={sectionRef} className="relative overflow-hidden py-28 md:py-40">
+    <section id="hero" ref={sectionRef} className="relative overflow-hidden py-20 md:py-24">
       <div className="hero-glow absolute left-1/3 top-16 h-56 w-56 rounded-full bg-moxera-accent/30 blur-[90px]" />
+      <div className="hero-sweep absolute -left-1/3 top-6 h-96 w-[48rem] bg-[radial-gradient(circle,rgba(102,230,218,0.22),transparent_65%)] opacity-20 blur-[80px]" />
       <svg
-        className="pointer-events-none absolute -right-36 top-0 h-[520px] w-[760px] opacity-70"
+        className="hero-bg-right pointer-events-none absolute -right-36 top-0 h-[520px] w-[760px] opacity-80"
         viewBox="0 0 760 520"
         fill="none"
         aria-hidden="true"
@@ -52,23 +72,43 @@ export function HeroSection() {
           </linearGradient>
         </defs>
       </svg>
-      <Container className="relative z-10 space-y-10">
-        <p className="text-xs uppercase tracking-[0.3em] text-moxera-highlight">Moxera · Ankara · 2026</p>
-        <h1 className="space-y-2 text-4xl font-semibold leading-[1.05] text-moxera-text md:text-7xl">
-          <span className="block overflow-hidden"><span className="hero-line block">İhtiyaçlarınızı,</span></span>
-          <span className="block overflow-hidden"><span className="hero-line block">çalışan dijital</span></span>
-          <span className="block overflow-hidden"><span className="hero-line block">sistemlere dönüştürüyoruz.</span></span>
-        </h1>
-        <p className="max-w-2xl text-lg leading-relaxed text-moxera-text-soft">
-          Web, mobil, SaaS, yapay zeka ve otomasyon katmanlarını tek bir stratejide buluşturuyor; sadece yazılım değil, işleyen sistem teslim ediyoruz.
-        </p>
-        <div className="flex flex-wrap gap-4">
-          <Link href="/iletisim" className="rounded-full bg-moxera-accent px-7 py-3 text-sm font-semibold text-moxera-bg transition hover:bg-moxera-highlight">
-            Proje konuşalım
-          </Link>
-          <Link href="/calismalar" className="rounded-full border border-white/20 px-7 py-3 text-sm text-moxera-text transition hover:border-moxera-highlight">
-            Çalışmaları incele
-          </Link>
+      <Container className="relative z-10">
+        <div className="hero-depth-card scene-shell grid gap-12 overflow-hidden rounded-[2rem] px-7 py-10 md:grid-cols-[1.2fr_0.8fr] md:px-12 md:py-14">
+          <div className="hero-copy space-y-9">
+            <p className="hero-kicker text-xs uppercase tracking-[0.3em] text-moxera-highlight">Moxera · Ankara · 2026</p>
+            <h1 className="space-y-2 text-4xl font-semibold leading-[1.04] text-moxera-text md:text-7xl">
+              <span className="block overflow-hidden"><span className="hero-line block">İhtiyaçlarınızı,</span></span>
+              <span className="block overflow-hidden"><span className="hero-line block">çalışan dijital</span></span>
+              <span className="block overflow-hidden"><span className="hero-line block">sistemlere dönüştürüyoruz.</span></span>
+            </h1>
+            <p className="hero-sub max-w-2xl text-lg leading-relaxed text-moxera-text-soft">
+              Web, mobil, SaaS, yapay zeka ve otomasyon katmanlarını tek bir stratejide buluşturuyor; sadece yazılım değil, işleyen sistem teslim ediyoruz.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/iletisim"
+                className="hero-cta hero-cta-primary rounded-full bg-moxera-accent px-7 py-3 text-sm font-semibold text-moxera-bg transition duration-300 hover:-translate-y-0.5 hover:scale-[1.015] hover:bg-moxera-highlight active:translate-y-[1px]"
+              >
+                Proje konuşalım
+              </Link>
+              <Link
+                href="/calismalar"
+                className="hero-cta rounded-full border border-white/20 px-7 py-3 text-sm text-moxera-text transition duration-300 hover:-translate-y-0.5 hover:scale-[1.015] hover:border-moxera-highlight active:translate-y-[1px]"
+              >
+                Çalışmaları incele
+              </Link>
+            </div>
+          </div>
+          <div className="relative min-h-[280px] rounded-3xl border border-white/10 bg-gradient-to-b from-[#121D3A]/80 to-[#080D22]/90 p-6 md:min-h-[360px]">
+            <div className="absolute inset-6 rounded-2xl border border-moxera-highlight/20" />
+            <div className="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full bg-moxera-highlight/20 blur-3xl" />
+            <div className="cinematic-divider absolute left-8 right-8 top-16" />
+            <div className="cinematic-divider absolute bottom-16 left-8 right-8" />
+            <p className="relative mt-5 text-xs uppercase tracking-[0.2em] text-moxera-highlight">Sistem Mimari Görünümü</p>
+            <p className="relative mt-4 max-w-xs text-sm leading-relaxed text-moxera-text-soft">
+              İhtiyaç analizi, ürün katmanı, AI destek ve otomasyon bileşenleri tek ritimde çalışan bir dijital operasyon tasarımına dönüşür.
+            </p>
+          </div>
         </div>
       </Container>
     </section>

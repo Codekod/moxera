@@ -17,13 +17,25 @@ export function SelectedWorkSection() {
       gsap.utils.toArray<HTMLElement>(".work-item").forEach((item) => {
         gsap.fromTo(
           item,
-          { opacity: 0, y: 40 },
+          { opacity: 0, y: 55, clipPath: "inset(18% 0 14% 0)" },
           {
             opacity: 1,
             y: 0,
-            duration: 0.9,
+            clipPath: "inset(0% 0 0% 0)",
+            duration: 1,
             ease: "power2.out",
             scrollTrigger: { trigger: item, start: "top 82%" }
+          }
+        );
+        gsap.fromTo(
+          item.querySelector(".work-media"),
+          { opacity: 0.25, scale: 1.08 },
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 1.1,
+            ease: "power2.out",
+            scrollTrigger: { trigger: item, start: "top 74%", end: "bottom 50%", scrub: 0.8 }
           }
         );
       });
@@ -40,15 +52,25 @@ export function SelectedWorkSection() {
           description="Gerçek vaka detayları eklendikçe içerik kolay güncellenebilir. Şimdilik premium mock data ile kurumsal bir vitrin hazırlanmıştır."
         />
         <div className="space-y-8">
-          {caseStudies.map((item) => (
-            <article key={item.title} className="work-item group grid gap-6 rounded-3xl border border-white/10 bg-white/[0.03] p-7 transition hover:border-moxera-highlight/40 md:grid-cols-[1.4fr_1fr] md:p-10">
+          {caseStudies.map((item, index) => (
+            <article
+              key={item.title}
+              className={`work-item group grid gap-6 rounded-3xl border p-7 transition md:grid-cols-[1.35fr_1fr] md:p-10 ${
+                index === 0
+                  ? "scene-shell border-moxera-highlight/35 bg-gradient-to-br from-[#101C3B]/78 to-[#080D21]/92"
+                  : "border-white/10 bg-white/[0.03] hover:border-moxera-highlight/40"
+              }`}
+            >
               <div className="space-y-4">
-                <p className="text-xs uppercase tracking-[0.2em] text-moxera-highlight">{item.type}</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-moxera-highlight">{index === 0 ? "Öne çıkan çalışma" : item.type}</p>
                 <h3 className="text-2xl font-semibold text-moxera-text md:text-3xl">{item.title}</h3>
                 <p className="max-w-xl leading-relaxed text-moxera-text-soft">{item.summary}</p>
               </div>
-              <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-moxera-navy/60 to-moxera-bg p-6 text-sm text-moxera-text-soft transition duration-500 group-hover:-translate-y-1 group-hover:scale-[1.01]">
-                {item.mediaLabel}
+              <div className="work-media relative overflow-hidden rounded-2xl border border-white/15 bg-gradient-to-br from-moxera-navy/60 to-moxera-bg p-6 text-sm text-moxera-text-soft transition duration-500 group-hover:-translate-y-1 group-hover:scale-[1.01]">
+                <div className="absolute inset-3 rounded-xl border border-moxera-highlight/25" />
+                <div className="absolute -left-20 top-1/2 h-28 w-52 -translate-y-1/2 bg-[linear-gradient(90deg,transparent,rgba(102,230,218,0.35),transparent)] blur-md transition duration-700 group-hover:left-[70%]" />
+                <div className="absolute bottom-6 right-6 h-16 w-16 rounded-full bg-moxera-highlight/18 blur-2xl" />
+                <p className="relative">{item.mediaLabel}</p>
               </div>
             </article>
           ))}

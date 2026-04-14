@@ -18,6 +18,7 @@ export function ContactSection() {
       gsap.fromTo(".contact-shell", { opacity: 0.6, scale: 0.98 }, { opacity: 1, scale: 1, duration: 1, scrollTrigger: { trigger: sectionRef.current, start: "top 75%" } });
       gsap.fromTo(".contact-flow", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 2.6, ease: "power2.out", scrollTrigger: { trigger: sectionRef.current, start: "top 82%" } });
       gsap.to(".contact-pulse", { scale: 1.22, opacity: 0.35, repeat: -1, yoyo: true, duration: 1.8, ease: "sine.inOut" });
+      gsap.to(".contact-submit", { boxShadow: "0 0 0 0 rgba(102,230,218,0), 0 0 28px 4px rgba(46,211,198,0.12)", repeat: -1, yoyo: true, duration: 2.7, ease: "sine.inOut" });
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -89,7 +90,7 @@ export function ContactSection() {
           </linearGradient>
         </defs>
       </svg>
-      <Container className="contact-shell relative grid gap-10 rounded-3xl border border-white/10 bg-gradient-to-br from-moxera-navy/40 to-moxera-bg p-8 md:grid-cols-[1fr_1.1fr] md:p-10">
+      <Container className="contact-shell scene-shell relative grid gap-10 rounded-3xl p-8 md:grid-cols-[1fr_1.1fr] md:p-10">
         <div className="space-y-7">
           <SectionHeading
             kicker="İletişim"
@@ -104,10 +105,10 @@ export function ContactSection() {
           </div>
         </div>
         <form className="grid gap-4" onSubmit={onSubmit} aria-label="Proje iletişim formu">
-          <input name="fullName" required className="rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-moxera-text outline-none focus:border-moxera-highlight" placeholder="Ad Soyad" />
-          <input name="companyName" className="rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-moxera-text outline-none focus:border-moxera-highlight" placeholder="Firma Adı" />
-          <input name="phone" className="rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-moxera-text outline-none focus:border-moxera-highlight" placeholder="Telefon" />
-          <input name="email" type="email" required className="rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-moxera-text outline-none focus:border-moxera-highlight" placeholder="E-posta" />
+          <input name="fullName" required className="premium-focus rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-moxera-text outline-none" placeholder="Ad Soyad" />
+          <input name="companyName" className="premium-focus rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-moxera-text outline-none" placeholder="Firma Adı" />
+          <input name="phone" className="premium-focus rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-moxera-text outline-none" placeholder="Telefon" />
+          <input name="email" type="email" required className="premium-focus rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-moxera-text outline-none" placeholder="E-posta" />
           <input
             name="website"
             tabIndex={-1}
@@ -115,8 +116,8 @@ export function ContactSection() {
             className="hidden"
             aria-hidden="true"
           />
-          <textarea name="details" required className="min-h-28 rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-moxera-text outline-none focus:border-moxera-highlight" placeholder="İhtiyaç / proje detayı" />
-          <button type="submit" disabled={isSending} className="rounded-full bg-moxera-accent px-6 py-3 text-sm font-semibold text-moxera-bg transition hover:bg-moxera-highlight disabled:cursor-not-allowed disabled:opacity-70">
+          <textarea name="details" required className="premium-focus min-h-28 rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-moxera-text outline-none" placeholder="İhtiyaç / proje detayı" />
+          <button type="submit" disabled={isSending} className="contact-submit rounded-full bg-moxera-accent px-6 py-3 text-sm font-semibold text-moxera-bg transition duration-300 hover:-translate-y-0.5 hover:scale-[1.015] hover:bg-moxera-highlight active:translate-y-[1px] disabled:cursor-not-allowed disabled:opacity-70">
             {isSending ? "Gönderiliyor..." : "Proje konuşalım"}
           </button>
         </form>
