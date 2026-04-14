@@ -25,9 +25,10 @@ export function TransformationSection() {
       });
 
       tl.fromTo(".transform-heading", { opacity: 0.35, y: 24 }, { opacity: 1, y: 0, duration: 0.9 }, 0);
+      gsap.set(steps, { opacity: 0.95, y: 0, scale: 1 });
       steps.forEach((item, index) => {
-        if (index !== 0) tl.to(steps[index - 1], { opacity: 0.28, scale: 0.98, duration: 0.45 });
-        tl.fromTo(item, { opacity: 0.2, y: 36, clipPath: "inset(22% 0 18% 0)" }, { opacity: 1, y: 0, clipPath: "inset(0% 0 0% 0)", duration: 0.72 }, index === 0 ? 0.2 : "+=0.06");
+        if (index !== 0) tl.to(steps[index - 1], { opacity: 0.55, y: -8, scale: 0.985, duration: 0.42 });
+        tl.to(item, { opacity: 1, y: 0, scale: 1, duration: 0.62 }, index === 0 ? 0.2 : "+=0.07");
       });
     }, sectionRef);
     return () => ctx.revert();

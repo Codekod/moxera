@@ -99,15 +99,25 @@ export function HeroSection() {
               </Link>
             </div>
           </div>
-          <div className="relative min-h-[280px] rounded-3xl border border-white/10 bg-gradient-to-b from-[#121D3A]/80 to-[#080D22]/90 p-6 md:min-h-[360px]">
-            <div className="absolute inset-6 rounded-2xl border border-moxera-highlight/20" />
-            <div className="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full bg-moxera-highlight/20 blur-3xl" />
-            <div className="cinematic-divider absolute left-8 right-8 top-16" />
-            <div className="cinematic-divider absolute bottom-16 left-8 right-8" />
-            <p className="relative mt-5 text-xs uppercase tracking-[0.2em] text-moxera-highlight">Sistem Mimari Görünümü</p>
-            <p className="relative mt-4 max-w-xs text-sm leading-relaxed text-moxera-text-soft">
-              İhtiyaç analizi, ürün katmanı, AI destek ve otomasyon bileşenleri tek ritimde çalışan bir dijital operasyon tasarımına dönüşür.
-            </p>
+          <div className="relative min-h-[300px] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#121D3A]/84 to-[#060A1B]/95 px-7 py-7 md:min-h-[372px] md:px-8 md:py-8">
+            <div className="absolute inset-4 rounded-2xl border border-moxera-highlight/20" />
+            <div className="absolute inset-x-8 top-[74px] h-px bg-gradient-to-r from-transparent via-moxera-highlight/40 to-transparent" />
+            <div className="absolute inset-x-8 bottom-[82px] h-px bg-gradient-to-r from-transparent via-moxera-highlight/35 to-transparent" />
+            <div className="absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-moxera-highlight/20 blur-3xl" />
+            <div className="relative flex h-full flex-col justify-between">
+              <div>
+                <p className="text-[11px] uppercase tracking-[0.2em] text-moxera-highlight">Sistem Mimari Görünümü</p>
+                <h3 className="mt-4 max-w-[14rem] text-xl font-semibold leading-tight text-moxera-text">Analiz · Ürün · Otomasyon</h3>
+              </div>
+              <p className="max-w-[16rem] text-[13px] leading-[1.8] text-moxera-text-soft">
+                İhtiyaç analizi, ürün katmanı, AI destek ve otomasyon bileşenleri; okunur, sürdürülebilir ve ölçülebilir bir operasyon akışında birleşir.
+              </p>
+              <div className="grid grid-cols-3 gap-2 text-[10px] uppercase tracking-[0.16em] text-moxera-text-soft/85">
+                <span className="rounded-full border border-white/10 px-2 py-1 text-center">Web/Mobil</span>
+                <span className="rounded-full border border-white/10 px-2 py-1 text-center">SaaS</span>
+                <span className="rounded-full border border-white/10 px-2 py-1 text-center">AI/Otomasyon</span>
+              </div>
+            </div>
           </div>
         </div>
       </Container>

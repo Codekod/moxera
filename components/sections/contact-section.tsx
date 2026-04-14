@@ -5,6 +5,44 @@ import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { gsap, useGsapPlugin } from "@/lib/animations/gsap";
 
+const socialIcons = [
+  {
+    label: "Instagram",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.6">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4.2" />
+        <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none" />
+      </svg>
+    )
+  },
+  {
+    label: "X",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <path d="M4 4L20 20M20 4L4 20" />
+      </svg>
+    )
+  },
+  {
+    label: "Facebook",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+        <path d="M14.5 7H16V4h-1.7c-2.9 0-4.8 1.8-4.8 5V11H7v3h2.5v6h3.2v-6H16l.5-3h-3.8V9.1c0-1.3.5-2.1 1.8-2.1Z" />
+      </svg>
+    )
+  },
+  {
+    label: "WhatsApp",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.6">
+        <path d="M12 21a8.7 8.7 0 0 0 4.4-1.2L21 21l-1.3-4.2A8.9 8.9 0 1 0 12 21Z" />
+        <path d="M9 8.8c.2-.5.4-.5.7-.5h.5c.2 0 .4 0 .6.5.2.4.7 1.6.8 1.7.1.2.1.4 0 .6-.1.2-.2.4-.4.6-.2.2-.3.3-.1.6.2.2.7 1.2 1.8 1.9 1.4.9 2.5 1.1 2.9 1.2.3.1.5 0 .6-.2.2-.2.8-1 .9-1.4.2-.3.4-.3.6-.2.2.1 1.5.7 1.7.9.2.1.4.2.4.3s0 .9-.5 1.7c-.5.8-1.8 1.5-2.4 1.6-.6.1-1.3.2-2.2-.1-.5-.2-1.1-.4-1.8-.8-3.1-1.7-4.9-4.8-5.1-5.1-.2-.3-1.3-1.8-1.3-3.4 0-1.7.9-2.5 1.2-2.8Z" />
+      </svg>
+    )
+  }
+];
+
 export function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isSending, setIsSending] = useState(false);
@@ -91,20 +129,28 @@ export function ContactSection() {
         </defs>
       </svg>
       <Container className="contact-shell scene-shell relative grid gap-10 rounded-3xl p-8 md:grid-cols-[1fr_1.1fr] md:p-10">
-        <div className="space-y-7">
+        <div className="space-y-8">
           <SectionHeading
             kicker="İletişim"
             title="Projenizi birlikte netleştirelim"
             description="Sıradan bir form yerine, ihtiyaçları sistem perspektifinden konuştuğumuz güçlü bir başlangıç noktası."
           />
-          <div className="space-y-2 text-sm text-moxera-text-soft">
+          <div className="space-y-3 rounded-2xl border border-white/10 bg-black/20 p-5 text-sm text-moxera-text-soft">
+            <p className="text-[11px] uppercase tracking-[0.2em] text-moxera-highlight">Doğrudan İletişim</p>
             <p>meliheken@moxera.com.tr</p>
             <p>0 533 969 78 06</p>
             <p>Ankara merkez</p>
-            <p>Instagram · X · Facebook · WhatsApp</p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            {socialIcons.map((social) => (
+              <button key={social.label} type="button" className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/20 px-3 py-2 text-xs tracking-[0.1em] text-moxera-text-soft transition hover:border-moxera-highlight/45 hover:text-moxera-highlight">
+                {social.icon}
+                {social.label}
+              </button>
+            ))}
           </div>
         </div>
-        <form className="grid gap-4" onSubmit={onSubmit} aria-label="Proje iletişim formu">
+        <form className="grid gap-4 rounded-2xl border border-white/10 bg-black/20 p-6" onSubmit={onSubmit} aria-label="Proje iletişim formu">
           <input name="fullName" required className="premium-focus rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-moxera-text outline-none" placeholder="Ad Soyad" />
           <input name="companyName" className="premium-focus rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-moxera-text outline-none" placeholder="Firma Adı" />
           <input name="phone" className="premium-focus rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-moxera-text outline-none" placeholder="Telefon" />
@@ -117,6 +163,7 @@ export function ContactSection() {
             aria-hidden="true"
           />
           <textarea name="details" required className="premium-focus min-h-28 rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-moxera-text outline-none" placeholder="İhtiyaç / proje detayı" />
+          <div className="cinematic-divider my-1" />
           <button type="submit" disabled={isSending} className="contact-submit rounded-full bg-moxera-accent px-6 py-3 text-sm font-semibold text-moxera-bg transition duration-300 hover:-translate-y-0.5 hover:scale-[1.015] hover:bg-moxera-highlight active:translate-y-[1px] disabled:cursor-not-allowed disabled:opacity-70">
             {isSending ? "Gönderiliyor..." : "Proje konuşalım"}
           </button>

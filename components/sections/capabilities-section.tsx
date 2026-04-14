@@ -26,6 +26,7 @@ export function CapabilitiesSection() {
       });
 
       tl.fromTo(".capability-heading", { opacity: 0.3, y: 26 }, { opacity: 1, y: 0, duration: 0.8 }, 0);
+      gsap.set(cards, { opacity: 0.8 });
       cards.forEach((card, index) => {
         if (index === 0) {
           tl.fromTo(card, { opacity: 0.35, y: 50, rotateX: 4 }, { opacity: 1, y: 0, rotateX: 0, duration: 0.6 }, 0.1);
@@ -64,7 +65,8 @@ export function CapabilitiesSection() {
                 <p className="mb-4 text-xs uppercase tracking-[0.2em] text-moxera-highlight/90">Katman 0{index + 1}</p>
                 <h3 className="mb-4 text-2xl font-semibold text-moxera-text">{item.title}</h3>
                 <p className="mb-5 leading-relaxed text-moxera-text-soft">{item.detail}</p>
-                <p className="text-sm uppercase tracking-[0.16em] text-moxera-highlight">{item.metric}</p>
+                <div className="mt-6 h-px w-16 bg-gradient-to-r from-moxera-highlight/60 to-transparent" />
+                <p className="mt-3 text-sm uppercase tracking-[0.16em] text-moxera-highlight">{item.metric}</p>
               </article>
             ))}
           </div>

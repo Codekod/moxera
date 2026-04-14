@@ -45,19 +45,24 @@ export function SiteHeader() {
       className={`sticky top-0 z-50 border-b transition duration-500 ${
         isScrolled
           ? "border-white/15 bg-[rgba(5,8,22,0.86)] shadow-[0_8px_38px_rgba(0,0,0,0.35)] backdrop-blur-xl"
-          : "border-white/10 bg-moxera-bg/60 backdrop-blur"
+          : "border-white/10 bg-[rgba(5,8,22,0.58)] backdrop-blur-lg"
       }`}
     >
-      <Container className="flex h-16 items-center justify-between">
-        <Link href="/" className="text-lg font-semibold tracking-wide text-moxera-text">
-          MOXERA
+      <Container className="flex h-20 items-center justify-between">
+        <Link href="/" className="group relative flex items-center gap-3 text-moxera-text">
+          <span className="relative inline-flex h-8 w-8 items-center justify-center rounded-full border border-moxera-highlight/40 bg-moxera-highlight/10">
+            <span className="h-2.5 w-2.5 rounded-full bg-moxera-highlight" />
+            <span className="absolute h-5 w-5 rounded-full border border-moxera-highlight/40" />
+          </span>
+          <span className="text-base font-semibold tracking-[0.2em]">MOXERA</span>
+          <span className="absolute -bottom-1 left-11 h-px w-0 bg-moxera-highlight transition-all duration-500 group-hover:w-16" />
         </Link>
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-10 md:flex">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={pathname === "/" && item.sectionId ? `#${item.sectionId}` : item.href}
-              className={`group relative text-sm transition hover:text-moxera-text ${
+              className={`group relative text-[13px] tracking-[0.1em] transition hover:text-moxera-text ${
                 (pathname === "/" && item.sectionId === activeSection) || (pathname !== "/" && item.href === pathname)
                   ? "text-moxera-text"
                   : "text-moxera-text-soft"
@@ -74,6 +79,12 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
+        <div className="hidden items-center gap-3 md:flex">
+          <span className="rounded-full border border-white/10 px-3 py-1.5 text-[11px] uppercase tracking-[0.16em] text-moxera-text-soft">Ankara</span>
+          <Link href="/iletisim" className="rounded-full border border-moxera-highlight/45 bg-moxera-highlight/10 px-4 py-2 text-xs font-semibold tracking-[0.12em] text-moxera-highlight transition hover:bg-moxera-highlight/20">
+            Proje Başlat
+          </Link>
+        </div>
       </Container>
     </header>
   );
