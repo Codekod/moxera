@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { Container } from "@/components/ui/container";
 import { gsap, useGsapPlugin } from "@/lib/animations/gsap";
@@ -15,7 +16,7 @@ export function HeroSection() {
       const intro = gsap.timeline();
       intro
         .fromTo(".hero-kicker", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" })
-        .fromTo(".hero-line", { yPercent: 115, opacity: 0.2 }, { yPercent: 0, opacity: 1, duration: 1, stagger: 0.11, ease: "power3.out" }, "-=0.35")
+        .fromTo(".hero-line", { yPercent: 104, opacity: 0.2 }, { yPercent: 0, opacity: 1, duration: 0.95, stagger: 0.1, ease: "power3.out" }, "-=0.35")
         .fromTo(".hero-sub", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, "-=0.35")
         .fromTo(".hero-cta", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.65, stagger: 0.09, ease: "power2.out" }, "-=0.28");
 
@@ -34,6 +35,7 @@ export function HeroSection() {
       );
       gsap.to(".hero-trail-dot", { x: 680, y: 110, duration: 3.2, repeat: -1, yoyo: true, ease: "sine.inOut" });
       gsap.to(".hero-cta-primary", { boxShadow: "0 0 0 0 rgba(102,230,218,0.0), 0 0 36px 4px rgba(46,211,198,0.12)", repeat: -1, yoyo: true, duration: 2.8, ease: "sine.inOut" });
+      gsap.to(".hero-tech-pill", { y: -1.5, repeat: -1, yoyo: true, duration: 1.4, stagger: 0.12, ease: "sine.inOut" });
 
       const heroScroll = gsap.timeline({
         scrollTrigger: { trigger: sectionRef.current, start: "top top", end: "+=90%", scrub: 1.1, pin: true }
@@ -76,10 +78,10 @@ export function HeroSection() {
         <div className="hero-depth-card scene-shell grid gap-12 overflow-hidden rounded-[2rem] px-7 py-10 md:grid-cols-[1.2fr_0.8fr] md:px-12 md:py-14">
           <div className="hero-copy space-y-9">
             <p className="hero-kicker text-xs uppercase tracking-[0.3em] text-moxera-highlight">Moxera · Ankara · 2026</p>
-            <h1 className="space-y-2 text-4xl font-semibold leading-[1.04] text-moxera-text md:text-7xl">
-              <span className="block overflow-hidden"><span className="hero-line block">İhtiyaçlarınızı,</span></span>
-              <span className="block overflow-hidden"><span className="hero-line block">çalışan dijital</span></span>
-              <span className="block overflow-hidden"><span className="hero-line block">sistemlere dönüştürüyoruz.</span></span>
+            <h1 className="space-y-1 text-4xl font-semibold leading-[1.1] text-moxera-text md:text-7xl">
+              <span className="block overflow-hidden py-1"><span className="hero-line block">İhtiyaçlarınızı,</span></span>
+              <span className="block overflow-hidden py-1"><span className="hero-line block">çalışan dijital</span></span>
+              <span className="block overflow-hidden py-1"><span className="hero-line block">sistemlere dönüştürüyoruz.</span></span>
             </h1>
             <p className="hero-sub max-w-2xl text-lg leading-relaxed text-moxera-text-soft">
               Web, mobil, SaaS, yapay zeka ve otomasyon katmanlarını tek bir stratejide buluşturuyor; sadece yazılım değil, işleyen sistem teslim ediyoruz.
@@ -102,6 +104,9 @@ export function HeroSection() {
           <div className="relative min-h-[300px] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#121D3A]/84 to-[#060A1B]/95 px-7 py-7 md:min-h-[372px] md:px-8 md:py-8">
             <div className="absolute inset-4 rounded-2xl border border-moxera-highlight/20" />
             <div className="absolute inset-4 bg-[linear-gradient(transparent_31px,rgba(255,255,255,0.04)_32px),linear-gradient(90deg,transparent_31px,rgba(255,255,255,0.03)_32px)] bg-[size:32px_32px] opacity-25" />
+            <div className="absolute right-8 top-8 h-10 w-28 opacity-45">
+              <Image src="/brand/moxera-logo-light.png" alt="Moxera" fill sizes="112px" className="object-contain object-right" />
+            </div>
             <div className="absolute inset-x-8 top-[74px] h-px bg-gradient-to-r from-transparent via-moxera-highlight/40 to-transparent" />
             <div className="absolute inset-x-8 bottom-[82px] h-px bg-gradient-to-r from-transparent via-moxera-highlight/35 to-transparent" />
             <div className="absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-moxera-highlight/20 blur-3xl" />
@@ -114,9 +119,9 @@ export function HeroSection() {
                 İhtiyaç analizi, ürün katmanı, AI destek ve otomasyon bileşenleri; okunur, sürdürülebilir ve ölçülebilir bir operasyon akışında birleşir.
               </p>
               <div className="grid grid-cols-3 gap-2 text-[10px] uppercase tracking-[0.16em] text-moxera-text-soft/85">
-                <span className="rounded-full border border-white/10 px-2 py-1 text-center">Web/Mobil</span>
-                <span className="rounded-full border border-white/10 px-2 py-1 text-center">SaaS</span>
-                <span className="rounded-full border border-white/10 px-2 py-1 text-center">AI/Otomasyon</span>
+                <span className="hero-tech-pill rounded-full border border-white/10 bg-white/[0.02] px-2 py-1 text-center transition duration-300 hover:-translate-y-0.5 hover:border-moxera-highlight/45 hover:bg-moxera-highlight/10">Web/Mobil</span>
+                <span className="hero-tech-pill rounded-full border border-white/10 bg-white/[0.02] px-2 py-1 text-center transition duration-300 hover:-translate-y-0.5 hover:border-moxera-highlight/45 hover:bg-moxera-highlight/10">SaaS</span>
+                <span className="hero-tech-pill rounded-full border border-white/10 bg-white/[0.02] px-2 py-1 text-center transition duration-300 hover:-translate-y-0.5 hover:border-moxera-highlight/45 hover:bg-moxera-highlight/10">AI/Otomasyon</span>
               </div>
             </div>
           </div>

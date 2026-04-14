@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 import { navItems } from "@/lib/data/site-content";
@@ -50,12 +51,17 @@ export function SiteHeader() {
     >
       <Container className="flex h-[5.35rem] items-center justify-between">
         <Link href="/" className="group relative flex items-center gap-3 text-moxera-text">
-          <span className="relative inline-flex h-8 w-8 items-center justify-center rounded-full border border-moxera-highlight/40 bg-moxera-highlight/10">
-            <span className="h-2.5 w-2.5 rounded-full bg-moxera-highlight" />
-            <span className="absolute h-5 w-5 rounded-full border border-moxera-highlight/40" />
+          <span className="relative h-8 w-32">
+            <Image
+              src="/brand/moxera-logo-light.png"
+              alt="Moxera"
+              fill
+              sizes="128px"
+              className="object-contain object-left"
+              priority
+            />
           </span>
-          <span className="text-base font-semibold tracking-[0.2em]">MOXERA</span>
-          <span className="absolute -bottom-1 left-11 h-px w-0 bg-moxera-highlight transition-all duration-500 group-hover:w-16" />
+          <span className="absolute -bottom-1 left-1 h-px w-0 bg-moxera-highlight transition-all duration-500 group-hover:w-16" />
         </Link>
         <nav className="hidden items-center gap-9 md:flex">
           {navItems.map((item) => (

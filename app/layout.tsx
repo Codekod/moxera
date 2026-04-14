@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { Inter, Manrope } from "next/font/google";
+import { Plus_Jakarta_Sans, Sora } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin-ext"],
+  variable: "--font-jakarta",
   display: "swap"
 });
 
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-manrope",
+const sora = Sora({
+  subsets: ["latin-ext"],
+  variable: "--font-sora",
   display: "swap"
 });
 
@@ -31,14 +31,27 @@ export const metadata: Metadata = {
     url: "https://moxera.com.tr",
     siteName: "Moxera",
     locale: "tr_TR",
-    type: "website"
+    type: "website",
+    images: [
+      {
+        url: "/brand/moxera-og-cover.png",
+        width: 1200,
+        height: 630,
+        alt: "Moxera"
+      }
+    ]
+  },
+  icons: {
+    icon: "/brand/moxera-logo-symbol.png",
+    apple: "/brand/moxera-logo-symbol.png",
+    shortcut: "/brand/moxera-logo-symbol.png"
   }
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="tr">
-      <body className={`${inter.variable} ${manrope.variable} bg-moxera-bg text-moxera-text antialiased`}>
+      <body className={`${jakarta.variable} ${sora.variable} bg-moxera-bg text-moxera-text antialiased`}>
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />

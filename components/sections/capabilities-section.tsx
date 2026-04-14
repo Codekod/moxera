@@ -19,22 +19,23 @@ export function CapabilitiesSection() {
         scrollTrigger: {
           trigger: ".capability-stage",
           start: "top 12%",
-          end: `+=${cards.length * 320}`,
-          scrub: 1,
+          end: `+=${cards.length * 340}`,
+          scrub: 1.1,
           pin: ".capability-stage"
         }
       });
 
       tl.fromTo(".capability-heading", { opacity: 0.3, y: 26 }, { opacity: 1, y: 0, duration: 0.8 }, 0);
-      gsap.set(cards, { opacity: 0.8 });
+      gsap.set(cards, { opacity: 0.82, y: 12, scale: 0.992 });
       cards.forEach((card, index) => {
         if (index === 0) {
-          tl.fromTo(card, { opacity: 0.35, y: 50, rotateX: 4 }, { opacity: 1, y: 0, rotateX: 0, duration: 0.6 }, 0.1);
+          tl.to(card, { opacity: 1, y: 0, scale: 1, rotateX: 0, duration: 0.7 }, 0.15);
           return;
         }
-        tl.to(cards[index - 1], { opacity: 0.28, y: -26, duration: 0.45, scale: 0.985 });
-        tl.fromTo(card, { opacity: 0.2, y: 42, rotateX: 3 }, { opacity: 1, y: 0, rotateX: 0, duration: 0.62 });
+        tl.to(cards[index - 1], { opacity: 0.68, y: -6, scale: 0.988, duration: 0.45 });
+        tl.to(card, { opacity: 1, y: 0, scale: 1, rotateX: 0, duration: 0.7 }, "+=0.08");
       });
+      tl.to(cards, { opacity: 0.9, y: 0, scale: 0.995, duration: 0.45 });
     }, sectionRef);
 
     return () => ctx.revert();

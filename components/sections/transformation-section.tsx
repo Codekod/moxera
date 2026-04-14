@@ -25,10 +25,10 @@ export function TransformationSection() {
       });
 
       tl.fromTo(".transform-heading", { opacity: 0.35, y: 24 }, { opacity: 1, y: 0, duration: 0.9 }, 0);
-      gsap.set(steps, { opacity: 0.95, y: 0, scale: 1 });
+      gsap.set(steps, { opacity: 0.86, y: 0, scale: 0.995 });
       steps.forEach((item, index) => {
-        if (index !== 0) tl.to(steps[index - 1], { opacity: 0.55, y: -8, scale: 0.985, duration: 0.42 });
-        tl.to(item, { opacity: 1, y: 0, scale: 1, duration: 0.62 }, index === 0 ? 0.2 : "+=0.07");
+        if (index !== 0) tl.to(steps[index - 1], { opacity: 0.62, y: -6, scale: 0.988, duration: 0.45, borderColor: "rgba(255,255,255,0.16)" });
+        tl.to(item, { opacity: 1, y: 0, scale: 1, duration: 0.68, borderColor: "rgba(102,230,218,0.42)", boxShadow: "0 20px 60px rgba(2,8,26,0.48)" }, index === 0 ? 0.18 : "+=0.1");
       });
     }, sectionRef);
     return () => ctx.revert();
@@ -49,8 +49,8 @@ export function TransformationSection() {
           <ol className="grid gap-6 md:grid-cols-5">
             {transformationSteps.map((step, index) => (
               <li key={step} className="transform-item rounded-2xl border border-white/10 bg-white/[0.04] p-6 shadow-cinematic">
-                <p className="mb-4 text-xs tracking-[0.2em] text-moxera-highlight">0{index + 1}</p>
-                <p className="text-base text-moxera-text-soft">{step}</p>
+                <p className="mb-4 text-sm font-semibold tracking-[0.22em] text-moxera-highlight">0{index + 1}</p>
+                <p className="text-[15px] leading-relaxed text-moxera-text-soft">{step}</p>
               </li>
             ))}
           </ol>

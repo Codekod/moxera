@@ -1,5 +1,6 @@
 import { Container } from "@/components/ui/container";
 import Link from "next/link";
+import Image from "next/image";
 import { navItems } from "@/lib/data/site-content";
 
 const footerSocials = [
@@ -15,7 +16,9 @@ export function SiteFooter() {
       <Container className="space-y-10">
         <div className="grid gap-10 md:grid-cols-[1.25fr_0.75fr_0.75fr]">
           <div className="space-y-4">
-            <p className="text-base font-semibold tracking-[0.18em] text-moxera-text">MOXERA</p>
+            <div className="relative h-9 w-40">
+              <Image src="/brand/moxera-logo-light.png" alt="Moxera" fill sizes="160px" className="object-contain object-left" />
+            </div>
             <p className="max-w-md text-sm leading-relaxed text-moxera-text-soft">
               İhtiyaçlarınızı, çalışan dijital sistemlere dönüştürüyoruz. Ankara merkezli butik yaklaşım ile web, mobil, SaaS, yapay zeka ve otomasyon çözümleri geliştiriyoruz.
             </p>
