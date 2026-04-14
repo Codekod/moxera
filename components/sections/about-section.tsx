@@ -31,7 +31,7 @@ export function AboutSection() {
       <svg className="about-signature pointer-events-none absolute left-4 top-12 h-40 w-64 opacity-40" viewBox="0 0 280 160" fill="none" aria-hidden="true">
         <path d="M4 104C62 48 112 36 154 74C192 108 224 114 276 80M0 126C48 150 102 152 148 126C200 98 244 94 278 112" stroke="rgba(102,230,218,0.25)" strokeWidth="1.3" />
       </svg>
-      <Container className="space-y-9">
+      <Container className="space-y-11">
         <SectionHeading
           className="about-intro"
           kicker="Hakkımızda"
@@ -39,11 +39,11 @@ export function AboutSection() {
           description="Moxera, tek kişilik ama yüksek odaklı bir yapı olarak; müşteriyi dinleyen, darboğazı tespit eden ve çalışan sistemi teslim eden bir iş modeliyle ilerler."
         />
         <div className="about-line cinematic-divider" />
-        <div className="about-panel scene-shell grid gap-10 rounded-3xl p-8 md:grid-cols-[1.1fr_0.9fr]">
-          <div className="space-y-5 text-moxera-text-soft">
-            <p>Ankara merkezli çalışma modeliyle doğrudan iletişim, hızlı karar ve yüksek özen sağlar.</p>
-            <p>Web ve mobil ürünler, AI katmanları ve otomasyon sistemleri tek bir stratejik çatı altında planlanır.</p>
-            <p>Hedef, sadece dijital varlık üretmek değil; görünürlük, prestij ve operasyonel verim oluşturmaktır.</p>
+        <div className="about-panel scene-shell grid gap-10 rounded-3xl p-8 md:grid-cols-[1.15fr_0.85fr]">
+          <div className="space-y-6 text-moxera-text-soft">
+            <p className="max-w-[40ch] leading-[1.85]">Ankara merkezli çalışma modeliyle doğrudan iletişim, hızlı karar ve yüksek özen sağlar.</p>
+            <p className="max-w-[42ch] leading-[1.85]">Web ve mobil ürünler, AI katmanları ve otomasyon sistemleri tek bir stratejik çatı altında planlanır.</p>
+            <p className="max-w-[42ch] leading-[1.85]">Hedef, sadece dijital varlık üretmek değil; görünürlük, prestij ve operasyonel verim oluşturmaktır.</p>
           </div>
           <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-[#121A36]/85 to-[#070D23]/90 p-6">
             <div className="absolute -right-8 top-2 h-24 w-24 rounded-full bg-moxera-highlight/20 blur-2xl" />

@@ -55,16 +55,17 @@ export function SelectedWorkSection() {
           {caseStudies.map((item, index) => (
             <article
               key={item.title}
-              className={`work-item group grid gap-6 rounded-3xl border p-7 transition md:grid-cols-[1.35fr_1fr] md:p-10 ${
+              className={`work-item group grid gap-7 rounded-3xl border p-7 transition md:grid-cols-[1.2fr_1fr] md:p-10 ${
                 index === 0
                   ? "scene-shell border-moxera-highlight/35 bg-gradient-to-br from-[#101C3B]/78 to-[#080D21]/92"
                   : "border-white/10 bg-white/[0.03] hover:border-moxera-highlight/40"
               }`}
             >
               <div className="space-y-4">
-                <p className="text-xs uppercase tracking-[0.2em] text-moxera-highlight">{index === 0 ? "Öne çıkan çalışma" : item.type}</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-moxera-highlight">{index === 0 ? "Öne çıkan çalışma · Gerçek referans" : item.type}</p>
                 <h3 className="text-2xl font-semibold leading-tight text-moxera-text md:text-3xl">{item.title}</h3>
                 <p className="max-w-[34rem] leading-[1.75] text-moxera-text-soft">{item.summary}</p>
+                {index === 0 ? <p className="text-[11px] uppercase tracking-[0.2em] text-moxera-highlight/90">Devam eden ürün geliştirme hattı</p> : null}
               </div>
               <div className={`work-media relative overflow-hidden rounded-2xl border p-7 text-sm text-moxera-text-soft transition duration-500 group-hover:-translate-y-1 group-hover:scale-[1.01] ${
                 index === 0

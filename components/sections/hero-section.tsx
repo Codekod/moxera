@@ -101,6 +101,7 @@ export function HeroSection() {
           </div>
           <div className="relative min-h-[300px] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#121D3A]/84 to-[#060A1B]/95 px-7 py-7 md:min-h-[372px] md:px-8 md:py-8">
             <div className="absolute inset-4 rounded-2xl border border-moxera-highlight/20" />
+            <div className="absolute inset-4 bg-[linear-gradient(transparent_31px,rgba(255,255,255,0.04)_32px),linear-gradient(90deg,transparent_31px,rgba(255,255,255,0.03)_32px)] bg-[size:32px_32px] opacity-25" />
             <div className="absolute inset-x-8 top-[74px] h-px bg-gradient-to-r from-transparent via-moxera-highlight/40 to-transparent" />
             <div className="absolute inset-x-8 bottom-[82px] h-px bg-gradient-to-r from-transparent via-moxera-highlight/35 to-transparent" />
             <div className="absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-moxera-highlight/20 blur-3xl" />

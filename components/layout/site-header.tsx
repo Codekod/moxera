@@ -48,7 +48,7 @@ export function SiteHeader() {
           : "border-white/10 bg-[rgba(5,8,22,0.58)] backdrop-blur-lg"
       }`}
     >
-      <Container className="flex h-20 items-center justify-between">
+      <Container className="flex h-[5.35rem] items-center justify-between">
         <Link href="/" className="group relative flex items-center gap-3 text-moxera-text">
           <span className="relative inline-flex h-8 w-8 items-center justify-center rounded-full border border-moxera-highlight/40 bg-moxera-highlight/10">
             <span className="h-2.5 w-2.5 rounded-full bg-moxera-highlight" />
@@ -57,12 +57,12 @@ export function SiteHeader() {
           <span className="text-base font-semibold tracking-[0.2em]">MOXERA</span>
           <span className="absolute -bottom-1 left-11 h-px w-0 bg-moxera-highlight transition-all duration-500 group-hover:w-16" />
         </Link>
-        <nav className="hidden items-center gap-10 md:flex">
+        <nav className="hidden items-center gap-9 md:flex">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={pathname === "/" && item.sectionId ? `#${item.sectionId}` : item.href}
-              className={`group relative text-[13px] tracking-[0.1em] transition hover:text-moxera-text ${
+              className={`group relative py-1 text-[12px] font-medium tracking-[0.14em] transition hover:text-moxera-text ${
                 (pathname === "/" && item.sectionId === activeSection) || (pathname !== "/" && item.href === pathname)
                   ? "text-moxera-text"
                   : "text-moxera-text-soft"
@@ -70,7 +70,7 @@ export function SiteHeader() {
             >
               {item.label}
               <span
-                className={`absolute -bottom-2 left-0 h-px bg-moxera-highlight transition-all duration-300 ${
+                className={`absolute -bottom-1 left-0 h-px bg-moxera-highlight transition-all duration-300 ${
                   (pathname === "/" && item.sectionId === activeSection) || (pathname !== "/" && item.href === pathname)
                     ? "w-full opacity-100"
                     : "w-0 opacity-0 group-hover:w-full group-hover:opacity-80"
@@ -79,9 +79,12 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <div className="hidden items-center gap-3 md:flex">
-          <span className="rounded-full border border-white/10 px-3 py-1.5 text-[11px] uppercase tracking-[0.16em] text-moxera-text-soft">Ankara</span>
-          <Link href="/iletisim" className="rounded-full border border-moxera-highlight/45 bg-moxera-highlight/10 px-4 py-2 text-xs font-semibold tracking-[0.12em] text-moxera-highlight transition hover:bg-moxera-highlight/20">
+        <div className="hidden items-center gap-2.5 md:flex">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] text-moxera-text-soft">
+            <span className="h-1.5 w-1.5 rounded-full bg-moxera-highlight/90" />
+            Ankara
+          </span>
+          <Link href="/iletisim" className="rounded-full border border-moxera-highlight/45 bg-moxera-highlight/10 px-4 py-2 text-[11px] font-semibold tracking-[0.14em] text-moxera-highlight transition hover:bg-moxera-highlight/20">
             Proje Başlat
           </Link>
         </div>

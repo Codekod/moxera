@@ -46,7 +46,7 @@ export function WhyMoxeraSection() {
       <svg className="why-signature pointer-events-none absolute right-0 top-8 h-44 w-72 opacity-45" viewBox="0 0 320 180" fill="none" aria-hidden="true">
         <path d="M6 105C60 42 116 30 160 78C196 116 236 125 314 68M0 128C70 170 128 166 180 130C228 98 260 92 316 118" stroke="rgba(102,230,218,0.28)" strokeWidth="1.4" />
       </svg>
-      <Container className="space-y-12">
+      <Container className="space-y-13">
         <SectionHeading
           className="why-intro"
           kicker="Neden Moxera"
@@ -55,8 +55,8 @@ export function WhyMoxeraSection() {
         />
         <div className="why-line cinematic-divider" />
         <ul className="grid gap-5 md:grid-cols-2">
-          {whyMoxera.map((item) => (
-            <li key={item} className="why-item rounded-2xl border border-white/10 bg-white/[0.02] p-6 text-moxera-text-soft transition duration-300 hover:-translate-y-0.5 hover:border-moxera-highlight/35">
+          {whyMoxera.map((item, index) => (
+            <li key={item} className={`why-item rounded-2xl border border-white/10 bg-white/[0.02] p-6 text-moxera-text-soft transition duration-300 hover:-translate-y-0.5 hover:border-moxera-highlight/35 ${index === 1 ? "md:translate-y-3" : ""}`}>
               {item}
             </li>
           ))}

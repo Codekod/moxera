@@ -141,12 +141,12 @@ export function ContactSection() {
             <p>0 533 969 78 06</p>
             <p>Ankara merkez</p>
           </div>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 pt-1">
             {socialIcons.map((social) => (
-              <button key={social.label} type="button" className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/20 px-3 py-2 text-xs tracking-[0.1em] text-moxera-text-soft transition hover:border-moxera-highlight/45 hover:text-moxera-highlight">
+              <a key={social.label} href="#" className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/20 px-3 py-2 text-xs tracking-[0.1em] text-moxera-text-soft transition hover:border-moxera-highlight/45 hover:text-moxera-highlight">
                 {social.icon}
                 {social.label}
-              </button>
+              </a>
             ))}
           </div>
         </div>
