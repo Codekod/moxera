@@ -51,13 +51,14 @@ export function SiteHeader() {
     >
       <Container className="flex h-[5.35rem] items-center justify-between">
         <Link href="/" className="group relative flex items-center gap-3 text-moxera-text">
-          <span className="relative h-12 w-52 md:h-14 md:w-60">
+          <span className="relative block w-[172px] md:w-[196px]">
             <Image
               src="/brand/moxera-logo-light.png"
               alt="Moxera"
-              fill
-              sizes="(max-width: 768px) 208px, 240px"
-              className="object-contain object-left"
+              width={5692}
+              height={3200}
+              sizes="(max-width: 768px) 172px, 196px"
+              className="h-auto w-full object-contain object-left"
               priority
             />
           </span>
