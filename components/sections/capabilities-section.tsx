@@ -12,9 +12,17 @@ export function CapabilitiesSection() {
 
   useEffect(() => {
     if (!sectionRef.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const isMobile = window.innerWidth < 768;
 
     const cards = gsap.utils.toArray<HTMLElement>(".capability-card", sectionRef.current);
     const ctx = gsap.context(() => {
+      if (isMobile) {
+        gsap.fromTo(".capability-heading", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.55, scrollTrigger: { trigger: sectionRef.current, start: "top 82%" } });
+        cards.forEach((card, index) => {
+          gsap.fromTo(card, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.5, delay: index * 0.04, scrollTrigger: { trigger: card, start: "top 88%" } });
+        });
+        return;
+      }
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".capability-stage",

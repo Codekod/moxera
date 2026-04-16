@@ -24,6 +24,7 @@ body {
     #050816;
   font-family: var(--font-jakarta), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   letter-spacing: 0.01em;
+  overflow-x: clip;
 }
 
 section {
@@ -71,6 +72,24 @@ a {
   border-color: rgba(102, 230, 218, 0.8);
   box-shadow: 0 0 0 3px rgba(46, 211, 198, 0.12);
   transform: translateY(-1px);
+}
+
+.hero-pill-trace {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-pill-trace::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-120%);
+  background: linear-gradient(100deg, transparent 30%, rgba(102, 230, 218, 0.26) 52%, transparent 72%);
+  transition: transform 420ms ease;
+}
+
+.hero-pill-trace:hover::after {
+  transform: translateX(130%);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -12,8 +12,33 @@ export function TransformationSection() {
 
   useEffect(() => {
     if (!sectionRef.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const isMobile = window.innerWidth < 768;
     const ctx = gsap.context(() => {
       const steps = gsap.utils.toArray<HTMLElement>(".transform-item");
+      if (isMobile) {
+        gsap.fromTo(".transform-heading", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.62, ease: "power2.out", scrollTrigger: { trigger: sectionRef.current, start: "top 84%" } });
+        gsap.to(".transform-parallax", {
+          yPercent: 14,
+          xPercent: -3,
+          ease: "none",
+          scrollTrigger: { trigger: sectionRef.current, start: "top bottom", end: "bottom top", scrub: 1.05 }
+        });
+        steps.forEach((item) => {
+          gsap.fromTo(
+            item,
+            { opacity: 0, y: 32, scale: 0.98 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.58,
+              ease: "power3.out",
+              scrollTrigger: { trigger: item, start: "top 89%", toggleActions: "play none none reverse" }
+            }
+          );
+        });
+        return;
+      }
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".transform-stage",
@@ -35,25 +60,29 @@ export function TransformationSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 md:py-32">
-      <Container className="space-y-14">
-        <div className="transform-stage scene-shell rounded-[2rem] p-7 md:p-10">
-          <div className="transform-heading">
-            <SectionHeading
-              kicker="Dönüşüm Kurgusu"
-              title="İhtiyaçtan çalışan sisteme uzanan net bir yol"
-              description="Her projede aynı soruyu soruyoruz: Bu iş daha hızlı, daha sade ve daha ölçülebilir nasıl çalışır?"
-            />
+    <section ref={sectionRef} className="py-16 md:py-32">
+      <Container className="space-y-10 md:space-y-14">
+        <div className="transform-stage relative overflow-hidden rounded-[2rem] border border-white/[0.07] bg-[linear-gradient(165deg,rgba(11,18,40,0.72),rgba(5,8,22,0.5))] p-7 shadow-[inset_0_0_0_1px_rgba(102,230,218,0.05),0_24px_80px_rgba(0,0,0,0.35)] backdrop-blur-[3px] md:p-10">
+          <div className="transform-parallax pointer-events-none absolute -right-16 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-moxera-accent/18 blur-[100px] md:-right-24 md:h-96 md:w-96" />
+          <div className="transform-parallax pointer-events-none absolute -left-10 bottom-0 h-48 w-48 rounded-full bg-[#1D2A57]/45 blur-[80px] md:-left-16 md:h-64 md:w-64" />
+          <div className="relative z-[1]">
+            <div className="transform-heading">
+              <SectionHeading
+                kicker="Dönüşüm Kurgusu"
+                title="İhtiyaçtan çalışan sisteme uzanan net bir yol"
+                description="Her projede aynı soruyu soruyoruz: Bu iş daha hızlı, daha sade ve daha ölçülebilir nasıl çalışır?"
+              />
+            </div>
+            <div className="cinematic-divider my-8" />
+            <ol className="grid gap-4 md:gap-6 md:grid-cols-5">
+              {transformationSteps.map((step, index) => (
+                <li key={step} className="transform-item rounded-2xl border border-white/10 bg-white/[0.04] p-6 shadow-cinematic">
+                  <p className="mb-4 text-sm font-semibold tracking-[0.22em] text-moxera-highlight">0{index + 1}</p>
+                  <p className="text-[15px] leading-relaxed text-moxera-text-soft">{step}</p>
+                </li>
+              ))}
+            </ol>
           </div>
-          <div className="cinematic-divider my-8" />
-          <ol className="grid gap-6 md:grid-cols-5">
-            {transformationSteps.map((step, index) => (
-              <li key={step} className="transform-item rounded-2xl border border-white/10 bg-white/[0.04] p-6 shadow-cinematic">
-                <p className="mb-4 text-sm font-semibold tracking-[0.22em] text-moxera-highlight">0{index + 1}</p>
-                <p className="text-[15px] leading-relaxed text-moxera-text-soft">{step}</p>
-              </li>
-            ))}
-          </ol>
         </div>
       </Container>
     </section>

@@ -14,12 +14,20 @@ export function SiteFooter() {
   return (
     <footer className="relative border-t border-white/10 py-16">
       <Container className="space-y-10">
-        <div className="grid gap-10 md:grid-cols-[1.25fr_0.75fr_0.75fr]">
-          <div className="space-y-4">
-            <div className="relative h-9 w-40">
-              <Image src="/brand/moxera-logo-light.png" alt="Moxera" fill sizes="160px" className="object-contain object-left" />
+        <div className="grid gap-10 md:grid-cols-[1.35fr_0.75fr_0.75fr]">
+          <div className="space-y-5">
+            <div className="inline-flex max-w-full rounded-2xl border border-white/10 bg-black/15 px-6 py-5 md:px-7 md:py-6">
+              <div className="relative h-[3.35rem] w-[15rem] md:h-[3.75rem] md:w-[17.5rem]">
+                <Image
+                  src="/brand/moxera-logo-light.png"
+                  alt="Moxera"
+                  fill
+                  sizes="(max-width: 768px) 240px, 280px"
+                  className="object-contain object-left"
+                />
+              </div>
             </div>
-            <p className="max-w-md text-sm leading-relaxed text-moxera-text-soft">
+            <p className="max-w-md text-sm leading-relaxed text-moxera-text-soft md:text-[15px]">
               İhtiyaçlarınızı, çalışan dijital sistemlere dönüştürüyoruz. Ankara merkezli butik yaklaşım ile web, mobil, SaaS, yapay zeka ve otomasyon çözümleri geliştiriyoruz.
             </p>
           </div>
@@ -36,9 +44,9 @@ export function SiteFooter() {
             <p className="text-sm text-moxera-text-soft">meliheken@moxera.com.tr</p>
             <p className="text-sm text-moxera-text-soft">0 533 969 78 06</p>
             <p className="text-sm text-moxera-text-soft">Ankara merkez</p>
-            <div className="flex items-center gap-2 pt-1 text-moxera-text-soft">
+            <div className="flex flex-wrap items-center gap-3 pb-1 pt-3 text-moxera-text-soft">
               {footerSocials.map((social) => (
-                <a key={social.label} href="#" className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-black/20 transition hover:border-moxera-highlight/45 hover:text-moxera-highlight" aria-label={social.label}>
+                <a key={social.label} href="#" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/25 leading-none shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-0.5 hover:border-moxera-highlight/45 hover:text-moxera-highlight" aria-label={social.label}>
                   {social.icon}
                 </a>
               ))}

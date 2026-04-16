@@ -11,8 +11,42 @@ export function HeroSection() {
   useGsapPlugin();
 
   useEffect(() => {
-    if (!sectionRef.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches || window.innerWidth < 768) return;
+    if (!sectionRef.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const isMobile = window.innerWidth < 768;
     const ctx = gsap.context(() => {
+      if (isMobile) {
+        gsap.fromTo(".hero-kicker", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.55, ease: "power2.out" });
+        gsap.fromTo(".hero-line", { yPercent: 80, opacity: 0.2 }, { yPercent: 0, opacity: 1, duration: 0.72, stagger: 0.07, ease: "power2.out", delay: 0.08 });
+        gsap.fromTo(".hero-sub, .hero-cta, .hero-panel", { opacity: 0, y: 18 }, { opacity: 1, y: 0, stagger: 0.05, duration: 0.52, ease: "power2.out", delay: 0.16 });
+        gsap.to(".hero-glow", { x: 64, y: 20, repeat: -1, yoyo: true, duration: 7.2, ease: "sine.inOut" });
+        gsap.fromTo(
+          ".hero-pill-el",
+          { opacity: 0, y: 14, scale: 0.94 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.5,
+            stagger: 0.12,
+            ease: "back.out(1.25)",
+            delay: 0.52,
+            onComplete: () => {
+              gsap.utils.toArray<HTMLElement>(".hero-pill-el").forEach((el, i) => {
+                gsap.to(el, {
+                  y: -1.5,
+                  repeat: -1,
+                  yoyo: true,
+                  duration: 2.2 + i * 0.12,
+                  ease: "sine.inOut",
+                  delay: i * 0.08
+                });
+              });
+            }
+          }
+        );
+        return;
+      }
+
       const intro = gsap.timeline();
       intro
         .fromTo(".hero-kicker", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" })
@@ -46,7 +80,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section id="hero" ref={sectionRef} className="relative overflow-hidden py-20 md:py-24">
+    <section id="hero" ref={sectionRef} className="relative overflow-hidden py-16 md:py-24">
       <div className="hero-glow absolute left-1/3 top-16 h-56 w-56 rounded-full bg-moxera-accent/30 blur-[90px]" />
       <div className="hero-sweep absolute -left-1/3 top-6 h-96 w-[48rem] bg-[radial-gradient(circle,rgba(102,230,218,0.22),transparent_65%)] opacity-20 blur-[80px]" />
       <svg
@@ -75,7 +109,7 @@ export function HeroSection() {
         </defs>
       </svg>
       <Container className="relative z-10">
-        <div className="hero-depth-card scene-shell grid gap-12 overflow-hidden rounded-[2rem] px-7 py-10 md:grid-cols-[1.2fr_0.8fr] md:px-12 md:py-14">
+        <div className="hero-depth-card scene-shell grid gap-10 overflow-hidden rounded-[2rem] px-5 py-9 sm:gap-12 sm:px-7 sm:py-10 md:grid-cols-[1.2fr_0.8fr] md:px-12 md:py-14">
           <div className="hero-copy space-y-9">
             <p className="hero-kicker text-xs uppercase tracking-[0.3em] text-moxera-highlight">Moxera · Ankara · 2026</p>
             <h1 className="space-y-1 text-4xl font-semibold leading-[1.1] text-moxera-text md:text-7xl">
@@ -101,27 +135,44 @@ export function HeroSection() {
               </Link>
             </div>
           </div>
-          <div className="relative min-h-[300px] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#121D3A]/84 to-[#060A1B]/95 px-7 py-7 md:min-h-[372px] md:px-8 md:py-8">
-            <div className="absolute inset-4 rounded-2xl border border-moxera-highlight/20" />
-            <div className="absolute inset-4 bg-[linear-gradient(transparent_31px,rgba(255,255,255,0.04)_32px),linear-gradient(90deg,transparent_31px,rgba(255,255,255,0.03)_32px)] bg-[size:32px_32px] opacity-25" />
-            <div className="absolute right-8 top-8 h-10 w-28 opacity-45">
-              <Image src="/brand/moxera-logo-light.png" alt="Moxera" fill sizes="112px" className="object-contain object-right" />
-            </div>
-            <div className="absolute inset-x-8 top-[74px] h-px bg-gradient-to-r from-transparent via-moxera-highlight/40 to-transparent" />
-            <div className="absolute inset-x-8 bottom-[82px] h-px bg-gradient-to-r from-transparent via-moxera-highlight/35 to-transparent" />
-            <div className="absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-moxera-highlight/20 blur-3xl" />
-            <div className="relative flex h-full flex-col justify-between">
-              <div>
-                <p className="text-[11px] uppercase tracking-[0.2em] text-moxera-highlight">Sistem Mimari Görünümü</p>
-                <h3 className="mt-4 max-w-[14rem] text-xl font-semibold leading-tight text-moxera-text">Analiz · Ürün · Otomasyon</h3>
+          <div className="hero-panel relative min-h-[260px] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#121D3A]/84 to-[#060A1B]/95 px-5 py-6 sm:min-h-[280px] sm:px-6 md:min-h-[372px] md:px-8 md:py-8">
+            <div className="pointer-events-none absolute inset-4 rounded-2xl border border-moxera-highlight/20" />
+            <div className="pointer-events-none absolute inset-4 hidden bg-[linear-gradient(transparent_31px,rgba(255,255,255,0.04)_32px),linear-gradient(90deg,transparent_31px,rgba(255,255,255,0.03)_32px)] bg-[size:32px_32px] opacity-25 md:block" />
+            <div className="pointer-events-none absolute inset-x-6 top-[76px] hidden h-px bg-gradient-to-r from-transparent via-moxera-highlight/35 to-transparent md:block" />
+            <div className="pointer-events-none absolute inset-x-6 bottom-[96px] hidden h-px bg-gradient-to-r from-transparent via-moxera-highlight/28 to-transparent md:block" />
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-moxera-highlight/20 blur-3xl" />
+            <div className="relative z-[1] flex min-h-[240px] flex-col gap-5 md:min-h-0 md:justify-between">
+              <div className="flex flex-col gap-3 pb-4 max-md:border-b max-md:border-white/[0.06] min-[361px]:flex-row min-[361px]:items-start min-[361px]:justify-between min-[361px]:gap-3 md:gap-8 md:border-0 md:pb-0">
+                <div className="min-w-0 flex-1 pr-0 min-[361px]:pr-1">
+                  <p className="text-[11px] uppercase tracking-[0.2em] text-moxera-highlight">Sistem Mimari Görünümü</p>
+                  <h3 className="mt-3 max-w-[20rem] text-base font-semibold leading-snug text-moxera-text min-[361px]:max-w-[16rem] min-[361px]:text-lg sm:max-w-[18rem] sm:text-xl">
+                    Analiz · Ürün · Otomasyon
+                  </h3>
+                </div>
+                <div className="shrink-0 self-end pt-0.5 min-[361px]:self-start">
+                  <Image
+                    src="/brand/moxera-logo-light.png"
+                    alt="Moxera"
+                    width={5692}
+                    height={3200}
+                    sizes="(max-width: 360px) 96px, (max-width: 768px) 112px, 132px"
+                    className="h-auto w-[5.75rem] object-contain object-right opacity-95 min-[361px]:w-[6.5rem] sm:w-[7.25rem] md:w-[8.25rem]"
+                  />
+                </div>
               </div>
-              <p className="max-w-[16rem] text-[13px] leading-[1.8] text-moxera-text-soft">
+              <p className="max-w-none text-[13px] leading-[1.75] text-moxera-text-soft sm:max-w-[18rem] md:max-w-[16rem]">
                 İhtiyaç analizi, ürün katmanı, AI destek ve otomasyon bileşenleri; okunur, sürdürülebilir ve ölçülebilir bir operasyon akışında birleşir.
               </p>
-              <div className="grid grid-cols-3 gap-2 text-[10px] uppercase tracking-[0.16em] text-moxera-text-soft/85">
-                <span className="hero-tech-pill rounded-full border border-white/10 bg-white/[0.02] px-2 py-1 text-center transition duration-300 hover:-translate-y-0.5 hover:border-moxera-highlight/45 hover:bg-moxera-highlight/10">Web/Mobil</span>
-                <span className="hero-tech-pill rounded-full border border-white/10 bg-white/[0.02] px-2 py-1 text-center transition duration-300 hover:-translate-y-0.5 hover:border-moxera-highlight/45 hover:bg-moxera-highlight/10">SaaS</span>
-                <span className="hero-tech-pill rounded-full border border-white/10 bg-white/[0.02] px-2 py-1 text-center transition duration-300 hover:-translate-y-0.5 hover:border-moxera-highlight/45 hover:bg-moxera-highlight/10">AI/Otomasyon</span>
+              <div className="mt-auto grid w-full grid-cols-1 gap-2 min-[380px]:grid-cols-3">
+                <span className="hero-tech-pill hero-pill-el hero-pill-trace flex min-h-[2.5rem] items-center justify-center rounded-full border border-white/10 bg-white/[0.02] px-3 py-2 text-center text-[10px] uppercase leading-tight tracking-[0.15em] text-moxera-text-soft/90 transition duration-300 min-[380px]:text-[10px] min-[380px]:tracking-[0.16em] hover:-translate-y-0.5 hover:border-moxera-highlight/45 hover:bg-moxera-highlight/10 sm:px-3">
+                  Web/Mobil
+                </span>
+                <span className="hero-tech-pill hero-pill-el hero-pill-trace flex min-h-[2.5rem] items-center justify-center rounded-full border border-white/10 bg-white/[0.02] px-3 py-2 text-center text-[10px] uppercase leading-tight tracking-[0.15em] text-moxera-text-soft/90 transition duration-300 min-[380px]:text-[10px] min-[380px]:tracking-[0.16em] hover:-translate-y-0.5 hover:border-moxera-highlight/45 hover:bg-moxera-highlight/10 sm:px-3">
+                  SaaS
+                </span>
+                <span className="hero-tech-pill hero-pill-el hero-pill-trace flex min-h-[2.5rem] items-center justify-center rounded-full border border-white/10 bg-white/[0.02] px-3 py-2 text-center text-[10px] uppercase leading-tight tracking-[0.15em] text-moxera-text-soft/90 transition duration-300 min-[380px]:text-[10px] min-[380px]:tracking-[0.16em] hover:-translate-y-0.5 hover:border-moxera-highlight/45 hover:bg-moxera-highlight/10 sm:px-3">
+                  AI/Otomasyon
+                </span>
               </div>
             </div>
           </div>

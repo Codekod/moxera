@@ -12,9 +12,18 @@ export function SelectedWorkSection() {
   useGsapPlugin();
 
   useEffect(() => {
-    if (!sectionRef.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches || window.innerWidth < 768) return;
+    if (!sectionRef.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const isMobile = window.innerWidth < 768;
     const ctx = gsap.context(() => {
       gsap.utils.toArray<HTMLElement>(".work-item").forEach((item) => {
+        if (isMobile) {
+          gsap.fromTo(
+            item,
+            { opacity: 0, y: 28 },
+            { opacity: 1, y: 0, duration: 0.56, ease: "power2.out", scrollTrigger: { trigger: item, start: "top 90%" } }
+          );
+          return;
+        }
         gsap.fromTo(
           item,
           { opacity: 0, y: 55, clipPath: "inset(18% 0 14% 0)" },

@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { Container } from "@/components/ui/container";
@@ -9,7 +9,7 @@ const socialIcons = [
   {
     label: "Instagram",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.6">
+      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
         <rect x="3" y="3" width="18" height="18" rx="5" />
         <circle cx="12" cy="12" r="4.2" />
         <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none" />
@@ -19,7 +19,7 @@ const socialIcons = [
   {
     label: "X",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8">
         <path d="M4 4L20 20M20 4L4 20" />
       </svg>
     )
@@ -27,7 +27,7 @@ const socialIcons = [
   {
     label: "Facebook",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.7">
         <path d="M14.5 7H16V4h-1.7c-2.9 0-4.8 1.8-4.8 5V11H7v3h2.5v6h3.2v-6H16l.5-3h-3.8V9.1c0-1.3.5-2.1 1.8-2.1Z" />
       </svg>
     )
@@ -35,7 +35,7 @@ const socialIcons = [
   {
     label: "WhatsApp",
     icon: (
-      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.6">
+      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
         <path d="M12 21a8.7 8.7 0 0 0 4.4-1.2L21 21l-1.3-4.2A8.9 8.9 0 1 0 12 21Z" />
         <path d="M9 8.8c.2-.5.4-.5.7-.5h.5c.2 0 .4 0 .6.5.2.4.7 1.6.8 1.7.1.2.1.4 0 .6-.1.2-.2.4-.4.6-.2.2-.3.3-.1.6.2.2.7 1.2 1.8 1.9 1.4.9 2.5 1.1 2.9 1.2.3.1.5 0 .6-.2.2-.2.8-1 .9-1.4.2-.3.4-.3.6-.2.2.1 1.5.7 1.7.9.2.1.4.2.4.3s0 .9-.5 1.7c-.5.8-1.8 1.5-2.4 1.6-.6.1-1.3.2-2.2-.1-.5-.2-1.1-.4-1.8-.8-3.1-1.7-4.9-4.8-5.1-5.1-.2-.3-1.3-1.8-1.3-3.4 0-1.7.9-2.5 1.2-2.8Z" />
       </svg>
@@ -51,10 +51,43 @@ export function ContactSection() {
   useGsapPlugin();
 
   useEffect(() => {
-    if (!sectionRef.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches || window.innerWidth < 768) return;
+    if (!sectionRef.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const isMobile = window.innerWidth < 768;
     const ctx = gsap.context(() => {
+      if (isMobile) {
+        gsap.fromTo(".contact-shell", { opacity: 0.75, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.current, start: "top 86%" } });
+        gsap.fromTo(".contact-flow", { strokeDashoffset: 1, opacity: 0.35 }, { strokeDashoffset: 0, opacity: 0.85, duration: 1.65, ease: "power2.out", scrollTrigger: { trigger: sectionRef.current, start: "top 80%" } });
+        gsap.fromTo(
+          ".contact-social-btn",
+          { opacity: 0, y: 16, scale: 0.92 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.44,
+            stagger: 0.07,
+            ease: "back.out(1.2)",
+            scrollTrigger: { trigger: ".contact-social-row", start: "top 91%" }
+          }
+        );
+        gsap.to(".contact-pulse", { scale: 1.18, opacity: 0.33, repeat: -1, yoyo: true, duration: 2.2, ease: "sine.inOut" });
+        return;
+      }
       gsap.fromTo(".contact-shell", { opacity: 0.6, scale: 0.98 }, { opacity: 1, scale: 1, duration: 1, scrollTrigger: { trigger: sectionRef.current, start: "top 75%" } });
       gsap.fromTo(".contact-flow", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 2.6, ease: "power2.out", scrollTrigger: { trigger: sectionRef.current, start: "top 82%" } });
+      gsap.fromTo(
+        ".contact-social-btn",
+        { opacity: 0, y: 12, scale: 0.96 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.5,
+          stagger: 0.06,
+          ease: "power2.out",
+          scrollTrigger: { trigger: ".contact-social-row", start: "top 88%" }
+        }
+      );
       gsap.to(".contact-pulse", { scale: 1.22, opacity: 0.35, repeat: -1, yoyo: true, duration: 1.8, ease: "sine.inOut" });
       gsap.to(".contact-submit", { boxShadow: "0 0 0 0 rgba(102,230,218,0), 0 0 28px 4px rgba(46,211,198,0.12)", repeat: -1, yoyo: true, duration: 2.7, ease: "sine.inOut" });
     }, sectionRef);
@@ -141,11 +174,15 @@ export function ContactSection() {
             <p>0 533 969 78 06</p>
             <p>Ankara merkez</p>
           </div>
-          <div className="flex flex-wrap gap-3 pt-1">
+          <div className="contact-social-row grid grid-cols-4 justify-items-center gap-3 pt-2">
             {socialIcons.map((social) => (
-              <a key={social.label} href="#" className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/20 px-3 py-2 text-xs tracking-[0.1em] text-moxera-text-soft transition hover:border-moxera-highlight/45 hover:text-moxera-highlight">
+              <a
+                key={social.label}
+                href="#"
+                aria-label={social.label}
+                className="contact-social-btn group inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/15 bg-black/25 text-moxera-text-soft shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 hover:-translate-y-0.5 hover:border-moxera-highlight/45 hover:text-moxera-highlight"
+              >
                 {social.icon}
-                {social.label}
               </a>
             ))}
           </div>

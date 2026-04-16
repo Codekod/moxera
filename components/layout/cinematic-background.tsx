@@ -21,19 +21,19 @@ export function CinematicBackground() {
 
     const ctx = gsap.context(() => {
       gsap.to(".bg-far", {
-        yPercent: mobile ? 4 : 10,
+        yPercent: mobile ? 7 : 10,
         xPercent: mobile ? 0 : -2,
         ease: "none",
         scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 0.9 }
       });
       gsap.to(".bg-mid", {
-        yPercent: mobile ? -5 : -12,
+        yPercent: mobile ? -8 : -12,
         xPercent: mobile ? 0 : 1.5,
         ease: "none",
         scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 1.1 }
       });
       gsap.to(".bg-near", {
-        yPercent: mobile ? -8 : -22,
+        yPercent: mobile ? -12 : -22,
         ease: "none",
         scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 1.3 }
       });
@@ -47,6 +47,7 @@ export function CinematicBackground() {
       gsap.to(".bg-orb-a", { x: mobile ? 40 : 80, y: mobile ? -24 : -50, repeat: -1, yoyo: true, duration: 13, ease: "sine.inOut" });
       gsap.to(".bg-orb-b", { x: mobile ? -45 : -90, y: mobile ? 30 : 70, repeat: -1, yoyo: true, duration: 15, ease: "sine.inOut" });
       gsap.to(".bg-grain", { xPercent: mobile ? 0.7 : 1.5, yPercent: mobile ? -0.7 : -1.5, repeat: -1, yoyo: true, duration: 8, ease: "none" });
+      gsap.to(".bg-wave", { xPercent: mobile ? 1.4 : 0.5, repeat: -1, yoyo: true, duration: mobile ? 11 : 18, ease: "sine.inOut" });
     }, rootRef);
 
     const handlePointer = (event: MouseEvent) => {
