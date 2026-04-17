@@ -128,31 +128,9 @@ a {
 
 .footer-signal {
   position: relative;
-  overflow: hidden;
   height: 1px;
   width: 100%;
   background: linear-gradient(90deg, transparent, rgba(102, 230, 218, 0.45), transparent);
-}
-
-.footer-signal::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(102, 230, 218, 0.9), transparent);
-  transform: translateX(-120%);
-  animation: footer-signal-sweep 7.2s ease-in-out infinite;
-}
-
-@keyframes footer-signal-sweep {
-  0% {
-    transform: translateX(-120%);
-  }
-  52% {
-    transform: translateX(120%);
-  }
-  100% {
-    transform: translateX(120%);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

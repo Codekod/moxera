@@ -44,12 +44,30 @@ export function CinematicBackground() {
       });
 
       if (motionTier !== "lite") {
-        gsap.to(".bg-orb-a", { x: mobile ? 40 : 80, y: mobile ? -24 : -50, repeat: -1, yoyo: true, duration: 13, ease: "sine.inOut" });
-        gsap.to(".bg-orb-b", { x: mobile ? -45 : -90, y: mobile ? 30 : 70, repeat: -1, yoyo: true, duration: 15, ease: "sine.inOut" });
-        gsap.to(".bg-grain", { xPercent: mobile ? 0.7 : 1.5, yPercent: mobile ? -0.7 : -1.5, repeat: -1, yoyo: true, duration: 8, ease: "none" });
+        gsap.to(".bg-orb-a", {
+          yPercent: mobile ? -4 : -8,
+          xPercent: mobile ? 2 : 4,
+          ease: "none",
+          scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 1.2 }
+        });
+        gsap.to(".bg-orb-b", {
+          yPercent: mobile ? 5 : 9,
+          xPercent: mobile ? -2 : -4,
+          ease: "none",
+          scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 1.15 }
+        });
+        gsap.to(".bg-grain", {
+          yPercent: mobile ? -0.6 : -1.4,
+          ease: "none",
+          scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 1.05 }
+        });
       }
       if (motionTier === "full") {
-        gsap.to(".bg-wave", { xPercent: mobile ? 1.4 : 0.5, repeat: -1, yoyo: true, duration: mobile ? 11 : 18, ease: "sine.inOut" });
+        gsap.to(".bg-wave", {
+          xPercent: mobile ? 1 : 2.2,
+          ease: "none",
+          scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 1.3 }
+        });
       }
     }, rootRef);
 

@@ -17,32 +17,32 @@ export function SiteFooter() {
       <div className="pointer-events-none absolute right-[8%] bottom-10 h-52 w-52 rounded-full bg-[#203468]/30 blur-[100px]" />
       <Container className="space-y-8 md:space-y-10">
         <div className="footer-signal" />
-        <div className="grid gap-5 md:grid-cols-[1.6fr_0.9fr_1.1fr]">
-          <div className="footer-panel rounded-3xl p-6 md:p-7">
+        <div className="footer-panel rounded-3xl p-6 md:p-8">
+          <div className="grid gap-8 md:grid-cols-[1.45fr_0.9fr_1fr] md:items-start">
             <div className="space-y-5">
-              <div className="inline-flex max-w-full rounded-2xl border border-white/10 bg-black/20 px-5 py-4 md:px-6 md:py-5">
-                <div className="relative h-[2.9rem] w-[11.8rem] md:h-[3.4rem] md:w-[14.2rem]">
-                  <Image
-                    src="/brand/moxera-logo-light.png"
-                    alt="Moxera"
-                    fill
-                    sizes="(max-width: 768px) 190px, 228px"
-                    className="object-contain object-left"
-                  />
+              <div className="inline-flex max-w-full rounded-2xl border border-white/10 bg-black/20 px-5 py-4 md:px-7 md:py-5">
+                <div className="relative h-[3.3rem] w-[14rem] md:h-[4.25rem] md:w-[18.25rem]">
+                  <Image src="/brand/moxera-logo-light.png" alt="Moxera" fill sizes="(max-width: 768px) 224px, 292px" className="object-contain object-left" />
                 </div>
               </div>
-              <p className="max-w-[38ch] text-[14px] leading-relaxed text-moxera-text-soft md:text-[15px] md:leading-[1.8]">
+              <p className="max-w-[42ch] text-[14px] leading-relaxed text-moxera-text-soft md:text-[15px] md:leading-[1.85]">
                 İhtiyaçlarınızı, çalışan dijital sistemlere dönüştürüyoruz. Ankara merkezli butik yaklaşım ile web, mobil, SaaS, yapay zeka ve otomasyon çözümleri geliştiriyoruz.
               </p>
-              <Link
-                href="/iletisim"
-                className="inline-flex items-center justify-center rounded-full border border-moxera-highlight/40 bg-moxera-highlight/10 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-moxera-highlight transition hover:-translate-y-0.5 hover:bg-moxera-highlight/18"
-              >
-                Proje Başlat
-              </Link>
+              <div className="flex flex-wrap items-center gap-3 pt-1">
+                <Link
+                  href="/iletisim"
+                  className="inline-flex items-center justify-center rounded-full border border-moxera-highlight/45 bg-moxera-highlight/12 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-moxera-highlight transition hover:-translate-y-0.5 hover:bg-moxera-highlight/20"
+                >
+                  Proje Başlat
+                </Link>
+                <Link
+                  href="/calismalar"
+                  className="inline-flex items-center justify-center rounded-full border border-white/20 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-moxera-text-soft transition hover:-translate-y-0.5 hover:border-moxera-highlight/40 hover:text-moxera-text"
+                >
+                  Çalışmaları İncele
+                </Link>
+              </div>
             </div>
-          </div>
-          <div className="footer-panel rounded-3xl p-6 md:p-7">
             <div className="space-y-3.5">
               <p className="text-xs uppercase tracking-[0.17em] text-moxera-highlight">Gezinme</p>
               {navItems.map((item) => (
@@ -51,8 +51,6 @@ export function SiteFooter() {
                 </Link>
               ))}
             </div>
-          </div>
-          <div className="footer-panel rounded-3xl p-6 md:p-7">
             <div className="space-y-3.5">
               <p className="text-xs uppercase tracking-[0.17em] text-moxera-highlight">İletişim</p>
               <p className="text-sm text-moxera-text-soft">meliheken@moxera.com.tr</p>
