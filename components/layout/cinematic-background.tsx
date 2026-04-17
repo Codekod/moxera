@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { gsap, useGsapPlugin } from "@/lib/animations/gsap";
+import { gsap, ScrollTrigger, useGsapPlugin } from "@/lib/animations/gsap";
 import { useMotionProfile } from "@/lib/animations/use-motion-profile";
 
 export function CinematicBackground() {
@@ -19,6 +19,7 @@ export function CinematicBackground() {
     const mobile = isMobile;
 
     const ctx = gsap.context(() => {
+      const ambientTweens: gsap.core.Tween[] = [];
       gsap.to(".bg-far", {
         yPercent: mobile ? 7 : 10,
         xPercent: mobile ? 0 : -2,
@@ -44,30 +45,30 @@ export function CinematicBackground() {
       });
 
       if (motionTier !== "lite") {
-        gsap.to(".bg-orb-a", {
-          yPercent: mobile ? -4 : -8,
-          xPercent: mobile ? 2 : 4,
-          ease: "none",
-          scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 1.2 }
-        });
-        gsap.to(".bg-orb-b", {
-          yPercent: mobile ? 5 : 9,
-          xPercent: mobile ? -2 : -4,
-          ease: "none",
-          scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 1.15 }
-        });
-        gsap.to(".bg-grain", {
-          yPercent: mobile ? -0.6 : -1.4,
-          ease: "none",
-          scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 1.05 }
-        });
+        ambientTweens.push(
+          gsap.to(".bg-orb-a", { x: mobile ? 34 : 74, y: mobile ? -18 : -42, repeat: -1, yoyo: true, duration: 13, ease: "sine.inOut" }),
+          gsap.to(".bg-orb-b", { x: mobile ? -38 : -84, y: mobile ? 24 : 58, repeat: -1, yoyo: true, duration: 15, ease: "sine.inOut" }),
+          gsap.to(".bg-grain", { xPercent: mobile ? 0.5 : 1.2, yPercent: mobile ? -0.5 : -1.2, repeat: -1, yoyo: true, duration: 8, ease: "none" })
+        );
       }
       if (motionTier === "full") {
-        gsap.to(".bg-wave", {
-          xPercent: mobile ? 1 : 2.2,
-          ease: "none",
-          scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 1.3 }
+        ambientTweens.push(gsap.to(".bg-wave", { xPercent: mobile ? 1.3 : 0.5, repeat: -1, yoyo: true, duration: mobile ? 11 : 18, ease: "sine.inOut" }));
+      }
+
+      if (ambientTweens.length > 0) {
+        ScrollTrigger.create({
+          trigger: "#hero",
+          start: "top top",
+          end: "bottom top",
+          onEnter: () => ambientTweens.forEach((tween) => tween.play()),
+          onEnterBack: () => ambientTweens.forEach((tween) => tween.play()),
+          onLeave: () => ambientTweens.forEach((tween) => tween.pause()),
+          onLeaveBack: () => ambientTweens.forEach((tween) => tween.pause())
         });
+
+        if (window.scrollY > window.innerHeight * 0.85) {
+          ambientTweens.forEach((tween) => tween.pause());
+        }
       }
     }, rootRef);
 

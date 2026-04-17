@@ -16,14 +16,11 @@ export function SiteFooter() {
       <div className="pointer-events-none absolute left-[10%] top-6 h-44 w-44 rounded-full bg-moxera-highlight/10 blur-[92px]" />
       <div className="pointer-events-none absolute right-[8%] bottom-10 h-52 w-52 rounded-full bg-[#203468]/30 blur-[100px]" />
       <Container className="space-y-8 md:space-y-10">
-        <div className="footer-signal" />
-        <div className="footer-panel rounded-3xl p-6 md:p-8">
-          <div className="grid gap-8 md:grid-cols-[1.45fr_0.9fr_1fr] md:items-start">
+        <div className="scene-shell rounded-[2rem] p-6 md:p-9">
+          <div className="grid gap-8 md:grid-cols-[1.6fr_0.78fr_0.95fr] md:items-start">
             <div className="space-y-5">
-              <div className="inline-flex max-w-full rounded-2xl border border-white/10 bg-black/20 px-5 py-4 md:px-7 md:py-5">
-                <div className="relative h-[3.3rem] w-[14rem] md:h-[4.25rem] md:w-[18.25rem]">
-                  <Image src="/brand/moxera-logo-light.png" alt="Moxera" fill sizes="(max-width: 768px) 224px, 292px" className="object-contain object-left" />
-                </div>
+              <div className="relative h-[3.9rem] w-[15.75rem] md:h-[5rem] md:w-[21rem]">
+                <Image src="/brand/moxera-logo-light.png" alt="Moxera" fill sizes="(max-width: 768px) 252px, 336px" className="object-contain object-left" />
               </div>
               <p className="max-w-[42ch] text-[14px] leading-relaxed text-moxera-text-soft md:text-[15px] md:leading-[1.85]">
                 İhtiyaçlarınızı, çalışan dijital sistemlere dönüştürüyoruz. Ankara merkezli butik yaklaşım ile web, mobil, SaaS, yapay zeka ve otomasyon çözümleri geliştiriyoruz.
@@ -43,7 +40,7 @@ export function SiteFooter() {
                 </Link>
               </div>
             </div>
-            <div className="space-y-3.5">
+            <div className="space-y-3.5 md:border-l md:border-white/8 md:pl-8">
               <p className="text-xs uppercase tracking-[0.17em] text-moxera-highlight">Gezinme</p>
               {navItems.map((item) => (
                 <Link key={item.href} href={item.href} className="block text-sm text-moxera-text-soft transition hover:translate-x-0.5 hover:text-moxera-text">
@@ -51,7 +48,7 @@ export function SiteFooter() {
                 </Link>
               ))}
             </div>
-            <div className="space-y-3.5">
+            <div className="space-y-3.5 md:border-l md:border-white/8 md:pl-8">
               <p className="text-xs uppercase tracking-[0.17em] text-moxera-highlight">İletişim</p>
               <p className="text-sm text-moxera-text-soft">meliheken@moxera.com.tr</p>
               <p className="text-sm text-moxera-text-soft">0 533 969 78 06</p>
@@ -72,11 +69,11 @@ export function SiteFooter() {
               </div>
             </div>
           </div>
-        </div>
-        <div className="cinematic-divider opacity-80" />
-        <div className="flex flex-col gap-3 text-[12px] tracking-[0.05em] text-moxera-text-soft/95 md:flex-row md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} Moxera. Tüm hakları saklıdır.</p>
-          <p className="text-moxera-text-soft/90">Butik teknoloji partnerliği · Web/Mobil · SaaS · AI · Otomasyon</p>
+          <div className="cinematic-divider my-7 opacity-80" />
+          <div className="flex flex-col gap-3 text-[12px] tracking-[0.05em] text-moxera-text-soft/95 md:flex-row md:items-center md:justify-between">
+            <p>© {new Date().getFullYear()} Moxera. Tüm hakları saklıdır.</p>
+            <p className="text-moxera-text-soft/90">Butik teknoloji partnerliği · Web/Mobil · SaaS · AI · Otomasyon</p>
+          </div>
         </div>
       </Container>
     </footer>
