@@ -17,7 +17,8 @@ function getMotionProfile(): MotionProfile {
 
   const isMobile = window.innerWidth < 768;
   const shouldReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const deviceMemory = navigator.deviceMemory ?? 8;
+  const navWithMemory = navigator as Navigator & { deviceMemory?: number };
+  const deviceMemory = navWithMemory.deviceMemory ?? 8;
   const cores = navigator.hardwareConcurrency ?? 8;
 
   const isLowPowerDevice = deviceMemory <= 4 || cores <= 4;

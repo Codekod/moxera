@@ -4,7 +4,7 @@ import { gsap } from "@/lib/animations/gsap";
 
 type RevealConfig = {
   target: gsap.TweenTarget;
-  trigger: Element | string;
+  trigger: Element | string | null;
   fromY?: number;
   duration?: number;
   start?: string;
@@ -21,6 +21,7 @@ export function revealOnScroll({
   ease = "power2.out",
   delay = 0
 }: RevealConfig) {
+  if (!trigger) return null;
   return gsap.fromTo(
     target,
     { opacity: 0, y: fromY },
@@ -37,7 +38,7 @@ export function revealOnScroll({
 
 type BatchRevealConfig = {
   targets: gsap.TweenTarget;
-  trigger: Element | string;
+  trigger: Element | string | null;
   fromY?: number;
   stagger?: number;
   duration?: number;
@@ -52,6 +53,7 @@ export function staggerRevealOnScroll({
   duration = 0.48,
   start = "top 88%"
 }: BatchRevealConfig) {
+  if (!trigger) return null;
   return gsap.fromTo(
     targets,
     { opacity: 0, y: fromY, scale: 0.97 },
