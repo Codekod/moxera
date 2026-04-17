@@ -12,58 +12,73 @@ const footerSocials = [
 
 export function SiteFooter() {
   return (
-    <footer className="relative border-t border-white/10 py-16">
-      <Container className="space-y-10">
-        <div className="grid gap-10 md:grid-cols-[1.35fr_0.75fr_0.75fr]">
-          <div className="space-y-5">
-            <div className="inline-flex max-w-full rounded-2xl border border-white/10 bg-black/15 px-6 py-5 md:px-7 md:py-6">
-              <div className="relative h-[3.35rem] w-[15rem] md:h-[3.75rem] md:w-[17.5rem]">
-                <Image
-                  src="/brand/moxera-logo-light.png"
-                  alt="Moxera"
-                  fill
-                  sizes="(max-width: 768px) 240px, 280px"
-                  className="object-contain object-left"
-                />
+    <footer className="relative border-t border-white/10 py-16 md:py-20">
+      <div className="pointer-events-none absolute left-[10%] top-6 h-44 w-44 rounded-full bg-moxera-highlight/10 blur-[92px]" />
+      <div className="pointer-events-none absolute right-[8%] bottom-10 h-52 w-52 rounded-full bg-[#203468]/30 blur-[100px]" />
+      <Container className="space-y-8 md:space-y-10">
+        <div className="footer-signal" />
+        <div className="grid gap-5 md:grid-cols-[1.6fr_0.9fr_1.1fr]">
+          <div className="footer-panel rounded-3xl p-6 md:p-7">
+            <div className="space-y-5">
+              <div className="inline-flex max-w-full rounded-2xl border border-white/10 bg-black/20 px-5 py-4 md:px-6 md:py-5">
+                <div className="relative h-[2.9rem] w-[11.8rem] md:h-[3.4rem] md:w-[14.2rem]">
+                  <Image
+                    src="/brand/moxera-logo-light.png"
+                    alt="Moxera"
+                    fill
+                    sizes="(max-width: 768px) 190px, 228px"
+                    className="object-contain object-left"
+                  />
+                </div>
               </div>
-            </div>
-            <p className="max-w-md text-sm leading-relaxed text-moxera-text-soft md:text-[15px]">
-              İhtiyaçlarınızı, çalışan dijital sistemlere dönüştürüyoruz. Ankara merkezli butik yaklaşım ile web, mobil, SaaS, yapay zeka ve otomasyon çözümleri geliştiriyoruz.
-            </p>
-          </div>
-          <div className="space-y-3">
-            <p className="text-xs uppercase tracking-[0.2em] text-moxera-highlight">Gezinme</p>
-            {navItems.map((item) => (
-              <Link key={item.href} href={item.href} className="block text-sm text-moxera-text-soft transition hover:text-moxera-text">
-                {item.label}
+              <p className="max-w-[38ch] text-[14px] leading-relaxed text-moxera-text-soft md:text-[15px] md:leading-[1.8]">
+                İhtiyaçlarınızı, çalışan dijital sistemlere dönüştürüyoruz. Ankara merkezli butik yaklaşım ile web, mobil, SaaS, yapay zeka ve otomasyon çözümleri geliştiriyoruz.
+              </p>
+              <Link
+                href="/iletisim"
+                className="inline-flex items-center justify-center rounded-full border border-moxera-highlight/40 bg-moxera-highlight/10 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-moxera-highlight transition hover:-translate-y-0.5 hover:bg-moxera-highlight/18"
+              >
+                Proje Başlat
               </Link>
-            ))}
+            </div>
           </div>
-          <div className="space-y-3">
-            <p className="text-xs uppercase tracking-[0.2em] text-moxera-highlight">İletişim</p>
-            <p className="text-sm text-moxera-text-soft">meliheken@moxera.com.tr</p>
-            <p className="text-sm text-moxera-text-soft">0 533 969 78 06</p>
-            <p className="text-sm text-moxera-text-soft">Ankara merkez</p>
-            <div className="flex flex-wrap items-center gap-3 pb-1 pt-3 text-moxera-text-soft">
-              {footerSocials.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/25 leading-none shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-0.5 hover:border-moxera-highlight/45 hover:text-moxera-highlight"
-                  aria-label={social.label}
-                >
-                  {social.icon}
-                </a>
+          <div className="footer-panel rounded-3xl p-6 md:p-7">
+            <div className="space-y-3.5">
+              <p className="text-xs uppercase tracking-[0.17em] text-moxera-highlight">Gezinme</p>
+              {navItems.map((item) => (
+                <Link key={item.href} href={item.href} className="block text-sm text-moxera-text-soft transition hover:translate-x-0.5 hover:text-moxera-text">
+                  {item.label}
+                </Link>
               ))}
             </div>
           </div>
+          <div className="footer-panel rounded-3xl p-6 md:p-7">
+            <div className="space-y-3.5">
+              <p className="text-xs uppercase tracking-[0.17em] text-moxera-highlight">İletişim</p>
+              <p className="text-sm text-moxera-text-soft">meliheken@moxera.com.tr</p>
+              <p className="text-sm text-moxera-text-soft">0 533 969 78 06</p>
+              <p className="text-sm text-moxera-text-soft">Ankara merkez</p>
+              <div className="flex flex-wrap items-center gap-2.5 pb-1 pt-2.5 text-moxera-text-soft">
+                {footerSocials.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/30 leading-none shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition duration-300 hover:-translate-y-0.5 hover:scale-[1.04] hover:border-moxera-highlight/45 hover:text-moxera-highlight hover:shadow-[0_0_16px_rgba(102,230,218,0.22)]"
+                    aria-label={social.label}
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="cinematic-divider" />
-        <div className="flex flex-col gap-3 text-xs tracking-[0.06em] text-moxera-text-soft md:flex-row md:items-center md:justify-between">
+        <div className="cinematic-divider opacity-80" />
+        <div className="flex flex-col gap-3 text-[12px] tracking-[0.05em] text-moxera-text-soft/95 md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} Moxera. Tüm hakları saklıdır.</p>
-          <p>Butik teknoloji partnerliği · Web/Mobil · SaaS · AI · Otomasyon</p>
+          <p className="text-moxera-text-soft/90">Butik teknoloji partnerliği · Web/Mobil · SaaS · AI · Otomasyon</p>
         </div>
       </Container>
     </footer>
