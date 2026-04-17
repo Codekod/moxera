@@ -23,7 +23,8 @@ body {
     radial-gradient(ellipse at bottom right, rgba(29, 42, 87, 0.55), transparent 50%),
     #050816;
   font-family: var(--font-jakarta), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
+  text-rendering: optimizeLegibility;
   overflow-x: clip;
 }
 

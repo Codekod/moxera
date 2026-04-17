@@ -8,6 +8,7 @@ import { gsap, useGsapPlugin } from "@/lib/animations/gsap";
 const socialIcons = [
   {
     label: "Instagram",
+    href: "https://www.instagram.com/moxera",
     icon: (
       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
         <rect x="3" y="3" width="18" height="18" rx="5" />
@@ -18,6 +19,7 @@ const socialIcons = [
   },
   {
     label: "X",
+    href: "https://x.com/moxera",
     icon: (
       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8">
         <path d="M4 4L20 20M20 4L4 20" />
@@ -26,6 +28,7 @@ const socialIcons = [
   },
   {
     label: "Facebook",
+    href: "https://www.facebook.com/moxera",
     icon: (
       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.7">
         <path d="M14.5 7H16V4h-1.7c-2.9 0-4.8 1.8-4.8 5V11H7v3h2.5v6h3.2v-6H16l.5-3h-3.8V9.1c0-1.3.5-2.1 1.8-2.1Z" />
@@ -34,6 +37,7 @@ const socialIcons = [
   },
   {
     label: "WhatsApp",
+    href: "https://wa.me/905339697806",
     icon: (
       <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
         <path d="M12 21a8.7 8.7 0 0 0 4.4-1.2L21 21l-1.3-4.2A8.9 8.9 0 1 0 12 21Z" />
@@ -178,7 +182,9 @@ export function ContactSection() {
             {socialIcons.map((social) => (
               <a
                 key={social.label}
-                href="#"
+                href={social.href}
+                target="_blank"
+                rel="noreferrer"
                 aria-label={social.label}
                 className="contact-social-btn group inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/15 bg-black/25 text-moxera-text-soft shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition duration-300 hover:-translate-y-0.5 hover:border-moxera-highlight/45 hover:text-moxera-highlight"
               >
@@ -187,11 +193,11 @@ export function ContactSection() {
             ))}
           </div>
         </div>
-        <form className="grid gap-4 rounded-2xl border border-white/10 bg-black/20 p-6" onSubmit={onSubmit} aria-label="Proje iletişim formu">
-          <input name="fullName" required className="premium-focus rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-moxera-text outline-none" placeholder="Ad Soyad" />
-          <input name="companyName" className="premium-focus rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-moxera-text outline-none" placeholder="Firma Adı" />
-          <input name="phone" className="premium-focus rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-moxera-text outline-none" placeholder="Telefon" />
-          <input name="email" type="email" required className="premium-focus rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-moxera-text outline-none" placeholder="E-posta" />
+        <form className="grid gap-4 rounded-2xl border border-white/10 bg-black/20 p-5 sm:p-6" onSubmit={onSubmit} aria-label="Proje iletişim formu">
+          <input name="fullName" required className="premium-focus rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-[16px] text-moxera-text outline-none" placeholder="Ad Soyad" />
+          <input name="companyName" className="premium-focus rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-[16px] text-moxera-text outline-none" placeholder="Firma Adı" />
+          <input name="phone" className="premium-focus rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-[16px] text-moxera-text outline-none" placeholder="Telefon" />
+          <input name="email" type="email" required className="premium-focus rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-[16px] text-moxera-text outline-none" placeholder="E-posta" />
           <input
             name="website"
             tabIndex={-1}
@@ -199,7 +205,7 @@ export function ContactSection() {
             className="hidden"
             aria-hidden="true"
           />
-          <textarea name="details" required className="premium-focus min-h-28 rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-moxera-text outline-none" placeholder="İhtiyaç / proje detayı" />
+          <textarea name="details" required className="premium-focus min-h-28 rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-[16px] text-moxera-text outline-none" placeholder="İhtiyaç / proje detayı" />
           <div className="cinematic-divider my-1" />
           <button type="submit" disabled={isSending} className="contact-submit rounded-full bg-moxera-accent px-6 py-3 text-sm font-semibold text-moxera-bg transition duration-300 hover:-translate-y-0.5 hover:scale-[1.015] hover:bg-moxera-highlight active:translate-y-[1px] disabled:cursor-not-allowed disabled:opacity-70">
             {isSending ? "Gönderiliyor..." : "Proje konuşalım"}
