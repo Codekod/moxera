@@ -5,14 +5,15 @@ import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { transformationSteps } from "@/lib/data/site-content";
 import { gsap, useGsapPlugin } from "@/lib/animations/gsap";
+import { useMotionProfile } from "@/lib/animations/use-motion-profile";
 
 export function TransformationSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const { isMobile, shouldReduceMotion, motionTier } = useMotionProfile();
   useGsapPlugin();
 
   useEffect(() => {
-    if (!sectionRef.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const isMobile = window.innerWidth < 768;
+    if (!sectionRef.current || shouldReduceMotion) return;
     const ctx = gsap.context(() => {
       const steps = gsap.utils.toArray<HTMLElement>(".transform-item");
       if (isMobile) {
@@ -39,15 +40,25 @@ export function TransformationSection() {
         });
         return;
       }
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".transform-stage",
-          start: "top 12%",
-          end: `+=${steps.length * 280}`,
-          scrub: 1,
-          pin: ".transform-stage"
-        }
-      });
+      const usePin = motionTier === "full";
+      const tl = gsap.timeline(
+        usePin
+          ? {
+              scrollTrigger: {
+                trigger: ".transform-stage",
+                start: "top 14%",
+                end: `+=${steps.length * 220}`,
+                scrub: 0.9,
+                pin: ".transform-stage"
+              }
+            }
+          : {
+              scrollTrigger: {
+                trigger: ".transform-stage",
+                start: "top 72%"
+              }
+            }
+      );
 
       tl.fromTo(".transform-heading", { opacity: 0.35, y: 24 }, { opacity: 1, y: 0, duration: 0.9 }, 0);
       gsap.set(steps, { opacity: 0.86, y: 0, scale: 0.995 });
@@ -57,7 +68,7 @@ export function TransformationSection() {
       });
     }, sectionRef);
     return () => ctx.revert();
-  }, []);
+  }, [isMobile, motionTier, shouldReduceMotion]);
 
   return (
     <section ref={sectionRef} className="py-16 md:py-32">

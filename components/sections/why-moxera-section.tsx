@@ -5,13 +5,15 @@ import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { whyMoxera } from "@/lib/data/site-content";
 import { gsap, useGsapPlugin } from "@/lib/animations/gsap";
+import { useMotionProfile } from "@/lib/animations/use-motion-profile";
 
 export function WhyMoxeraSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const { isMobile, shouldReduceMotion } = useMotionProfile();
   useGsapPlugin();
 
   useEffect(() => {
-    if (!sectionRef.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches || window.innerWidth < 768) return;
+    if (!sectionRef.current || shouldReduceMotion || isMobile) return;
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: { trigger: sectionRef.current, start: "top 72%" }
@@ -39,7 +41,7 @@ export function WhyMoxeraSection() {
       gsap.to(".why-signature", { xPercent: -8, yPercent: -10, scrollTrigger: { trigger: sectionRef.current, start: "top bottom", end: "bottom top", scrub: 1 } });
     }, sectionRef);
     return () => ctx.revert();
-  }, []);
+  }, [isMobile, shouldReduceMotion]);
 
   return (
     <section ref={sectionRef} className="relative py-24 md:py-32">

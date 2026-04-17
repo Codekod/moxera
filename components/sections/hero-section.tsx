@@ -5,20 +5,23 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { Container } from "@/components/ui/container";
 import { gsap, useGsapPlugin } from "@/lib/animations/gsap";
+import { useMotionProfile } from "@/lib/animations/use-motion-profile";
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const { isMobile, shouldReduceMotion, motionTier } = useMotionProfile();
   useGsapPlugin();
 
   useEffect(() => {
-    if (!sectionRef.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const isMobile = window.innerWidth < 768;
+    if (!sectionRef.current || shouldReduceMotion) return;
     const ctx = gsap.context(() => {
       if (isMobile) {
         gsap.fromTo(".hero-kicker", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.55, ease: "power2.out" });
         gsap.fromTo(".hero-line", { yPercent: 80, opacity: 0.2 }, { yPercent: 0, opacity: 1, duration: 0.72, stagger: 0.07, ease: "power2.out", delay: 0.08 });
         gsap.fromTo(".hero-sub, .hero-cta, .hero-panel", { opacity: 0, y: 18 }, { opacity: 1, y: 0, stagger: 0.05, duration: 0.52, ease: "power2.out", delay: 0.16 });
-        gsap.to(".hero-glow", { x: 46, y: 16, repeat: -1, yoyo: true, duration: 9.2, ease: "sine.inOut" });
+        if (motionTier !== "lite") {
+          gsap.to(".hero-glow", { x: 46, y: 16, repeat: -1, yoyo: true, duration: 9.2, ease: "sine.inOut" });
+        }
         gsap.fromTo(
           ".hero-pill-el",
           { opacity: 0, y: 14, scale: 0.94 },
@@ -55,7 +58,7 @@ export function HeroSection() {
         .fromTo(".hero-cta", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.65, stagger: 0.09, ease: "power2.out" }, "-=0.28");
 
       gsap.to(".hero-glow", { x: 180, y: 80, repeat: -1, yoyo: true, duration: 6, ease: "sine.inOut" });
-      gsap.to(".hero-sweep", { xPercent: 30, opacity: 0.34, repeat: -1, yoyo: true, duration: 5.6, ease: "sine.inOut" });
+      gsap.to(".hero-sweep", { xPercent: 30, opacity: 0.34, repeat: -1, yoyo: true, duration: 8.2, ease: "sine.inOut" });
       gsap.to(".hero-depth-card", {
         yPercent: -14,
         scale: 1.04,
@@ -67,17 +70,21 @@ export function HeroSection() {
         { strokeDashoffset: 1, opacity: 0.15 },
         { strokeDashoffset: 0, opacity: 0.9, duration: 2.4, ease: "power2.out" }
       );
-      gsap.to(".hero-trail-dot", { x: 680, y: 110, duration: 3.2, repeat: -1, yoyo: true, ease: "sine.inOut" });
-      gsap.to(".hero-cta-primary", { boxShadow: "0 0 0 0 rgba(102,230,218,0.0), 0 0 24px 2px rgba(46,211,198,0.10)", repeat: -1, yoyo: true, duration: 4.2, ease: "sine.inOut" });
-      gsap.to(".hero-tech-pill", { y: -1.5, repeat: -1, yoyo: true, duration: 2.4, stagger: 0.12, ease: "sine.inOut" });
+      if (motionTier === "full") {
+        gsap.to(".hero-trail-dot", { x: 680, y: 110, duration: 3.8, repeat: -1, yoyo: true, ease: "sine.inOut" });
+        gsap.to(".hero-cta-primary", { boxShadow: "0 0 0 0 rgba(102,230,218,0.0), 0 0 24px 2px rgba(46,211,198,0.10)", repeat: -1, yoyo: true, duration: 4.2, ease: "sine.inOut" });
+        gsap.to(".hero-tech-pill", { y: -1.5, repeat: -1, yoyo: true, duration: 2.4, stagger: 0.12, ease: "sine.inOut" });
+      }
 
-      const heroScroll = gsap.timeline({
-        scrollTrigger: { trigger: sectionRef.current, start: "top top", end: "+=90%", scrub: 1.1, pin: true }
-      });
-      heroScroll.to(".hero-copy", { yPercent: -10, opacity: 0.74 }, 0).to(".hero-bg-right", { xPercent: -8, yPercent: -6 }, 0);
+      if (motionTier === "full") {
+        const heroScroll = gsap.timeline({
+          scrollTrigger: { trigger: sectionRef.current, start: "top top", end: "+=78%", scrub: 1, pin: true }
+        });
+        heroScroll.to(".hero-copy", { yPercent: -10, opacity: 0.74 }, 0).to(".hero-bg-right", { xPercent: -8, yPercent: -6 }, 0);
+      }
     }, sectionRef);
     return () => ctx.revert();
-  }, []);
+  }, [isMobile, motionTier, shouldReduceMotion]);
 
   return (
     <section id="hero" ref={sectionRef} className="relative overflow-hidden py-12 md:py-24">

@@ -1,0 +1,82 @@
+{
+  "navItems": [
+    { "href": "/", "label": "Ana Sayfa", "sectionId": "hero" },
+    { "href": "/calismalar", "label": "Çalışmalar", "sectionId": "selected-work" },
+    { "href": "/hakkimizda", "label": "Hakkımızda", "sectionId": "about" },
+    { "href": "/iletisim", "label": "İletişim", "sectionId": "contact" }
+  ],
+  "transformationSteps": [
+    "İhtiyacı birlikte netleştiriyoruz",
+    "Darboğazları ve riskleri analiz ediyoruz",
+    "Web, mobil, SaaS ve AI çözüm kurgusunu tasarlıyoruz",
+    "Ürünü ve otomasyon katmanlarını hayata geçiriyoruz",
+    "Ölçeklenebilir, çalışan sistemi teslim ediyoruz"
+  ],
+  "capabilities": [
+    {
+      "title": "Web ve Mobil Uygulamalar",
+      "detail": "Marka algınızı güçlendiren, güven veren ve satış potansiyelini yükselten uçtan uca dijital ürünler.",
+      "metric": "Yüksek görünürlük + güçlü deneyim"
+    },
+    {
+      "title": "SaaS Uygulamaları",
+      "detail": "Süreçleri standardize eden, ekiplerinizi aynı ritimde buluşturan sürdürülebilir yazılım altyapıları.",
+      "metric": "Ölçeklenebilir ve yönetilebilir yapı"
+    },
+    {
+      "title": "Yapay Zeka Çözümleri",
+      "detail": "Moda olduğu için değil, karar kalitesi ve operasyon hızı ürettiği yerde konumlanan AI katmanları.",
+      "metric": "Hız + verim + karar desteği"
+    },
+    {
+      "title": "Otomasyon Sistemleri",
+      "detail": "Tekrar eden işleri sadeleştirip ekiplerin zamanını asıl değere odaklayan akıllı iş akışı otomasyonları.",
+      "metric": "Operasyonel yükte ölçülebilir azalma"
+    }
+  ],
+  "caseStudies": [
+    {
+      "title": "Noter Pusulası",
+      "type": "Devam eden proje",
+      "summary": "Hukuk süreçlerinde bilgi akışını sadeleştiren ve işlem temposunu artıran dijital altyapı dönüşümü.",
+      "mediaLabel": "Ürün ekranları ve operasyon akışı",
+      "media": {
+        "kind": "video",
+        "src": "https://cdn.coverr.co/videos/coverr-programming-a-computer-1579/1080p.mp4",
+        "poster": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80",
+        "aspectRatio": "16:9",
+        "alt": "Noter Pusulası ürün arayüz akışı"
+      }
+    },
+    {
+      "title": "Perakende Operasyon Merkezi",
+      "type": "Premium mock case",
+      "summary": "Çok şubeli operasyonlarda raporlama, görev takibi ve saha geri bildirimini tek panelde birleştiren sistem.",
+      "mediaLabel": "Şube KPI ve görev takip paneli",
+      "media": {
+        "kind": "image",
+        "src": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80",
+        "aspectRatio": "4:3",
+        "alt": "Perakende operasyon dashboard görünümü"
+      }
+    },
+    {
+      "title": "Servis Yönetim Platformu",
+      "type": "Premium mock case",
+      "summary": "Teknik servis ekipleri için tekliften teslimata uzanan süreci otomasyonla hızlandıran SaaS mimarisi.",
+      "mediaLabel": "Saha ekibi iş emri ve teslimat ekranı",
+      "media": {
+        "kind": "image",
+        "src": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1600&q=80",
+        "aspectRatio": "4:3",
+        "alt": "Servis yönetim paneli görseli"
+      }
+    }
+  ],
+  "whyMoxera": [
+    "Hazır kalıplar yerine iş modelinize göre çözüm kurarız.",
+    "Sadece yazılım değil, çalışan sistem tasarlarız.",
+    "Yapay zekayı gösteri değil, sonuç üretimi için kullanırız.",
+    "Butik yapı sayesinde doğrudan iletişim ve yüksek özen sunarız."
+  ]
+}

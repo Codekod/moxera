@@ -15,7 +15,7 @@ const config: Config = {
         "moxera-navy": "#1D2A57",
         "moxera-accent": "#2ED3C6",
         "moxera-highlight": "#66E6DA",
-        "moxera-text-soft": "#B8C2D9",
+        "moxera-text-soft": "#C6D0E4",
         "moxera-text": "#F5F7FB"
       },
       boxShadow: {

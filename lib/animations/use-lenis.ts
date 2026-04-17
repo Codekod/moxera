@@ -3,9 +3,9 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
 
-export function useLenis() {
+export function useLenis(enabled: boolean) {
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || window.innerWidth < 1024) return;
+    if (!enabled) return;
 
     const lenis = new Lenis({
       duration: 1.1,
@@ -25,5 +25,5 @@ export function useLenis() {
       cancelAnimationFrame(rafId);
       lenis.destroy();
     };
-  }, []);
+  }, [enabled]);
 }

@@ -1,19 +1,21 @@
  "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { caseStudies } from "@/lib/data/site-content";
 import { gsap, useGsapPlugin } from "@/lib/animations/gsap";
+import { useMotionProfile } from "@/lib/animations/use-motion-profile";
 
 export function SelectedWorkSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const { isMobile, shouldReduceMotion, motionTier } = useMotionProfile();
   useGsapPlugin();
 
   useEffect(() => {
-    if (!sectionRef.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const isMobile = window.innerWidth < 768;
+    if (!sectionRef.current || shouldReduceMotion) return;
     const ctx = gsap.context(() => {
       gsap.utils.toArray<HTMLElement>(".work-item").forEach((item) => {
         if (isMobile) {
@@ -36,24 +38,27 @@ export function SelectedWorkSection() {
             scrollTrigger: { trigger: item, start: "top 82%" }
           }
         );
-        gsap.fromTo(
-          item.querySelector(".work-media"),
-          { opacity: 0.25, scale: 1.08 },
-          {
-            opacity: 1,
-            scale: 1,
-            duration: 1.1,
-            ease: "power2.out",
-            scrollTrigger: { trigger: item, start: "top 74%", end: "bottom 50%", scrub: 0.8 }
-          }
-        );
+        if (motionTier === "full") {
+          gsap.fromTo(
+            item.querySelector(".work-media"),
+            { opacity: 0.25, scale: 1.08 },
+            {
+              opacity: 1,
+              scale: 1,
+              duration: 1.1,
+              ease: "power2.out",
+              scrollTrigger: { trigger: item, start: "top 74%", end: "bottom 50%", scrub: 0.8 }
+            }
+          );
+        }
       });
     }, sectionRef);
     return () => ctx.revert();
-  }, []);
+  }, [isMobile, motionTier, shouldReduceMotion]);
 
   return (
-    <section id="selected-work" ref={sectionRef} className="py-16 md:py-32">
+    <section id="selected-work" ref={sectionRef} className="relative py-16 md:py-32">
+      <div className="pointer-events-none absolute right-[7%] top-10 h-44 w-44 rounded-full bg-[#1D2A57]/45 blur-[92px]" />
       <Container className="space-y-10 md:space-y-14">
         <SectionHeading
           kicker="Çalışmalarımız"
@@ -76,22 +81,36 @@ export function SelectedWorkSection() {
                 <p className="max-w-[34rem] leading-[1.75] text-moxera-text-soft">{item.summary}</p>
                 {index === 0 ? <p className="text-[11px] uppercase tracking-[0.2em] text-moxera-highlight/90">Devam eden ürün geliştirme hattı</p> : null}
               </div>
-              <div className={`work-media relative flex min-h-[220px] items-start overflow-hidden rounded-2xl border p-6 text-sm text-moxera-text-soft transition duration-500 group-hover:-translate-y-1 group-hover:scale-[1.01] md:min-h-[244px] md:p-7 ${
+              <div className={`work-media relative flex min-h-[220px] items-start overflow-hidden rounded-2xl border p-4 text-sm text-moxera-text-soft transition duration-500 group-hover:-translate-y-1 group-hover:scale-[1.01] md:min-h-[244px] md:p-5 ${
                 index === 0
                   ? "border-moxera-highlight/40 bg-[linear-gradient(145deg,rgba(18,28,56,0.95),rgba(6,10,24,0.98))]"
                   : "border-white/15 bg-gradient-to-br from-moxera-navy/60 to-moxera-bg"
               }`}>
-                <div className={`absolute inset-3 rounded-xl ${index === 0 ? "border border-moxera-highlight/35" : "border border-moxera-highlight/25"}`} />
-                <div className="absolute inset-x-7 top-16 h-px bg-gradient-to-r from-transparent via-moxera-highlight/45 to-transparent" />
-                <div className="absolute inset-x-7 bottom-16 h-px bg-gradient-to-r from-transparent via-moxera-highlight/35 to-transparent" />
-                <div className="absolute -left-20 top-1/2 h-28 w-52 -translate-y-1/2 bg-[linear-gradient(90deg,transparent,rgba(102,230,218,0.35),transparent)] blur-md transition duration-700 group-hover:left-[70%]" />
-                <div className="absolute bottom-6 right-6 h-20 w-20 rounded-full bg-moxera-highlight/18 blur-2xl" />
-                <div className="relative space-y-3">
-                  <p className="text-xs uppercase tracking-[0.16em] text-moxera-highlight/95">Medya Vitrini</p>
-                  <p className="max-w-[14rem] leading-relaxed">{item.mediaLabel}</p>
-                  <p className="text-[11px] uppercase tracking-[0.16em] text-moxera-text-soft/70">
-                    Önerilen alan: {index === 0 ? "Video 16:9" : "Görsel 4:3"}
-                  </p>
+                <div className={`absolute inset-2 rounded-xl ${index === 0 ? "border border-moxera-highlight/35" : "border border-moxera-highlight/25"}`} />
+                <div className="relative z-[1] grid w-full gap-4">
+                  <div className={`relative overflow-hidden rounded-xl ${item.media.aspectRatio === "16:9" ? "aspect-video" : "aspect-[4/3]"}`}>
+                    {item.media.kind === "video" ? (
+                      <video
+                        className="h-full w-full object-cover"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        preload="metadata"
+                        poster={item.media.poster}
+                        aria-label={item.media.alt}
+                      >
+                        <source src={item.media.src} type="video/mp4" />
+                      </video>
+                    ) : (
+                      <Image src={item.media.src} alt={item.media.alt} fill sizes="(max-width: 768px) 92vw, 38vw" className="object-cover" />
+                    )}
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/25 via-transparent to-moxera-highlight/10" />
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-xs uppercase tracking-[0.16em] text-moxera-highlight/95">Medya Vitrini</p>
+                    <p className="leading-relaxed">{item.mediaLabel}</p>
+                  </div>
                 </div>
               </div>
             </article>

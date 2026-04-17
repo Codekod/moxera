@@ -1,6 +1,7 @@
 "use client";
 
 import { useLenis } from "@/lib/animations/use-lenis";
+import { useMotionProfile } from "@/lib/animations/use-motion-profile";
 import { CinematicBackground } from "@/components/layout/cinematic-background";
 import { HeroSection } from "@/components/sections/hero-section";
 import { TransformationSection } from "@/components/sections/transformation-section";
@@ -12,7 +13,8 @@ import { AboutSection } from "@/components/sections/about-section";
 import { ContactSection } from "@/components/sections/contact-section";
 
 export function HomeExperience() {
-  useLenis();
+  const { motionTier } = useMotionProfile();
+  useLenis(motionTier === "full");
 
   return (
     <div className="relative">

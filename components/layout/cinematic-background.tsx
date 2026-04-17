@@ -2,22 +2,21 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap, useGsapPlugin } from "@/lib/animations/gsap";
+import { useMotionProfile } from "@/lib/animations/use-motion-profile";
 
 export function CinematicBackground() {
   const rootRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobileState, setIsMobileState] = useState(false);
+  const { isMobile, shouldReduceMotion, motionTier } = useMotionProfile();
   useGsapPlugin();
 
   useEffect(() => {
-    const update = () => setIsMobile(window.innerWidth < 768);
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
+    setIsMobileState(isMobile);
+  }, [isMobile]);
 
   useEffect(() => {
-    if (!rootRef.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const mobile = window.innerWidth < 768;
+    if (!rootRef.current || shouldReduceMotion) return;
+    const mobile = isMobile;
 
     const ctx = gsap.context(() => {
       gsap.to(".bg-far", {
@@ -44,10 +43,14 @@ export function CinematicBackground() {
         scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 1.25 }
       });
 
-      gsap.to(".bg-orb-a", { x: mobile ? 40 : 80, y: mobile ? -24 : -50, repeat: -1, yoyo: true, duration: 13, ease: "sine.inOut" });
-      gsap.to(".bg-orb-b", { x: mobile ? -45 : -90, y: mobile ? 30 : 70, repeat: -1, yoyo: true, duration: 15, ease: "sine.inOut" });
-      gsap.to(".bg-grain", { xPercent: mobile ? 0.7 : 1.5, yPercent: mobile ? -0.7 : -1.5, repeat: -1, yoyo: true, duration: 8, ease: "none" });
-      gsap.to(".bg-wave", { xPercent: mobile ? 1.4 : 0.5, repeat: -1, yoyo: true, duration: mobile ? 11 : 18, ease: "sine.inOut" });
+      if (motionTier !== "lite") {
+        gsap.to(".bg-orb-a", { x: mobile ? 40 : 80, y: mobile ? -24 : -50, repeat: -1, yoyo: true, duration: 13, ease: "sine.inOut" });
+        gsap.to(".bg-orb-b", { x: mobile ? -45 : -90, y: mobile ? 30 : 70, repeat: -1, yoyo: true, duration: 15, ease: "sine.inOut" });
+        gsap.to(".bg-grain", { xPercent: mobile ? 0.7 : 1.5, yPercent: mobile ? -0.7 : -1.5, repeat: -1, yoyo: true, duration: 8, ease: "none" });
+      }
+      if (motionTier === "full") {
+        gsap.to(".bg-wave", { xPercent: mobile ? 1.4 : 0.5, repeat: -1, yoyo: true, duration: mobile ? 11 : 18, ease: "sine.inOut" });
+      }
     }, rootRef);
 
     const handlePointer = (event: MouseEvent) => {
@@ -63,22 +66,22 @@ export function CinematicBackground() {
       window.removeEventListener("mousemove", handlePointer);
       ctx.revert();
     };
-  }, []);
+  }, [isMobile, motionTier, shouldReduceMotion]);
 
   return (
     <div ref={rootRef} className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
       <div className="bg-far absolute inset-0 bg-[radial-gradient(ellipse_at_12%_8%,rgba(46,211,198,0.20),transparent_45%),radial-gradient(ellipse_at_80%_16%,rgba(29,42,87,0.48),transparent_55%),radial-gradient(ellipse_at_50%_120%,rgba(10,18,36,0.9),transparent_58%)]" />
       <div className="bg-mid absolute inset-0">
-        <div className={`bg-orb-a absolute left-[14%] top-[8%] rounded-full bg-moxera-accent/20 ${isMobile ? "h-52 w-52 blur-[72px]" : "h-72 w-72 blur-[105px]"}`} />
-        <div className={`bg-orb-b absolute bottom-[6%] right-[10%] rounded-full bg-[#1D2A57]/55 ${isMobile ? "h-56 w-56 blur-[82px]" : "h-80 w-80 blur-[130px]"}`} />
+        <div className={`bg-orb-a absolute left-[14%] top-[8%] rounded-full bg-moxera-accent/20 ${isMobileState ? "h-52 w-52 blur-[72px]" : "h-72 w-72 blur-[105px]"}`} />
+        <div className={`bg-orb-b absolute bottom-[6%] right-[10%] rounded-full bg-[#1D2A57]/55 ${isMobileState ? "h-56 w-56 blur-[82px]" : "h-80 w-80 blur-[130px]"}`} />
       </div>
-      <div className={`bg-wave absolute inset-0 ${isMobile ? "opacity-35" : "opacity-55"}`}>
+      <div className={`bg-wave absolute inset-0 ${isMobileState ? "opacity-35" : "opacity-55"}`}>
         <svg viewBox="0 0 1600 1000" className="h-full w-full">
           <path d="M-100 350C130 146 384 136 594 290C784 432 982 474 1710 124" stroke="rgba(102,230,218,0.16)" strokeWidth="1.1" fill="none" />
           <path d="M-120 500C182 312 416 320 652 480C890 642 1150 656 1710 430" stroke="rgba(141,170,230,0.15)" strokeWidth="1" fill="none" />
         </svg>
       </div>
-      <div className={`bg-near absolute inset-0 ${isMobile ? "opacity-55" : "opacity-85"}`}>
+      <div className={`bg-near absolute inset-0 ${isMobileState ? "opacity-55" : "opacity-85"}`}>
         <svg viewBox="0 0 1600 1000" className="h-full w-full">
           <path d="M-80 430C170 240 390 250 610 396C835 545 1085 564 1680 220" stroke="rgba(102,230,218,0.20)" strokeWidth="1.4" fill="none" />
           <path d="M-120 640C300 430 520 446 760 612C1010 785 1270 812 1710 530" stroke="rgba(46,211,198,0.16)" strokeWidth="1.2" fill="none" />

@@ -4,6 +4,8 @@ import { FormEvent, useEffect, useRef, useState } from "react";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { gsap, useGsapPlugin } from "@/lib/animations/gsap";
+import { useMotionProfile } from "@/lib/animations/use-motion-profile";
+import { revealOnScroll, staggerRevealOnScroll } from "@/lib/animations/motion-helpers";
 
 const socialIcons = [
   {
@@ -49,54 +51,35 @@ const socialIcons = [
 
 export function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const { isMobile, shouldReduceMotion, motionTier } = useMotionProfile();
   const [isSending, setIsSending] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [messageType, setMessageType] = useState<"success" | "error" | null>(null);
   useGsapPlugin();
 
   useEffect(() => {
-    if (!sectionRef.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const isMobile = window.innerWidth < 768;
+    if (!sectionRef.current || shouldReduceMotion) return;
     const ctx = gsap.context(() => {
       if (isMobile) {
-        gsap.fromTo(".contact-shell", { opacity: 0.75, y: 20 }, { opacity: 1, y: 0, duration: 0.6, scrollTrigger: { trigger: sectionRef.current, start: "top 86%" } });
+        revealOnScroll({ target: ".contact-shell", trigger: sectionRef.current, fromY: 20, duration: 0.6, start: "top 86%" });
         gsap.fromTo(".contact-flow", { strokeDashoffset: 1, opacity: 0.35 }, { strokeDashoffset: 0, opacity: 0.85, duration: 1.65, ease: "power2.out", scrollTrigger: { trigger: sectionRef.current, start: "top 80%" } });
-        gsap.fromTo(
-          ".contact-social-btn",
-          { opacity: 0, y: 16, scale: 0.92 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.44,
-            stagger: 0.07,
-            ease: "back.out(1.2)",
-            scrollTrigger: { trigger: ".contact-social-row", start: "top 91%" }
-          }
-        );
-        gsap.to(".contact-pulse", { scale: 1.18, opacity: 0.33, repeat: -1, yoyo: true, duration: 2.2, ease: "sine.inOut" });
+        staggerRevealOnScroll({ targets: ".contact-social-btn", trigger: ".contact-social-row", fromY: 16, duration: 0.44, stagger: 0.07, start: "top 91%" });
+        if (motionTier !== "lite") {
+          gsap.to(".contact-pulse", { scale: 1.18, opacity: 0.33, repeat: -1, yoyo: true, duration: 2.2, ease: "sine.inOut" });
+        }
         return;
       }
-      gsap.fromTo(".contact-shell", { opacity: 0.6, scale: 0.98 }, { opacity: 1, scale: 1, duration: 1, scrollTrigger: { trigger: sectionRef.current, start: "top 75%" } });
+      revealOnScroll({ target: ".contact-shell", trigger: sectionRef.current, fromY: 0, duration: 1, start: "top 75%" });
+      gsap.fromTo(".contact-shell", { scale: 0.98 }, { scale: 1, duration: 1, scrollTrigger: { trigger: sectionRef.current, start: "top 75%" } });
       gsap.fromTo(".contact-flow", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 2.6, ease: "power2.out", scrollTrigger: { trigger: sectionRef.current, start: "top 82%" } });
-      gsap.fromTo(
-        ".contact-social-btn",
-        { opacity: 0, y: 12, scale: 0.96 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.5,
-          stagger: 0.06,
-          ease: "power2.out",
-          scrollTrigger: { trigger: ".contact-social-row", start: "top 88%" }
-        }
-      );
-      gsap.to(".contact-pulse", { scale: 1.22, opacity: 0.35, repeat: -1, yoyo: true, duration: 1.8, ease: "sine.inOut" });
-      gsap.to(".contact-submit", { boxShadow: "0 0 0 0 rgba(102,230,218,0), 0 0 28px 4px rgba(46,211,198,0.12)", repeat: -1, yoyo: true, duration: 2.7, ease: "sine.inOut" });
+      staggerRevealOnScroll({ targets: ".contact-social-btn", trigger: ".contact-social-row", fromY: 12, duration: 0.5, stagger: 0.06, start: "top 88%" });
+      if (motionTier === "full") {
+        gsap.to(".contact-pulse", { scale: 1.2, opacity: 0.32, repeat: -1, yoyo: true, duration: 2.4, ease: "sine.inOut" });
+        gsap.to(".contact-submit", { boxShadow: "0 0 0 0 rgba(102,230,218,0), 0 0 24px 3px rgba(46,211,198,0.10)", repeat: -1, yoyo: true, duration: 3.2, ease: "sine.inOut" });
+      }
     }, sectionRef);
     return () => ctx.revert();
-  }, []);
+  }, [isMobile, motionTier, shouldReduceMotion]);
 
   useEffect(() => {
     if (!message) return;

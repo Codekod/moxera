@@ -3,14 +3,15 @@
 import { useEffect, useRef } from "react";
 import { Container } from "@/components/ui/container";
 import { gsap, useGsapPlugin } from "@/lib/animations/gsap";
+import { useMotionProfile } from "@/lib/animations/use-motion-profile";
 
 export function SignatureTransitionSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const { isMobile, shouldReduceMotion } = useMotionProfile();
   useGsapPlugin();
 
   useEffect(() => {
-    if (!sectionRef.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const isMobile = window.innerWidth < 768;
+    if (!sectionRef.current || shouldReduceMotion) return;
 
     const ctx = gsap.context(() => {
       if (isMobile) {
@@ -33,7 +34,7 @@ export function SignatureTransitionSection() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isMobile, shouldReduceMotion]);
 
   return (
     <section ref={sectionRef} className="py-12 md:py-16" aria-hidden="true">
