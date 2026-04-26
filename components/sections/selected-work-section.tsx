@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -19,11 +19,25 @@ export function SelectedWorkSection() {
     const ctx = gsap.context(() => {
       gsap.utils.toArray<HTMLElement>(".work-item").forEach((item) => {
         if (isMobile) {
+          const media = item.querySelector(".work-media");
           gsap.fromTo(
             item,
             { opacity: 0, y: 28 },
             { opacity: 1, y: 0, duration: 0.56, ease: "power2.out", scrollTrigger: { trigger: item, start: "top 90%" } }
           );
+          if (media) {
+            gsap.fromTo(
+              media,
+              { yPercent: 8, scale: 1.025, opacity: 0.82 },
+              {
+                yPercent: -6,
+                scale: 1,
+                opacity: 1,
+                ease: "none",
+                scrollTrigger: { trigger: item, start: "top bottom", end: "bottom top", scrub: 0.85 }
+              }
+            );
+          }
           return;
         }
         gsap.fromTo(
@@ -38,7 +52,7 @@ export function SelectedWorkSection() {
             scrollTrigger: { trigger: item, start: "top 82%" }
           }
         );
-        if (motionTier === "full") {
+        if (motionTier !== "lite") {
           gsap.fromTo(
             item.querySelector(".work-media"),
             { opacity: 0.25, scale: 1.08 },

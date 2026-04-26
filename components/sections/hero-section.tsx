@@ -19,8 +19,32 @@ export function HeroSection() {
         gsap.fromTo(".hero-kicker", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.55, ease: "power2.out" });
         gsap.fromTo(".hero-line", { yPercent: 80, opacity: 0.2 }, { yPercent: 0, opacity: 1, duration: 0.72, stagger: 0.07, ease: "power2.out", delay: 0.08 });
         gsap.fromTo(".hero-sub, .hero-cta, .hero-panel", { opacity: 0, y: 18 }, { opacity: 1, y: 0, stagger: 0.05, duration: 0.52, ease: "power2.out", delay: 0.16 });
+        gsap.fromTo(
+          ".hero-trail-path",
+          { strokeDashoffset: 1, opacity: 0.12 },
+          { strokeDashoffset: 0, opacity: 0.7, duration: 1.6, ease: "power2.out", delay: 0.18 }
+        );
+        gsap.to(".hero-depth-card", {
+          yPercent: -5,
+          scale: 1.012,
+          ease: "none",
+          scrollTrigger: { trigger: sectionRef.current, start: "top top", end: "bottom top", scrub: 0.85 }
+        });
+        gsap.to(".hero-panel", {
+          yPercent: -8,
+          ease: "none",
+          scrollTrigger: { trigger: sectionRef.current, start: "top 18%", end: "bottom top", scrub: 0.9 }
+        });
+        gsap.to(".hero-bg-right", {
+          xPercent: -5,
+          yPercent: -8,
+          opacity: 0.92,
+          ease: "none",
+          scrollTrigger: { trigger: sectionRef.current, start: "top top", end: "bottom top", scrub: 1 }
+        });
         if (motionTier !== "lite") {
           gsap.to(".hero-glow", { x: 46, y: 16, repeat: -1, yoyo: true, duration: 9.2, ease: "sine.inOut" });
+          gsap.to(".hero-trail-dot", { x: 240, y: 48, duration: 4.4, repeat: -1, yoyo: true, ease: "sine.inOut" });
         }
         gsap.fromTo(
           ".hero-pill-el",
@@ -64,6 +88,14 @@ export function HeroSection() {
         scale: 1.04,
         ease: "none",
         scrollTrigger: { trigger: sectionRef.current, start: "top top", end: "bottom top", scrub: 1 }
+      });
+      gsap.to(".hero-panel", {
+        yPercent: -8,
+        rotateX: 1.4,
+        rotateY: -1,
+        transformPerspective: 1200,
+        ease: "none",
+        scrollTrigger: { trigger: sectionRef.current, start: "top 12%", end: "bottom top", scrub: 1.05 }
       });
       gsap.fromTo(
         ".hero-trail-path",

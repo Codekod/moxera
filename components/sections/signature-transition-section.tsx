@@ -17,6 +17,7 @@ export function SignatureTransitionSection() {
       if (isMobile) {
         gsap.fromTo(".signature-copy", { y: 16, opacity: 0.4 }, { y: 0, opacity: 1, duration: 0.55, scrollTrigger: { trigger: sectionRef.current, start: "top 88%" } });
         gsap.fromTo(".signature-path", { strokeDashoffset: 1, opacity: 0.2 }, { strokeDashoffset: 0, opacity: 0.85, duration: 1.2, scrollTrigger: { trigger: sectionRef.current, start: "top 90%" } });
+        gsap.to(".signature-dot", { x: 520, y: -24, ease: "none", scrollTrigger: { trigger: sectionRef.current, start: "top 88%", end: "bottom 46%", scrub: 0.9 } });
         return;
       }
       const tl = gsap.timeline({

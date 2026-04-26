@@ -13,8 +13,26 @@ export function WhyMoxeraSection() {
   useGsapPlugin();
 
   useEffect(() => {
-    if (!sectionRef.current || shouldReduceMotion || isMobile) return;
+    if (!sectionRef.current || shouldReduceMotion) return;
     const ctx = gsap.context(() => {
+      if (isMobile) {
+        gsap.fromTo(".why-intro", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.62, ease: "power2.out", scrollTrigger: { trigger: sectionRef.current, start: "top 84%" } });
+        gsap.fromTo(".why-line", { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, duration: 0.7, ease: "power2.out", scrollTrigger: { trigger: ".why-line", start: "top 90%" } });
+        gsap.utils.toArray<HTMLElement>(".why-item").forEach((item, index) => {
+          gsap.fromTo(
+            item,
+            { opacity: 0, y: 24, scale: 0.985 },
+            { opacity: 1, y: 0, scale: 1, duration: 0.56, ease: "power2.out", delay: index * 0.04, scrollTrigger: { trigger: item, start: "top 90%" } }
+          );
+          gsap.to(item, {
+            borderColor: "rgba(102,230,218,0.30)",
+            ease: "none",
+            scrollTrigger: { trigger: item, start: "top 76%", end: "bottom 58%", scrub: 0.75 }
+          });
+        });
+        gsap.to(".why-signature", { xPercent: -5, yPercent: -8, scrollTrigger: { trigger: sectionRef.current, start: "top bottom", end: "bottom top", scrub: 1 } });
+        return;
+      }
       const tl = gsap.timeline({
         scrollTrigger: { trigger: sectionRef.current, start: "top 72%" }
       });

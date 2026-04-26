@@ -37,10 +37,27 @@ export function TransformationSection() {
               scrollTrigger: { trigger: item, start: "top 89%", toggleActions: "play none none reverse" }
             }
           );
+          gsap.fromTo(
+            item,
+            { borderColor: "rgba(255,255,255,0.10)", backgroundColor: "rgba(255,255,255,0.04)" },
+            {
+              borderColor: "rgba(102,230,218,0.34)",
+              backgroundColor: "rgba(102,230,218,0.075)",
+              boxShadow: "0 18px 48px rgba(2,8,26,0.42)",
+              ease: "none",
+              scrollTrigger: { trigger: item, start: "top 72%", end: "bottom 54%", scrub: 0.7 }
+            }
+          );
         });
         return;
       }
       const usePin = motionTier === "full";
+      gsap.to(".transform-parallax", {
+        yPercent: -18,
+        xPercent: 4,
+        ease: "none",
+        scrollTrigger: { trigger: sectionRef.current, start: "top bottom", end: "bottom top", scrub: 1.2 }
+      });
       const tl = gsap.timeline(
         usePin
           ? {

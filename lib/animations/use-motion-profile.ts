@@ -21,8 +21,8 @@ function getMotionProfile(): MotionProfile {
   const deviceMemory = navWithMemory.deviceMemory ?? 8;
   const cores = navigator.hardwareConcurrency ?? 8;
 
-  const isLowPowerDevice = deviceMemory <= 4 || cores <= 4;
-  const motionTier: MotionTier = shouldReduceMotion ? "lite" : isLowPowerDevice || isMobile ? "balanced" : "full";
+  const isLowPowerDevice = deviceMemory <= 3 || cores <= 4;
+  const motionTier: MotionTier = shouldReduceMotion ? "lite" : isLowPowerDevice ? "balanced" : "full";
 
   return { isMobile, shouldReduceMotion, motionTier };
 }

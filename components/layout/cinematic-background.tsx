@@ -55,9 +55,10 @@ export function CinematicBackground() {
         ambientTweens.push(gsap.to(".bg-wave", { xPercent: mobile ? 1.3 : 0.5, repeat: -1, yoyo: true, duration: mobile ? 11 : 18, ease: "sine.inOut" }));
       }
 
-      if (ambientTweens.length > 0) {
+      const heroTrigger = document.getElementById("hero");
+      if (ambientTweens.length > 0 && heroTrigger) {
         ScrollTrigger.create({
-          trigger: "#hero",
+          trigger: heroTrigger,
           start: "top top",
           end: "bottom top",
           onEnter: () => ambientTweens.forEach((tween) => tween.play()),

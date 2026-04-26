@@ -13,8 +13,8 @@ import { AboutSection } from "@/components/sections/about-section";
 import { ContactSection } from "@/components/sections/contact-section";
 
 export function HomeExperience() {
-  const { motionTier } = useMotionProfile();
-  useLenis(motionTier === "full");
+  const { isMobile, motionTier } = useMotionProfile();
+  useLenis(motionTier === "full" && !isMobile);
 
   return (
     <div className="relative">

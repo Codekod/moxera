@@ -42,8 +42,8 @@
       "mediaLabel": "Ürün ekranları ve operasyon akışı",
       "media": {
         "kind": "video",
-        "src": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
-        "poster": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80",
+        "src": "/images/cases/noter-pusulasi-flow.mp4",
+        "poster": "/images/cases/noter-pusulasi-poster.jpg",
         "aspectRatio": "16:9",
         "alt": "Noter Pusulası ürün arayüz akışı"
       }
@@ -55,7 +55,7 @@
       "mediaLabel": "Şube KPI ve görev takip paneli",
       "media": {
         "kind": "image",
-        "src": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80",
+        "src": "/images/cases/retail-ops-dashboard.jpg",
         "aspectRatio": "4:3",
         "alt": "Perakende operasyon dashboard görünümü"
       }
@@ -67,7 +67,7 @@
       "mediaLabel": "Saha ekibi iş emri ve teslimat ekranı",
       "media": {
         "kind": "image",
-        "src": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1600&q=80",
+        "src": "/images/cases/service-platform-team.jpg",
         "aspectRatio": "4:3",
         "alt": "Servis yönetim paneli görseli"
       }

@@ -34,17 +34,17 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/brand/moxera-og-cover.png",
-        width: 1200,
-        height: 630,
+        url: "/brand/moxera-logo-dark.png",
+        width: 5692,
+        height: 3200,
         alt: "Moxera"
       }
     ]
   },
   icons: {
-    icon: "/brand/moxera-logo-symbol.png",
-    apple: "/brand/moxera-logo-symbol.png",
-    shortcut: "/brand/moxera-logo-symbol.png"
+    icon: "/brand/WEB SİTESİ İÇİN-01.svg",
+    apple: "/brand/moxera-logo-dark.png",
+    shortcut: "/brand/WEB SİTESİ İÇİN-01.svg"
   }
 };
 

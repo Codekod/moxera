@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import { useEffect, useRef } from "react";
 import { Container } from "@/components/ui/container";
@@ -22,10 +22,27 @@ export function CapabilitiesSection() {
         revealOnScroll({ target: ".capability-heading", trigger: sectionRef.current, fromY: 20, duration: 0.55, start: "top 82%" });
         cards.forEach((card, index) => {
           revealOnScroll({ target: card, trigger: card, fromY: 22, duration: 0.5, delay: index * 0.04, start: "top 88%" });
+          gsap.fromTo(
+            card,
+            { borderColor: "rgba(255,255,255,0.10)", boxShadow: "0 0 0 rgba(0,0,0,0)" },
+            {
+              borderColor: "rgba(102,230,218,0.38)",
+              boxShadow: "0 20px 52px rgba(2,8,26,0.44)",
+              ease: "none",
+              scrollTrigger: { trigger: card, start: "top 76%", end: "bottom 54%", scrub: 0.8 }
+            }
+          );
         });
         return;
       }
       const usePin = motionTier === "full";
+      gsap.to(".capability-glow", {
+        xPercent: -12,
+        yPercent: -18,
+        scale: 1.22,
+        ease: "none",
+        scrollTrigger: { trigger: sectionRef.current, start: "top bottom", end: "bottom top", scrub: 1.2 }
+      });
       const tl = gsap.timeline(
         usePin
           ? {
@@ -66,7 +83,7 @@ export function CapabilitiesSection() {
       <div className="pointer-events-none absolute left-[8%] top-8 h-36 w-36 rounded-full bg-moxera-highlight/12 blur-[72px]" />
       <Container className="space-y-10 md:space-y-14">
         <div className="capability-stage scene-shell relative overflow-hidden rounded-[2rem] p-7 md:p-10">
-          <div className="pointer-events-none absolute -right-20 top-1/2 h-44 w-44 -translate-y-1/2 rounded-full bg-[#243770]/35 blur-[94px]" />
+          <div className="capability-glow pointer-events-none absolute -right-20 top-1/2 h-44 w-44 -translate-y-1/2 rounded-full bg-[#243770]/35 blur-[94px]" />
           <div className="capability-heading mb-7 md:mb-8">
             <SectionHeading
               kicker="Yetenek Alanları"

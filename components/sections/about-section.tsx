@@ -12,8 +12,19 @@ export function AboutSection() {
   useGsapPlugin();
 
   useEffect(() => {
-    if (!sectionRef.current || shouldReduceMotion || isMobile) return;
+    if (!sectionRef.current || shouldReduceMotion) return;
     const ctx = gsap.context(() => {
+      if (isMobile) {
+        gsap.fromTo(".about-intro", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.62, ease: "power2.out", scrollTrigger: { trigger: sectionRef.current, start: "top 84%" } });
+        gsap.fromTo(".about-line", { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, duration: 0.72, ease: "power2.out", scrollTrigger: { trigger: ".about-line", start: "top 90%" } });
+        gsap.fromTo(
+          ".about-panel",
+          { opacity: 0, y: 26, scale: 0.985 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.68, ease: "power2.out", scrollTrigger: { trigger: ".about-panel", start: "top 88%" } }
+        );
+        gsap.to(".about-signature", { xPercent: -7, yPercent: -10, scrollTrigger: { trigger: sectionRef.current, start: "top bottom", end: "bottom top", scrub: 1 } });
+        return;
+      }
       const tl = gsap.timeline({
         scrollTrigger: { trigger: sectionRef.current, start: "top 72%" }
       });
