@@ -152,8 +152,8 @@ export function ContactSection() {
         <div className="space-y-8">
           <SectionHeading
             kicker="İletişim"
-            title="Projenizi birlikte netleştirelim"
-            description="Sıradan bir form yerine, ihtiyaçları sistem perspektifinden konuştuğumuz güçlü bir başlangıç noktası."
+            title="Web, mobil, SaaS veya otomasyon projenizi birlikte netleştirelim"
+            description="İlk görüşmede hedefi, kapsamı, teknik ihtiyacı ve en doğru uygulama yolunu sade bir sistem perspektifiyle konuşuruz."
           />
           <div className="space-y-3 rounded-2xl border border-white/10 bg-black/20 p-5 text-sm text-moxera-text-soft">
             <p className="text-[11px] uppercase tracking-[0.2em] text-moxera-highlight">Doğrudan İletişim</p>

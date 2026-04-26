@@ -24,12 +24,6 @@ export function HeroSection() {
           { strokeDashoffset: 1, opacity: 0.12 },
           { strokeDashoffset: 0, opacity: 0.7, duration: 1.6, ease: "power2.out", delay: 0.18 }
         );
-        gsap.to(".hero-depth-card", {
-          yPercent: -5,
-          scale: 1.012,
-          ease: "none",
-          scrollTrigger: { trigger: sectionRef.current, start: "top top", end: "bottom top", scrub: 0.85 }
-        });
         gsap.to(".hero-panel", {
           yPercent: -8,
           ease: "none",
@@ -45,6 +39,7 @@ export function HeroSection() {
         if (motionTier !== "lite") {
           gsap.to(".hero-glow", { x: 46, y: 16, repeat: -1, yoyo: true, duration: 9.2, ease: "sine.inOut" });
           gsap.to(".hero-trail-dot", { x: 240, y: 48, duration: 4.4, repeat: -1, yoyo: true, ease: "sine.inOut" });
+          gsap.to(".hero-mobile-orb", { x: 58, y: -16, scale: 1.18, repeat: -1, yoyo: true, duration: 5.8, ease: "sine.inOut" });
         }
         gsap.fromTo(
           ".hero-pill-el",
@@ -119,8 +114,9 @@ export function HeroSection() {
   }, [isMobile, motionTier, shouldReduceMotion]);
 
   return (
-    <section id="hero" ref={sectionRef} className="relative overflow-hidden py-12 md:py-24">
+    <section id="hero" ref={sectionRef} className="relative overflow-hidden pb-8 pt-12 md:py-24">
       <div className="hero-glow absolute left-1/3 top-16 h-56 w-56 rounded-full bg-moxera-accent/30 blur-[90px]" />
+      <span className="hero-mobile-orb pointer-events-none absolute right-16 top-24 z-[1] h-3 w-3 rounded-full bg-moxera-highlight shadow-[0_0_24px_rgba(102,230,218,0.78)] md:hidden" aria-hidden="true" />
       <div className="hero-sweep absolute -left-1/3 top-6 h-96 w-[48rem] bg-[radial-gradient(circle,rgba(102,230,218,0.22),transparent_65%)] opacity-20 blur-[80px]" />
       <svg
         className="hero-bg-right pointer-events-none absolute -right-36 top-0 h-[520px] w-[760px] opacity-80"
@@ -174,14 +170,14 @@ export function HeroSection() {
               </Link>
             </div>
           </div>
-          <div className="hero-panel relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#121D3A]/84 to-[#060A1B]/95 px-4 py-5 shadow-[0_28px_80px_rgba(0,0,0,0.22)] sm:px-6 sm:py-6 md:px-7 md:py-7">
-            <div className="pointer-events-none absolute inset-3 rounded-2xl border border-moxera-highlight/20 md:inset-4" />
+          <div className="hero-panel relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#121D3A]/84 to-[#060A1B]/95 px-6 py-5 shadow-[0_28px_80px_rgba(0,0,0,0.22)] sm:px-7 sm:py-6 md:px-7 md:py-7">
+            <div className="pointer-events-none absolute inset-4 rounded-2xl border border-moxera-highlight/20" />
             <div className="pointer-events-none absolute inset-4 hidden bg-[linear-gradient(transparent_31px,rgba(255,255,255,0.04)_32px),linear-gradient(90deg,transparent_31px,rgba(255,255,255,0.03)_32px)] bg-[size:32px_32px] opacity-25 md:block" />
             <div className="pointer-events-none absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-moxera-highlight/20 blur-3xl" />
             <div className="relative z-[1] flex flex-col gap-5">
               <div className="flex flex-col gap-3 border-b border-white/[0.07] pb-4 min-[420px]:flex-row min-[420px]:items-start min-[420px]:justify-between md:gap-8">
                 <div className="min-w-0 flex-1 pr-0 min-[361px]:pr-1">
-                  <p className="text-[11px] uppercase tracking-[0.2em] text-moxera-highlight">Sistem Mimari Görünümü</p>
+                  <p className="text-[10px] uppercase tracking-[0.16em] text-moxera-highlight sm:text-[11px] sm:tracking-[0.2em]">Sistem Mimari Görünümü</p>
                   <h3 className="mt-3 max-w-[20rem] text-xl font-semibold leading-tight text-moxera-text min-[420px]:max-w-[15rem] md:text-2xl">
                     Analiz · Ürün · Otomasyon
                   </h3>
@@ -198,7 +194,7 @@ export function HeroSection() {
                 </div>
               </div>
               <p className="max-w-[36rem] text-[13px] leading-[1.75] text-moxera-text-soft md:max-w-[25rem] md:text-sm">
-                İhtiyaç analizi, ürün katmanı, AI destek ve otomasyon bileşenleri; okunur, sürdürülebilir ve ölçülebilir bir operasyon akışında birleşir.
+                Web sitesi, mobil uygulama, SaaS, AI iş akışı ve otomasyon bileşenleri tek bir sürdürülebilir sistem mimarisinde birleşir.
               </p>
               <div className="grid gap-2 min-[430px]:grid-cols-3">
                 <span className="hero-tech-pill hero-pill-el hero-pill-trace flex min-h-[2.35rem] min-w-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.025] px-2.5 py-2 text-center text-[9.5px] uppercase leading-tight tracking-[0.09em] text-moxera-text-soft/90 transition duration-300 hover:-translate-y-0.5 hover:border-moxera-highlight/45 hover:bg-moxera-highlight/10 sm:px-3 sm:text-[10px] sm:tracking-[0.14em]">

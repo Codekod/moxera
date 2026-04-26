@@ -102,7 +102,9 @@ export function CapabilitiesSection() {
               >
                 <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,transparent,rgba(102,230,218,0.08),transparent)] opacity-0 transition duration-500 group-hover:opacity-100" />
                 <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-moxera-accent/20 blur-3xl transition duration-500 group-hover:scale-125" />
-                <p className="mb-4 text-xs uppercase tracking-[0.2em] text-moxera-highlight/90">Katman 0{index + 1}</p>
+                <p className="mb-4 text-xs uppercase tracking-[0.2em] text-moxera-highlight/90">
+                  {["Marka Deneyimi", "Mobil Ürün", "SaaS Sistem", "AI Otomasyon"][index]}
+                </p>
                 <h3 className="mb-3 text-[1.45rem] font-semibold leading-tight text-moxera-text md:mb-4 md:text-2xl">{item.title}</h3>
                 <p className="mb-5 max-w-[34ch] leading-relaxed text-moxera-text-soft md:max-w-none">{item.detail}</p>
                 <div className="mt-6 h-px w-16 bg-gradient-to-r from-moxera-highlight/60 to-transparent" />

@@ -52,7 +52,7 @@ export function SiteFooter() {
               <p className="text-xs uppercase tracking-[0.17em] text-moxera-highlight">İletişim</p>
               <p className="text-sm text-moxera-text-soft">meliheken@moxera.com.tr</p>
               <p className="text-sm text-moxera-text-soft">0 533 969 78 06</p>
-              <p className="text-sm text-moxera-text-soft">Ankara merkez</p>
+              <p className="text-sm uppercase tracking-[0.16em] text-moxera-text-soft">Ankara</p>
               <div className="flex flex-wrap items-center gap-2.5 pb-1 pt-2.5 text-moxera-text-soft">
                 {footerSocials.map((social) => (
                   <a

@@ -6,40 +6,40 @@
     { "href": "/iletisim", "label": "İletişim", "sectionId": "contact" }
   ],
   "transformationSteps": [
-    "İhtiyacı birlikte netleştiriyoruz",
-    "Darboğazları ve riskleri analiz ediyoruz",
-    "Web, mobil, SaaS ve AI çözüm kurgusunu tasarlıyoruz",
-    "Ürünü ve otomasyon katmanlarını hayata geçiriyoruz",
-    "Ölçeklenebilir, çalışan sistemi teslim ediyoruz"
+    "İş hedefini, kullanıcı ihtiyacını ve teknik kapsamı birlikte netleştiriyoruz",
+    "Darboğazları, veri akışlarını ve operasyonel riskleri analiz ediyoruz",
+    "Web sitesi, mobil uygulama, SaaS ve AI çözüm mimarisini tasarlıyoruz",
+    "Ürün arayüzlerini, entegrasyonları ve otomasyon akışlarını geliştiriyoruz",
+    "Ölçülebilir, sürdürülebilir ve yayına hazır dijital sistemi teslim ediyoruz"
   ],
   "capabilities": [
     {
-      "title": "Web ve Mobil Uygulamalar",
-      "detail": "Marka algınızı güçlendiren, güven veren ve satış potansiyelini yükselten uçtan uca dijital ürünler.",
-      "metric": "Yüksek görünürlük + güçlü deneyim"
+      "title": "Premium Web Siteleri",
+      "detail": "Marka algısını güçlendiren, güven veren ve talep üretmeye odaklanan hızlı, modern ve yönetilebilir web deneyimleri.",
+      "metric": "Marka güveni + dönüşüm odaklı deneyim"
     },
     {
-      "title": "SaaS Uygulamaları",
-      "detail": "Süreçleri standardize eden, ekiplerinizi aynı ritimde buluşturan sürdürülebilir yazılım altyapıları.",
-      "metric": "Ölçeklenebilir ve yönetilebilir yapı"
+      "title": "Mobil Uygulamalar",
+      "detail": "Kullanıcı yolculuğunu sadeleştiren, performanslı ve ölçeklenebilir iOS/Android ürün arayüzleri ve uygulama altyapıları.",
+      "metric": "Akıcı kullanım + güçlü ürün hissi"
     },
     {
-      "title": "Yapay Zeka Çözümleri",
-      "detail": "Moda olduğu için değil, karar kalitesi ve operasyon hızı ürettiği yerde konumlanan AI katmanları.",
-      "metric": "Hız + verim + karar desteği"
+      "title": "SaaS ve Web Uygulamaları",
+      "detail": "Ekiplerin aynı ritimde çalışmasını sağlayan panel, portal, CRM, operasyon ve abonelik tabanlı yazılım sistemleri.",
+      "metric": "Ölçeklenebilir mimari + yönetilebilir süreç"
     },
     {
-      "title": "Otomasyon Sistemleri",
-      "detail": "Tekrar eden işleri sadeleştirip ekiplerin zamanını asıl değere odaklayan akıllı iş akışı otomasyonları.",
-      "metric": "Operasyonel yükte ölçülebilir azalma"
+      "title": "AI İş Akışı ve Otomasyon",
+      "detail": "Yapay zeka destekli karar, içerik, takip ve entegrasyon akışlarıyla tekrar eden işleri ölçülebilir sistemlere dönüştürüyoruz.",
+      "metric": "Daha az manuel iş + daha hızlı karar"
     }
   ],
   "caseStudies": [
     {
       "title": "Noter Pusulası",
-      "type": "Devam eden proje",
-      "summary": "Hukuk süreçlerinde bilgi akışını sadeleştiren ve işlem temposunu artıran dijital altyapı dönüşümü.",
-      "mediaLabel": "Ürün ekranları ve operasyon akışı",
+      "type": "Ürün geliştirme süreci",
+      "summary": "Hukuk süreçlerinde bilgi akışını sadeleştiren, işlem temposunu artıran ve kullanıcıyı doğru adıma yönlendiren dijital ürün altyapısı.",
+      "mediaLabel": "Arayüz akışı ve sistem mantığı",
       "media": {
         "kind": "video",
         "src": "/images/cases/noter-pusulasi-flow.mp4",
@@ -50,9 +50,9 @@
     },
     {
       "title": "Perakende Operasyon Merkezi",
-      "type": "Premium mock case",
-      "summary": "Çok şubeli operasyonlarda raporlama, görev takibi ve saha geri bildirimini tek panelde birleştiren sistem.",
-      "mediaLabel": "Şube KPI ve görev takip paneli",
+      "type": "Operasyon paneli",
+      "summary": "Çok şubeli yapılarda raporlama, görev takibi ve saha geri bildirimini tek ekranda birleştiren yönetim sistemi.",
+      "mediaLabel": "KPI, görev ve saha takibi",
       "media": {
         "kind": "image",
         "src": "/images/cases/retail-ops-dashboard.jpg",
@@ -62,9 +62,9 @@
     },
     {
       "title": "Servis Yönetim Platformu",
-      "type": "Premium mock case",
-      "summary": "Teknik servis ekipleri için tekliften teslimata uzanan süreci otomasyonla hızlandıran SaaS mimarisi.",
-      "mediaLabel": "Saha ekibi iş emri ve teslimat ekranı",
+      "type": "SaaS platform mimarisi",
+      "summary": "Teknik servis ekipleri için tekliften teslimata uzanan süreci otomasyon, iş emri ve raporlama katmanlarıyla hızlandıran yapı.",
+      "mediaLabel": "İş emri ve teslimat akışı",
       "media": {
         "kind": "image",
         "src": "/images/cases/service-platform-team.jpg",
@@ -74,9 +74,9 @@
     }
   ],
   "whyMoxera": [
-    "Hazır kalıplar yerine iş modelinize göre çözüm kurarız.",
-    "Sadece yazılım değil, çalışan sistem tasarlarız.",
-    "Yapay zekayı gösteri değil, sonuç üretimi için kullanırız.",
-    "Butik yapı sayesinde doğrudan iletişim ve yüksek özen sunarız."
+    "Hazır kalıplar yerine iş modelinize, ekibinize ve operasyon ritminize göre çözüm kurarız.",
+    "Sadece ekran üretmeyiz; ölçülebilir, kullanılabilir ve sürdürülebilir sistem tasarlarız.",
+    "Yapay zekayı vitrin unsuru değil, karar kalitesi ve operasyon hızı üreten bir katman olarak konumlandırırız.",
+    "Butik çalışma modeliyle doğrudan iletişim, hızlı karar ve yüksek uygulama özeni sunarız."
   ]
 }

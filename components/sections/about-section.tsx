@@ -48,15 +48,15 @@ export function AboutSection() {
         <SectionHeading
           className="about-intro"
           kicker="Hakkımızda"
-          title="1 Nisan 2026'dan bu yana butik teknoloji partnerliği"
-          description="Moxera, tek kişilik ama yüksek odaklı bir yapı olarak; müşteriyi dinleyen, darboğazı tespit eden ve çalışan sistemi teslim eden bir iş modeliyle ilerler."
+          title="Moxera, dijital ürünü iş sonucuna bağlayan butik teknoloji partneridir"
+          description="Web sitesi, mobil uygulama, SaaS, yapay zeka ve otomasyon projelerinde sade iletişim, net kapsam ve yüksek uygulama özeniyle çalışırız."
         />
         <div className="about-line cinematic-divider" />
         <div className="about-panel scene-shell grid gap-10 rounded-3xl p-8 md:grid-cols-[1.15fr_0.85fr]">
           <div className="space-y-6 text-moxera-text-soft">
-            <p className="max-w-[40ch] leading-[1.85]">Ankara merkezli çalışma modeliyle doğrudan iletişim, hızlı karar ve yüksek özen sağlar.</p>
-            <p className="max-w-[42ch] leading-[1.85]">Web ve mobil ürünler, AI katmanları ve otomasyon sistemleri tek bir stratejik çatı altında planlanır.</p>
-            <p className="max-w-[42ch] leading-[1.85]">Hedef, sadece dijital varlık üretmek değil; görünürlük, prestij ve operasyonel verim oluşturmaktır.</p>
+            <p className="max-w-[40ch] leading-[1.85]">Ankara merkezli çalışma modeliyle doğrudan iletişim, hızlı karar ve yüksek üretim özeni sağlar.</p>
+            <p className="max-w-[42ch] leading-[1.85]">Web siteleri, mobil uygulamalar, SaaS ürünleri, AI iş akışları ve otomasyon sistemleri tek stratejik çatı altında planlanır.</p>
+            <p className="max-w-[42ch] leading-[1.85]">Hedef, sadece dijital varlık üretmek değil; güven, görünürlük, hız ve operasyonel verim oluşturmaktır.</p>
           </div>
           <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-[#121A36]/85 to-[#070D23]/90 p-6">
             <div className="absolute -right-8 top-2 h-24 w-24 rounded-full bg-moxera-highlight/20 blur-2xl" />

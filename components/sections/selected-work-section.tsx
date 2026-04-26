@@ -76,8 +76,8 @@ export function SelectedWorkSection() {
       <Container className="space-y-10 md:space-y-14">
         <SectionHeading
           kicker="Çalışmalarımız"
-          title="Case-study teaser diliyle tasarlanan proje önizlemeleri"
-          description="Gerçek vaka detayları eklendikçe içerik kolay güncellenebilir. Şimdilik premium mock data ile kurumsal bir vitrin hazırlanmıştır."
+          title="Web, SaaS ve otomasyon projeleri için seçili çalışma yapısı"
+          description="Moxera projelerinde odağımız; net kapsam, güçlü arayüz, sürdürülebilir teknik mimari ve operasyonel karşılığı olan dijital sistemlerdir."
         />
         <div className="space-y-6 md:space-y-8">
           {caseStudies.map((item, index) => (
@@ -90,7 +90,7 @@ export function SelectedWorkSection() {
               }`}
             >
               <div className="space-y-4">
-                <p className="text-xs uppercase tracking-[0.2em] text-moxera-highlight">{index === 0 ? "Öne çıkan çalışma · Gerçek referans" : item.type}</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-moxera-highlight">{index === 0 ? "Ürün geliştirme hattı" : item.type}</p>
                 <h3 className="text-[1.55rem] font-semibold leading-tight text-moxera-text md:text-3xl">{item.title}</h3>
                 <p className="max-w-[34rem] leading-[1.75] text-moxera-text-soft">{item.summary}</p>
                 {index === 0 ? <p className="text-[11px] uppercase tracking-[0.2em] text-moxera-highlight/90">Devam eden ürün geliştirme hattı</p> : null}
@@ -122,7 +122,7 @@ export function SelectedWorkSection() {
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/25 via-transparent to-moxera-highlight/10" />
                   </div>
                   <div className="space-y-2">
-                    <p className="text-xs uppercase tracking-[0.16em] text-moxera-highlight/95">Medya Vitrini</p>
+                    <p className="text-xs uppercase tracking-[0.16em] text-moxera-highlight/95">Proje Görünümü</p>
                     <p className="leading-relaxed">{item.mediaLabel}</p>
                   </div>
                 </div>
