@@ -47,6 +47,61 @@ export function SiteHeader() {
 
   useEffect(() => {
     if (!headerRef.current) return;
+    const nav = headerRef.current.querySelector<HTMLElement>(".desktop-nav");
+    const pill = headerRef.current.querySelector<HTMLElement>(".desktop-nav-pill");
+    const links = Array.from(headerRef.current.querySelectorAll<HTMLAnchorElement>(".desktop-nav-link"));
+    if (!nav || !pill || links.length === 0) return;
+
+    const activeHref = pathname === "/" ? `#${activeSection}` : pathname;
+    const activeLink = links.find((link) => link.dataset.href === activeHref) ?? links[0];
+
+    const movePill = (link: HTMLAnchorElement, instant = false) => {
+      const navRect = nav.getBoundingClientRect();
+      const linkRect = link.getBoundingClientRect();
+      gsap.to(pill, {
+        x: linkRect.left - navRect.left,
+        width: linkRect.width,
+        opacity: 1,
+        duration: instant ? 0 : 0.42,
+        ease: "power3.out",
+        overwrite: true
+      });
+    };
+
+    const ctx = gsap.context(() => {
+      movePill(activeLink, true);
+      gsap.fromTo(".desktop-nav-link", { y: -6, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.045, duration: 0.45, ease: "power2.out" });
+    }, headerRef);
+
+    const listeners = links.map((link) => {
+      const enter = () => {
+        movePill(link);
+        gsap.to(link, { y: -1.5, duration: 0.24, ease: "power2.out", overwrite: true });
+      };
+      const leave = () => {
+        movePill(activeLink);
+        gsap.to(link, { y: 0, duration: 0.24, ease: "power2.out", overwrite: true });
+      };
+      link.addEventListener("mouseenter", enter);
+      link.addEventListener("mouseleave", leave);
+      return { enter, leave, link };
+    });
+
+    const handleResize = () => movePill(activeLink, true);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      listeners.forEach(({ enter, leave, link }) => {
+        link.removeEventListener("mouseenter", enter);
+        link.removeEventListener("mouseleave", leave);
+      });
+      window.removeEventListener("resize", handleResize);
+      ctx.revert();
+    };
+  }, [activeSection, pathname]);
+
+  useEffect(() => {
+    if (!headerRef.current) return;
     const ctx = gsap.context(() => {
       if (isMenuOpen) {
         gsap.fromTo(".mobile-menu-shell", { yPercent: -4, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.36, ease: "power2.out" });
@@ -84,25 +139,20 @@ export function SiteHeader() {
           </span>
           <span className="absolute -bottom-[2px] left-0 h-px w-0 bg-moxera-highlight transition-all duration-500 group-hover:w-[76px]" />
         </Link>
-        <nav className="hidden items-center gap-10 md:flex">
+        <nav className="desktop-nav relative hidden items-center gap-1 rounded-full border border-white/10 bg-black/15 p-1 md:flex">
+          <span className="desktop-nav-pill pointer-events-none absolute left-1 top-1 h-[calc(100%-0.5rem)] rounded-full border border-moxera-highlight/25 bg-moxera-highlight/10 opacity-0 shadow-[0_10px_30px_rgba(46,211,198,0.10)]" />
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={pathname === "/" && item.sectionId ? `#${item.sectionId}` : item.href}
-              className={`group relative py-1 text-[12px] font-semibold tracking-[0.15em] transition hover:text-moxera-text ${
+              data-href={pathname === "/" && item.sectionId ? `#${item.sectionId}` : item.href}
+              className={`desktop-nav-link group relative z-[1] rounded-full px-5 py-2 text-[12px] font-semibold tracking-[0.15em] transition hover:text-moxera-text ${
                 (pathname === "/" && item.sectionId === activeSection) || (pathname !== "/" && item.href === pathname)
                   ? "text-moxera-text"
                   : "text-moxera-text-soft"
               }`}
             >
               {item.label}
-              <span
-                className={`absolute -bottom-1 left-0 h-px bg-moxera-highlight transition-all duration-300 ${
-                  (pathname === "/" && item.sectionId === activeSection) || (pathname !== "/" && item.href === pathname)
-                    ? "w-full opacity-100"
-                    : "w-0 opacity-0 group-hover:w-full group-hover:opacity-80"
-                }`}
-              />
             </Link>
           ))}
         </nav>

@@ -174,44 +174,50 @@ export function HeroSection() {
               </Link>
             </div>
           </div>
-          <div className="hero-panel relative min-h-[260px] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#121D3A]/84 to-[#060A1B]/95 px-5 py-6 sm:min-h-[280px] sm:px-6 md:min-h-[372px] md:px-8 md:py-8">
-            <div className="pointer-events-none absolute inset-4 rounded-2xl border border-moxera-highlight/20" />
+          <div className="hero-panel relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#121D3A]/84 to-[#060A1B]/95 px-4 py-5 shadow-[0_28px_80px_rgba(0,0,0,0.22)] sm:px-6 sm:py-6 md:px-7 md:py-7">
+            <div className="pointer-events-none absolute inset-3 rounded-2xl border border-moxera-highlight/20 md:inset-4" />
             <div className="pointer-events-none absolute inset-4 hidden bg-[linear-gradient(transparent_31px,rgba(255,255,255,0.04)_32px),linear-gradient(90deg,transparent_31px,rgba(255,255,255,0.03)_32px)] bg-[size:32px_32px] opacity-25 md:block" />
-            <div className="pointer-events-none absolute inset-x-6 top-[76px] hidden h-px bg-gradient-to-r from-transparent via-moxera-highlight/35 to-transparent md:block" />
-            <div className="pointer-events-none absolute inset-x-6 bottom-[96px] hidden h-px bg-gradient-to-r from-transparent via-moxera-highlight/28 to-transparent md:block" />
             <div className="pointer-events-none absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-moxera-highlight/20 blur-3xl" />
-            <div className="relative z-[1] flex min-h-[240px] flex-col gap-5 md:min-h-0 md:justify-between">
-              <div className="flex flex-col gap-3 pb-4 max-md:border-b max-md:border-white/[0.06] min-[361px]:flex-row min-[361px]:items-start min-[361px]:justify-between min-[361px]:gap-3 md:gap-8 md:border-0 md:pb-0">
+            <div className="relative z-[1] flex flex-col gap-5">
+              <div className="flex flex-col gap-3 border-b border-white/[0.07] pb-4 min-[420px]:flex-row min-[420px]:items-start min-[420px]:justify-between md:gap-8">
                 <div className="min-w-0 flex-1 pr-0 min-[361px]:pr-1">
                   <p className="text-[11px] uppercase tracking-[0.2em] text-moxera-highlight">Sistem Mimari Görünümü</p>
-                  <h3 className="mt-3 max-w-[20rem] text-base font-semibold leading-snug text-moxera-text min-[361px]:max-w-[16rem] min-[361px]:text-lg sm:max-w-[18rem] sm:text-xl">
+                  <h3 className="mt-3 max-w-[20rem] text-xl font-semibold leading-tight text-moxera-text min-[420px]:max-w-[15rem] md:text-2xl">
                     Analiz · Ürün · Otomasyon
                   </h3>
                 </div>
-                <div className="shrink-0 self-end pt-0.5 min-[361px]:self-start">
+                <div className="shrink-0 self-start pt-0.5 min-[420px]:self-start">
                   <Image
                     src="/brand/moxera-logo-light.png"
                     alt="Moxera"
                     width={5692}
                     height={3200}
-                    sizes="(max-width: 360px) 96px, (max-width: 768px) 112px, 132px"
-                    className="h-auto w-[5.75rem] object-contain object-right opacity-95 min-[361px]:w-[6.5rem] sm:w-[7.25rem] md:w-[8.25rem]"
+                    sizes="(max-width: 420px) 112px, (max-width: 768px) 128px, 142px"
+                    className="h-auto w-[7rem] object-contain object-left opacity-95 min-[420px]:w-[7.75rem] md:w-[8.85rem]"
                   />
                 </div>
               </div>
-              <p className="max-w-none text-[13px] leading-[1.75] text-moxera-text-soft sm:max-w-[18rem] md:max-w-[16rem]">
+              <p className="max-w-[36rem] text-[13px] leading-[1.75] text-moxera-text-soft md:max-w-[25rem] md:text-sm">
                 İhtiyaç analizi, ürün katmanı, AI destek ve otomasyon bileşenleri; okunur, sürdürülebilir ve ölçülebilir bir operasyon akışında birleşir.
               </p>
-              <div className="mt-auto grid w-full grid-cols-1 gap-2 min-[380px]:grid-cols-3">
-                <span className="hero-tech-pill hero-pill-el hero-pill-trace flex min-h-[2.5rem] items-center justify-center rounded-full border border-white/10 bg-white/[0.02] px-3 py-2 text-center text-[10px] uppercase leading-tight tracking-[0.15em] text-moxera-text-soft/90 transition duration-300 min-[380px]:text-[10px] min-[380px]:tracking-[0.16em] hover:-translate-y-0.5 hover:border-moxera-highlight/45 hover:bg-moxera-highlight/10 sm:px-3">
+              <div className="grid gap-2 min-[430px]:grid-cols-3">
+                <span className="hero-tech-pill hero-pill-el hero-pill-trace flex min-h-[2.35rem] min-w-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.025] px-2.5 py-2 text-center text-[9.5px] uppercase leading-tight tracking-[0.09em] text-moxera-text-soft/90 transition duration-300 hover:-translate-y-0.5 hover:border-moxera-highlight/45 hover:bg-moxera-highlight/10 sm:px-3 sm:text-[10px] sm:tracking-[0.14em]">
                   Web/Mobil
                 </span>
-                <span className="hero-tech-pill hero-pill-el hero-pill-trace flex min-h-[2.5rem] items-center justify-center rounded-full border border-white/10 bg-white/[0.02] px-3 py-2 text-center text-[10px] uppercase leading-tight tracking-[0.15em] text-moxera-text-soft/90 transition duration-300 min-[380px]:text-[10px] min-[380px]:tracking-[0.16em] hover:-translate-y-0.5 hover:border-moxera-highlight/45 hover:bg-moxera-highlight/10 sm:px-3">
+                <span className="hero-tech-pill hero-pill-el hero-pill-trace flex min-h-[2.35rem] min-w-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.025] px-2.5 py-2 text-center text-[9.5px] uppercase leading-tight tracking-[0.09em] text-moxera-text-soft/90 transition duration-300 hover:-translate-y-0.5 hover:border-moxera-highlight/45 hover:bg-moxera-highlight/10 sm:px-3 sm:text-[10px] sm:tracking-[0.14em]">
                   SaaS
                 </span>
-                <span className="hero-tech-pill hero-pill-el hero-pill-trace flex min-h-[2.5rem] items-center justify-center rounded-full border border-white/10 bg-white/[0.02] px-3 py-2 text-center text-[10px] uppercase leading-tight tracking-[0.15em] text-moxera-text-soft/90 transition duration-300 min-[380px]:text-[10px] min-[380px]:tracking-[0.16em] hover:-translate-y-0.5 hover:border-moxera-highlight/45 hover:bg-moxera-highlight/10 sm:px-3">
+                <span className="hero-tech-pill hero-pill-el hero-pill-trace flex min-h-[2.35rem] min-w-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.025] px-2.5 py-2 text-center text-[9.5px] uppercase leading-tight tracking-[0.09em] text-moxera-text-soft/90 transition duration-300 hover:-translate-y-0.5 hover:border-moxera-highlight/45 hover:bg-moxera-highlight/10 sm:px-3 sm:text-[10px] sm:tracking-[0.14em]">
                   AI/Otomasyon
                 </span>
+              </div>
+              <div className="grid grid-cols-3 gap-2 border-t border-white/[0.07] pt-4">
+                {["Analiz", "Tasarım", "Teslim"].map((item, index) => (
+                  <div key={item} className="rounded-2xl border border-white/[0.08] bg-black/15 px-3 py-3">
+                    <p className="text-[10px] uppercase tracking-[0.16em] text-moxera-highlight/80">0{index + 1}</p>
+                    <p className="mt-1 text-xs font-semibold text-moxera-text/90">{item}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

@@ -21,38 +21,40 @@ export function CinematicBackground() {
     const ctx = gsap.context(() => {
       const ambientTweens: gsap.core.Tween[] = [];
       gsap.to(".bg-far", {
-        yPercent: mobile ? 7 : 10,
+        yPercent: mobile ? 3 : 10,
         xPercent: mobile ? 0 : -2,
         ease: "none",
-        scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 0.9 }
+        scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: mobile ? 0.45 : 0.9 }
       });
-      gsap.to(".bg-mid", {
-        yPercent: mobile ? -8 : -12,
-        xPercent: mobile ? 0 : 1.5,
-        ease: "none",
-        scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 1.1 }
-      });
-      gsap.to(".bg-near", {
-        yPercent: mobile ? -12 : -22,
-        ease: "none",
-        scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 1.3 }
-      });
+      if (!mobile) {
+        gsap.to(".bg-mid", {
+          yPercent: -12,
+          xPercent: 1.5,
+          ease: "none",
+          scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 1.1 }
+        });
+        gsap.to(".bg-near", {
+          yPercent: -22,
+          ease: "none",
+          scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 1.3 }
+        });
+      }
       gsap.to(".bg-wave", {
-        yPercent: mobile ? -6 : -16,
-        opacity: mobile ? 0.38 : 0.58,
+        yPercent: mobile ? -3 : -16,
+        opacity: mobile ? 0.28 : 0.58,
         ease: "none",
-        scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 1.25 }
+        scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: mobile ? 0.55 : 1.25 }
       });
 
-      if (motionTier !== "lite") {
+      if (motionTier !== "lite" && !mobile) {
         ambientTweens.push(
-          gsap.to(".bg-orb-a", { x: mobile ? 34 : 74, y: mobile ? -18 : -42, repeat: -1, yoyo: true, duration: 13, ease: "sine.inOut" }),
-          gsap.to(".bg-orb-b", { x: mobile ? -38 : -84, y: mobile ? 24 : 58, repeat: -1, yoyo: true, duration: 15, ease: "sine.inOut" }),
-          gsap.to(".bg-grain", { xPercent: mobile ? 0.5 : 1.2, yPercent: mobile ? -0.5 : -1.2, repeat: -1, yoyo: true, duration: 8, ease: "none" })
+          gsap.to(".bg-orb-a", { x: 74, y: -42, repeat: -1, yoyo: true, duration: 13, ease: "sine.inOut" }),
+          gsap.to(".bg-orb-b", { x: -84, y: 58, repeat: -1, yoyo: true, duration: 15, ease: "sine.inOut" }),
+          gsap.to(".bg-grain", { xPercent: 1.2, yPercent: -1.2, repeat: -1, yoyo: true, duration: 8, ease: "none" })
         );
       }
-      if (motionTier === "full") {
-        ambientTweens.push(gsap.to(".bg-wave", { xPercent: mobile ? 1.3 : 0.5, repeat: -1, yoyo: true, duration: mobile ? 11 : 18, ease: "sine.inOut" }));
+      if (motionTier === "full" && !mobile) {
+        ambientTweens.push(gsap.to(".bg-wave", { xPercent: 0.5, repeat: -1, yoyo: true, duration: 18, ease: "sine.inOut" }));
       }
 
       const heroTrigger = document.getElementById("hero");
@@ -101,14 +103,14 @@ export function CinematicBackground() {
           <path d="M-120 500C182 312 416 320 652 480C890 642 1150 656 1710 430" stroke="rgba(141,170,230,0.15)" strokeWidth="1" fill="none" />
         </svg>
       </div>
-      <div className={`bg-near absolute inset-0 ${isMobileState ? "opacity-55" : "opacity-85"}`}>
+      <div className={`bg-near absolute inset-0 ${isMobileState ? "hidden opacity-0" : "opacity-85"}`}>
         <svg viewBox="0 0 1600 1000" className="h-full w-full">
           <path d="M-80 430C170 240 390 250 610 396C835 545 1085 564 1680 220" stroke="rgba(102,230,218,0.20)" strokeWidth="1.4" fill="none" />
           <path d="M-120 640C300 430 520 446 760 612C1010 785 1270 812 1710 530" stroke="rgba(46,211,198,0.16)" strokeWidth="1.2" fill="none" />
           <path d="M-80 820C280 662 520 658 770 780C1040 912 1300 916 1700 760" stroke="rgba(120,145,210,0.22)" strokeWidth="1" fill="none" />
         </svg>
       </div>
-      <div className="bg-grain absolute inset-0 opacity-[0.08] bg-[url('data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%22200%22%20height=%22200%22%20viewBox=%220%200%20200%20200%22%3E%3Cfilter%20id=%22n%22%3E%3CfeTurbulence%20type=%22fractalNoise%22%20baseFrequency=%220.72%22%20numOctaves=%222%22%20stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect%20width=%22200%22%20height=%22200%22%20filter=%22url(%23n)%22%20opacity=%220.7%22/%3E%3C/svg%3E')]" />
+      <div className={`bg-grain absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%22200%22%20height=%22200%22%20viewBox=%220%200%20200%20200%22%3E%3Cfilter%20id=%22n%22%3E%3CfeTurbulence%20type=%22fractalNoise%22%20baseFrequency=%220.72%22%20numOctaves=%222%22%20stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect%20width=%22200%22%20height=%22200%22%20filter=%22url(%23n)%22%20opacity=%220.7%22/%3E%3C/svg%3E')] ${isMobileState ? "opacity-[0.045]" : "opacity-[0.08]"}`} />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_58%,rgba(2,5,16,0.75)_100%)]" />
     </div>
   );
