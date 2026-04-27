@@ -153,7 +153,7 @@ export function HeroSection() {
               <span className="block overflow-hidden py-1"><span className="hero-line block">sistemlere dönüştürüyoruz.</span></span>
             </h1>
             <p className="hero-sub max-w-2xl text-base leading-relaxed text-moxera-text-soft md:text-lg">
-              Web, mobil, SaaS, yapay zeka ve otomasyon katmanlarını tek bir stratejide buluşturuyor; sadece yazılım değil, işleyen sistem teslim ediyoruz.
+              Web, mobil, SaaS, yapay zeka ve otomasyon ihtiyaçlarını tek bir ürün stratejisinde birleştiriyor; markanız için çalışan, ölçülebilir ve sürdürülebilir dijital sistemler kuruyoruz.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -179,7 +179,7 @@ export function HeroSection() {
                 <div className="min-w-0 flex-1 pr-0 min-[361px]:pr-1">
                   <p className="text-[10px] uppercase tracking-[0.16em] text-moxera-highlight sm:text-[11px] sm:tracking-[0.2em]">Sistem Mimari Görünümü</p>
                   <h3 className="mt-3 max-w-[20rem] text-xl font-semibold leading-tight text-moxera-text min-[420px]:max-w-[15rem] md:text-2xl">
-                    Analiz · Ürün · Otomasyon
+                    Strateji · Ürün · Otomasyon
                   </h3>
                 </div>
                 <div className="shrink-0 self-start pt-0.5 min-[420px]:self-start">
@@ -194,7 +194,7 @@ export function HeroSection() {
                 </div>
               </div>
               <p className="max-w-[36rem] text-[13px] leading-[1.75] text-moxera-text-soft md:max-w-[25rem] md:text-sm">
-                Web sitesi, mobil uygulama, SaaS, AI iş akışı ve otomasyon bileşenleri tek bir sürdürülebilir sistem mimarisinde birleşir.
+                Web sitesi, mobil uygulama, SaaS, AI iş akışı ve otomasyon bileşenleri; tek bir marka deneyimi ve operasyon mimarisi altında birleşir.
               </p>
               <div className="grid gap-2 min-[430px]:grid-cols-3">
                 <span className="hero-tech-pill hero-pill-el hero-pill-trace flex min-h-[2.35rem] min-w-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.025] px-2.5 py-2 text-center text-[9.5px] uppercase leading-tight tracking-[0.09em] text-moxera-text-soft/90 transition duration-300 hover:-translate-y-0.5 hover:border-moxera-highlight/45 hover:bg-moxera-highlight/10 sm:px-3 sm:text-[10px] sm:tracking-[0.14em]">
@@ -208,7 +208,7 @@ export function HeroSection() {
                 </span>
               </div>
               <div className="grid grid-cols-3 gap-2 border-t border-white/[0.07] pt-4">
-                {["Analiz", "Tasarım", "Teslim"].map((item, index) => (
+                {["Strateji", "Tasarım", "Yayın"].map((item, index) => (
                   <div key={item} className="rounded-2xl border border-white/[0.08] bg-black/15 px-3 py-3">
                     <p className="text-[10px] uppercase tracking-[0.16em] text-moxera-highlight/80">0{index + 1}</p>
                     <p className="mt-1 text-xs font-semibold text-moxera-text/90">{item}</p>

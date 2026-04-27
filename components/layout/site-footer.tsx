@@ -23,7 +23,7 @@ export function SiteFooter() {
                 <Image src="/brand/moxera-logo-light.png" alt="Moxera" fill sizes="(max-width: 768px) 252px, 336px" className="object-contain object-left" />
               </div>
               <p className="max-w-[42ch] text-[14px] leading-relaxed text-moxera-text-soft md:text-[15px] md:leading-[1.85]">
-                İhtiyaçlarınızı, çalışan dijital sistemlere dönüştürüyoruz. Ankara merkezli butik yaklaşım ile web, mobil, SaaS, yapay zeka ve otomasyon çözümleri geliştiriyoruz.
+                Markanızın dijital ihtiyaçlarını çalışan, ölçülebilir ve sürdürülebilir sistemlere dönüştürüyoruz. Web, mobil, SaaS, yapay zeka ve otomasyon çözümlerini tek stratejik çatı altında geliştiriyoruz.
               </p>
               <div className="flex flex-wrap items-center gap-3 pt-1">
                 <Link
@@ -72,7 +72,7 @@ export function SiteFooter() {
           <div className="cinematic-divider my-7 opacity-80" />
           <div className="flex flex-col gap-3 text-[12px] tracking-[0.05em] text-moxera-text-soft/95 md:flex-row md:items-center md:justify-between">
             <p>© {new Date().getFullYear()} Moxera. Tüm hakları saklıdır.</p>
-            <p className="text-moxera-text-soft/90">Butik teknoloji partnerliği · Web/Mobil · SaaS · AI · Otomasyon</p>
+            <p className="text-moxera-text-soft/90">Web/Mobil · SaaS · AI İş Akışı · Otomasyon</p>
           </div>
         </div>
       </Container>

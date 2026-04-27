@@ -152,14 +152,13 @@ export function ContactSection() {
         <div className="space-y-8">
           <SectionHeading
             kicker="İletişim"
-            title="Web, mobil, SaaS veya otomasyon projenizi birlikte netleştirelim"
-            description="İlk görüşmede hedefi, kapsamı, teknik ihtiyacı ve en doğru uygulama yolunu sade bir sistem perspektifiyle konuşuruz."
+            title="Projenizi netleştirelim, doğru dijital mimariyle başlatalım"
+            description="İlk görüşmede hedefinizi, mevcut darboğazı, teknik ihtiyacı ve en doğru uygulama yolunu sakin, net ve sonuç odaklı bir çerçevede konuşuruz."
           />
           <div className="space-y-3 rounded-2xl border border-white/10 bg-black/20 p-5 text-sm text-moxera-text-soft">
             <p className="text-[11px] uppercase tracking-[0.2em] text-moxera-highlight">Doğrudan İletişim</p>
             <p>meliheken@moxera.com.tr</p>
             <p>0 533 969 78 06</p>
-            <p>Ankara merkez</p>
           </div>
           <div className="contact-social-row grid grid-cols-4 justify-items-center gap-3 pt-2">
             {socialIcons.map((social) => (
@@ -188,7 +187,7 @@ export function ContactSection() {
             className="hidden"
             aria-hidden="true"
           />
-          <textarea name="details" required className="premium-focus min-h-28 rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-[16px] text-moxera-text outline-none" placeholder="İhtiyaç / proje detayı" />
+          <textarea name="details" required className="premium-focus min-h-28 rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-[16px] text-moxera-text outline-none" placeholder="Proje hedefi, ihtiyaç ve mevcut darboğaz" />
           <div className="cinematic-divider my-1" />
           <button type="submit" disabled={isSending} className="contact-submit rounded-full bg-moxera-accent px-6 py-3 text-sm font-semibold text-moxera-bg transition duration-300 hover:-translate-y-0.5 hover:scale-[1.015] hover:bg-moxera-highlight active:translate-y-[1px] disabled:cursor-not-allowed disabled:opacity-70">
             {isSending ? "Gönderiliyor..." : "Proje konuşalım"}

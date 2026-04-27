@@ -70,8 +70,8 @@ export function WhyMoxeraSection() {
         <SectionHeading
           className="why-intro"
           kicker="Neden Moxera"
-          title="Butik yapı, net strateji, çalışan dijital sistemler"
-          description="Projeyi sadece tasarım veya yazılım işi olarak değil; marka, ürün, operasyon ve teknoloji kararlarının birlikte çalıştığı bir sistem olarak ele alırız."
+          title="Net düşünen, iyi tasarlayan ve teslim ettiği sistemi sahiplenen bir partner"
+          description="Projeyi sadece tasarım veya yazılım işi olarak değil; marka, ürün, operasyon ve teknoloji kararlarının birlikte çalıştığı bir büyüme sistemi olarak ele alırız."
         />
         <div className="why-line cinematic-divider" />
         <ul className="grid gap-5 md:grid-cols-2">

@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | Moxera"
   },
   description:
-    "Moxera, ihtiyaçları çalışan dijital sistemlere dönüştüren Ankara merkezli butik teknoloji partneridir. Web, mobil, SaaS, yapay zeka ve otomasyon çözümleri geliştirir.",
+    "Moxera; web, mobil, SaaS, yapay zeka ve otomasyon ihtiyaçlarını çalışan, ölçülebilir ve sürdürülebilir dijital sistemlere dönüştüren teknoloji partneridir.",
   keywords: [
     "Moxera",
     "web sitesi geliştirme",
@@ -53,9 +53,9 @@ export const metadata: Metadata = {
     canonical: "/"
   },
   openGraph: {
-    title: "Moxera | İhtiyaçları çalışan dijital sistemlere dönüştürüyoruz",
+    title: "Moxera | Çalışan dijital sistemler kuruyoruz",
     description:
-      "Web ve mobil uygulamalar, SaaS ürünleri, yapay zeka çözümleri ve otomasyon sistemleriyle iş akışlarını hızlandıran butik teknoloji partneri.",
+      "Web ve mobil uygulamalar, SaaS ürünleri, yapay zeka çözümleri ve otomasyon sistemleriyle marka, ürün ve operasyon katmanlarını tek mimaride buluşturuyoruz.",
     url: "https://moxera.com.tr",
     siteName: "Moxera",
     locale: "tr_TR",

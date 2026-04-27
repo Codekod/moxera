@@ -76,8 +76,8 @@ export function SelectedWorkSection() {
       <Container className="space-y-10 md:space-y-14">
         <SectionHeading
           kicker="Çalışmalarımız"
-          title="Web, SaaS ve otomasyon projeleri için seçili çalışma yapısı"
-          description="Moxera projelerinde odağımız; net kapsam, güçlü arayüz, sürdürülebilir teknik mimari ve operasyonel karşılığı olan dijital sistemlerdir."
+          title="Dijital ürünü sadece tasarlamıyor, çalışır bir sisteme dönüştürüyoruz"
+          description="Her çalışma; marka algısı, kullanıcı deneyimi, teknik mimari ve operasyonel karşılığı birlikte düşünülerek kurgulanır."
         />
         <div className="space-y-6 md:space-y-8">
           {caseStudies.map((item, index) => (
@@ -111,7 +111,7 @@ export function SelectedWorkSection() {
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/25 via-transparent to-moxera-highlight/10" />
                   </div>
                   <div className="space-y-2">
-                    <p className="text-xs uppercase tracking-[0.16em] text-moxera-highlight/95">Proje Görünümü</p>
+                    <p className="text-xs uppercase tracking-[0.16em] text-moxera-highlight/95">Sistem Kesiti</p>
                     <p className="leading-relaxed">{item.mediaLabel}</p>
                   </div>
                 </div>
@@ -120,7 +120,7 @@ export function SelectedWorkSection() {
           ))}
         </div>
         <Link href="/calismalar" className="inline-flex rounded-full border border-white/20 px-6 py-3 text-sm text-moxera-text transition hover:border-moxera-highlight">
-          Tüm çalışma yapısına git
+          Çalışma yaklaşımını incele
         </Link>
       </Container>
     </section>

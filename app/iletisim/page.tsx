@@ -16,8 +16,8 @@ export default function IletisimPage() {
     <>
       <PageHero
         kicker="İletişim"
-        title="Projenizi doğru kapsam, doğru öncelik ve doğru sistemle başlatalım"
-        description="Web, mobil, SaaS, AI iş akışı veya otomasyon ihtiyacınızı netleştirmek için hedefinizi, mevcut darboğazınızı ve ilk uygulanabilir adımı birlikte konuşalım."
+        title="Projenizi net kapsam ve doğru dijital mimariyle başlatalım"
+        description="Web, mobil, SaaS, AI iş akışı veya otomasyon ihtiyacınızı netleştirmek için hedefinizi, mevcut darboğazınızı ve ilk uygulanabilir adımı birlikte değerlendirelim."
       />
       <ContactSection />
     </>

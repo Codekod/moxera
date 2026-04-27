@@ -97,8 +97,8 @@ export function TransformationSection() {
             <div className="transform-heading">
               <SectionHeading
                 kicker="Dönüşüm Kurgusu"
-                title="Fikirden yayına, yayından çalışan sisteme"
-                description="Web sitesi, mobil uygulama, SaaS, AI iş akışı ve otomasyon projelerinde önce iş hedefini netleştirir, sonra ölçülebilir bir uygulama planına dönüştürürüz."
+                title="Fikir netleşir, ürün çalışır, sistem büyür"
+                description="Web sitesi, mobil uygulama, SaaS, AI iş akışı ve otomasyon projelerinde önce hedefi netleştirir, sonra bu hedefi ölçülebilir ve yayına hazır bir ürün planına dönüştürürüz."
               />
             </div>
             <div className="cinematic-divider my-8" />

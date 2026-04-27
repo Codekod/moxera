@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Hakkımızda",
   description:
-    "Moxera, Ankara merkezli butik teknoloji partneri olarak web, mobil, SaaS, yapay zeka ve otomasyon projeleri geliştirir.",
+    "Moxera, web, mobil, SaaS, yapay zeka ve otomasyon projelerinde strateji, tasarım ve uygulamayı birleştiren butik teknoloji partneridir.",
   alternates: {
     canonical: "/hakkimizda"
   }
@@ -17,8 +17,8 @@ export default function HakkimizdaPage() {
     <>
       <PageHero
         kicker="Hakkımızda"
-        title="Butik teknoloji partnerliği, net kapsam ve yüksek uygulama odağı"
-        description="Moxera; web sitesi, mobil uygulama, SaaS, yapay zeka ve otomasyon projelerinde müşteriyi dinleyen, darboğazı tespit eden ve çalışan sistemi teslim eden bir yapı olarak çalışır."
+        title="Net kapsam, rafine tasarım ve çalışan dijital sistem odağı"
+        description="Moxera; web sitesi, mobil uygulama, SaaS, yapay zeka ve otomasyon projelerinde hedefi netleştiren, darboğazı çözen ve sürdürülebilir sistemi teslim eden bir teknoloji partneri olarak çalışır."
       />
       <AboutSection />
       <WhyMoxeraSection />
