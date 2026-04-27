@@ -27,12 +27,27 @@ export const metadata: Metadata = {
   keywords: [
     "Moxera",
     "web sitesi geliştirme",
-    "mobil uygulama geliştirme",
-    "SaaS uygulaması",
-    "yapay zeka çözümleri",
-    "otomasyon sistemleri",
+    "web tasarım",
+    "web yazılım",
+    "kurumsal web sitesi",
+    "profesyonel web sitesi",
+    "Ankara web tasarım",
     "Ankara yazılım ajansı",
-    "AI iş akışı"
+    "özel yazılım geliştirme",
+    "mobil uygulama geliştirme",
+    "mobil uygulama yaptırmak",
+    "iOS Android uygulama geliştirme",
+    "SaaS uygulaması",
+    "SaaS geliştirme",
+    "web uygulaması geliştirme",
+    "CRM yazılımı",
+    "yapay zeka çözümleri",
+    "yapay zeka entegrasyonu",
+    "yapay zeka danışmanlığı",
+    "AI iş akışı",
+    "otomasyon sistemleri",
+    "iş süreçleri otomasyonu",
+    "dijital dönüşüm danışmanlığı"
   ],
   alternates: {
     canonical: "/"
@@ -83,9 +98,16 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     ],
     serviceType: [
       "Web sitesi geliştirme",
+      "Web tasarım",
+      "Kurumsal web sitesi geliştirme",
       "Mobil uygulama geliştirme",
+      "iOS ve Android uygulama geliştirme",
       "SaaS uygulamaları",
+      "Web uygulaması geliştirme",
+      "Özel yazılım geliştirme",
       "Yapay zeka iş akışı geliştirme",
+      "Yapay zeka entegrasyonu",
+      "CRM ve operasyon paneli geliştirme",
       "Otomasyon sistemleri"
     ]
   };
