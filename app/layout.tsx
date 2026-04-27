@@ -18,9 +18,22 @@ const sora = Sora({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://moxera.com.tr"),
-  title: "Moxera | Web, Mobil, SaaS ve Yapay Zeka Çözümleri",
+  title: {
+    default: "Moxera | Web, Mobil, SaaS ve Yapay Zeka Çözümleri",
+    template: "%s | Moxera"
+  },
   description:
     "Moxera, ihtiyaçları çalışan dijital sistemlere dönüştüren Ankara merkezli butik teknoloji partneridir. Web, mobil, SaaS, yapay zeka ve otomasyon çözümleri geliştirir.",
+  keywords: [
+    "Moxera",
+    "web sitesi geliştirme",
+    "mobil uygulama geliştirme",
+    "SaaS uygulaması",
+    "yapay zeka çözümleri",
+    "otomasyon sistemleri",
+    "Ankara yazılım ajansı",
+    "AI iş akışı"
+  ],
   alternates: {
     canonical: "/"
   },
@@ -49,8 +62,42 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "Moxera",
+    url: "https://moxera.com.tr",
+    logo: "https://moxera.com.tr/brand/moxera-logo-dark.png",
+    email: "meliheken@moxera.com.tr",
+    telephone: "+905339697806",
+    areaServed: "TR",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Ankara",
+      addressCountry: "TR"
+    },
+    sameAs: [
+      "https://www.instagram.com/moxera",
+      "https://x.com/moxera",
+      "https://www.facebook.com/moxera"
+    ],
+    serviceType: [
+      "Web sitesi geliştirme",
+      "Mobil uygulama geliştirme",
+      "SaaS uygulamaları",
+      "Yapay zeka iş akışı geliştirme",
+      "Otomasyon sistemleri"
+    ]
+  };
+
   return (
     <html lang="tr">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      </head>
       <body className={`${jakarta.variable} ${sora.variable} bg-moxera-bg text-moxera-text antialiased`}>
         <SiteHeader />
         <main>{children}</main>
