@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { caseStudies } from "@/lib/data/site-content";
@@ -104,18 +104,7 @@ export function SelectedWorkSection() {
                 <div className="relative z-[1] grid w-full gap-4">
                   <div className={`relative overflow-hidden rounded-xl ${item.media.aspectRatio === "16:9" ? "aspect-video" : "aspect-[4/3]"}`}>
                     {item.media.kind === "video" ? (
-                      <video
-                        className="h-full w-full object-cover"
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        preload="metadata"
-                        poster={item.media.poster}
-                        aria-label={item.media.alt}
-                      >
-                        <source src={item.media.src} type="video/mp4" />
-                      </video>
+                      <LazyWorkVideo src={item.media.src} poster={item.media.poster ?? item.media.src} alt={item.media.alt} />
                     ) : (
                       <Image src={item.media.src} alt={item.media.alt} fill sizes="(max-width: 768px) 92vw, 38vw" className="object-cover" />
                     )}
@@ -135,5 +124,48 @@ export function SelectedWorkSection() {
         </Link>
       </Container>
     </section>
+  );
+}
+
+function LazyWorkVideo({ src, poster, alt }: { src: string; poster: string; alt: string }) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    if (shouldLoad || !wrapperRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "360px 0px" }
+    );
+
+    observer.observe(wrapperRef.current);
+    return () => observer.disconnect();
+  }, [shouldLoad]);
+
+  return (
+    <div ref={wrapperRef} className="absolute inset-0">
+      {shouldLoad ? (
+        <video
+          className="h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={poster}
+          aria-label={alt}
+        >
+          <source src={src} type="video/mp4" />
+        </video>
+      ) : (
+        <Image src={poster} alt={alt} fill sizes="(max-width: 768px) 92vw, 38vw" className="object-cover" />
+      )}
+    </div>
   );
 }

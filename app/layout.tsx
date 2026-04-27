@@ -70,9 +70,9 @@ export const metadata: Metadata = {
     ]
   },
   icons: {
-    icon: "/brand/WEB SİTESİ İÇİN-01.svg",
+    icon: "/brand/favicon.svg",
     apple: "/brand/moxera-logo-dark.png",
-    shortcut: "/brand/WEB SİTESİ İÇİN-01.svg"
+    shortcut: "/brand/favicon.svg"
   }
 };
 
