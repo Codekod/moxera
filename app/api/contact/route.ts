@@ -35,6 +35,15 @@ function isRateLimited(ip: string) {
   return false;
 }
 
+function escapeHtml(value = "") {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 export async function POST(request: Request) {
   try {
     const ip = getClientIp(request);
@@ -57,15 +66,20 @@ export async function POST(request: Request) {
 
     const to = process.env.CONTACT_TO_EMAIL || "meliheken@moxera.com.tr";
     const from = process.env.CONTACT_FROM_EMAIL || "Moxera <onboarding@resend.dev>";
+    const safeName = escapeHtml(body.fullName);
+    const safeCompany = escapeHtml(body.companyName || "-");
+    const safePhone = escapeHtml(body.phone || "-");
+    const safeEmail = escapeHtml(body.email);
+    const safeDetails = escapeHtml(body.details).replace(/\n/g, "<br/>");
 
     const emailHtml = `
       <h2>Yeni Proje Talebi</h2>
-      <p><strong>Ad Soyad:</strong> ${body.fullName}</p>
-      <p><strong>Firma:</strong> ${body.companyName || "-"}</p>
-      <p><strong>Telefon:</strong> ${body.phone || "-"}</p>
-      <p><strong>E-posta:</strong> ${body.email}</p>
+      <p><strong>Ad Soyad:</strong> ${safeName}</p>
+      <p><strong>Firma:</strong> ${safeCompany}</p>
+      <p><strong>Telefon:</strong> ${safePhone}</p>
+      <p><strong>E-posta:</strong> ${safeEmail}</p>
       <p><strong>İhtiyaç Detayı:</strong></p>
-      <p>${body.details.replace(/\n/g, "<br/>")}</p>
+      <p>${safeDetails}</p>
     `;
 
     await resend.emails.send({
