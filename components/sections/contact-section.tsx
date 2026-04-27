@@ -49,6 +49,12 @@ const socialIcons = [
   }
 ];
 
+function getContactEndpoint() {
+  if (typeof window === "undefined") return "/api/contact";
+  if (window.location.hostname === "moxera.com.tr") return "https://www.moxera.com.tr/api/contact";
+  return "/api/contact";
+}
+
 export function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const { isMobile, shouldReduceMotion, motionTier } = useMotionProfile();
@@ -111,7 +117,7 @@ export function ContactSection() {
     setIsSending(true);
     setMessage(null);
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch(getContactEndpoint(), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
@@ -192,19 +198,19 @@ export function ContactSection() {
           <button type="submit" disabled={isSending} className="contact-submit rounded-full bg-moxera-accent px-6 py-3 text-sm font-semibold text-moxera-bg transition duration-300 hover:-translate-y-0.5 hover:scale-[1.015] hover:bg-moxera-highlight active:translate-y-[1px] disabled:cursor-not-allowed disabled:opacity-70">
             {isSending ? "Gönderiliyor..." : "Proje konuşalım"}
           </button>
+          {message ? (
+            <div
+              role="status"
+              className={`rounded-xl border px-4 py-3 text-sm leading-relaxed shadow-cinematic ${
+                messageType === "success"
+                  ? "border-emerald-400/40 bg-emerald-500/10 text-emerald-100"
+                  : "border-rose-400/40 bg-rose-500/10 text-rose-100"
+              }`}
+            >
+              {message}
+            </div>
+          ) : null}
         </form>
-        {message ? (
-          <div
-            role="status"
-            className={`absolute bottom-5 right-5 max-w-xs rounded-xl border px-4 py-3 text-sm shadow-cinematic ${
-              messageType === "success"
-                ? "border-emerald-400/40 bg-emerald-500/10 text-emerald-100"
-                : "border-rose-400/40 bg-rose-500/10 text-rose-100"
-            }`}
-          >
-            {message}
-          </div>
-        ) : null}
         <span className="contact-pulse pointer-events-none absolute -right-2 -top-2 h-6 w-6 rounded-full bg-moxera-highlight/50 blur-sm" />
       </Container>
     </section>

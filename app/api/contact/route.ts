@@ -15,6 +15,22 @@ const resend = resendApiKey ? new Resend(resendApiKey) : null;
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_REQUESTS = 5;
 const requestStore = new Map<string, { count: number; resetAt: number }>();
+const allowedOrigins = new Set(["https://moxera.com.tr", "https://www.moxera.com.tr"]);
+
+function getCorsHeaders(request: Request) {
+  const origin = request.headers.get("origin");
+  const headers: Record<string, string> = {
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type"
+  };
+
+  if (origin && allowedOrigins.has(origin)) {
+    headers["Access-Control-Allow-Origin"] = origin;
+    headers.Vary = "Origin";
+  }
+
+  return headers;
+}
 
 function getClientIp(request: Request) {
   const forwardedFor = request.headers.get("x-forwarded-for");
@@ -44,24 +60,29 @@ function escapeHtml(value = "") {
     .replace(/'/g, "&#039;");
 }
 
+export function OPTIONS(request: Request) {
+  return new NextResponse(null, { status: 204, headers: getCorsHeaders(request) });
+}
+
 export async function POST(request: Request) {
+  const headers = getCorsHeaders(request);
   try {
     const ip = getClientIp(request);
     if (isRateLimited(ip)) {
-      return NextResponse.json({ message: "Çok fazla istek gönderildi. Lütfen biraz sonra tekrar deneyin." }, { status: 429 });
+      return NextResponse.json({ message: "Çok fazla istek gönderildi. Lütfen biraz sonra tekrar deneyin." }, { status: 429, headers });
     }
 
     const body = (await request.json()) as ContactPayload;
 
     if (!body.fullName || !body.email || !body.details) {
-      return NextResponse.json({ message: "Zorunlu alanlar eksik." }, { status: 400 });
+      return NextResponse.json({ message: "Zorunlu alanlar eksik." }, { status: 400, headers });
     }
     if (body.website) {
-      return NextResponse.json({ message: "Talebiniz alındı." }, { status: 200 });
+      return NextResponse.json({ message: "Talebiniz alındı." }, { status: 200, headers });
     }
 
     if (!resend) {
-      return NextResponse.json({ message: "Mail servisi yapılandırılmamış. Lütfen yöneticiyle iletişime geçin." }, { status: 500 });
+      return NextResponse.json({ message: "Mail servisi yapılandırılmamış. Lütfen yöneticiyle iletişime geçin." }, { status: 500, headers });
     }
 
     const to = process.env.CONTACT_TO_EMAIL || "meliheken@moxera.com.tr";
@@ -94,9 +115,9 @@ export async function POST(request: Request) {
       {
         message: "Talebiniz başarıyla alındı. En kısa sürede sizinle iletişime geçeceğiz."
       },
-      { status: 200 }
+      { status: 200, headers }
     );
   } catch {
-    return NextResponse.json({ message: "İstek işlenirken hata oluştu." }, { status: 500 });
+    return NextResponse.json({ message: "İstek işlenirken hata oluştu." }, { status: 500, headers });
   }
 }
