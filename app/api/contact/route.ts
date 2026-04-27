@@ -103,7 +103,7 @@ export async function POST(request: Request) {
       <p>${safeDetails}</p>
     `;
 
-    await resend.emails.send({
+    const { error } = await resend.emails.send({
       from,
       to,
       replyTo: body.email,
@@ -111,13 +111,22 @@ export async function POST(request: Request) {
       html: emailHtml
     });
 
+    if (error) {
+      console.error("Resend contact form error", error);
+      return NextResponse.json(
+        { message: "Mail servisi mesajı gönderemedi. Lütfen doğrudan meliheken@moxera.com.tr adresine yazın." },
+        { status: 502, headers }
+      );
+    }
+
     return NextResponse.json(
       {
         message: "Talebiniz başarıyla alındı. En kısa sürede sizinle iletişime geçeceğiz."
       },
       { status: 200, headers }
     );
-  } catch {
-    return NextResponse.json({ message: "İstek işlenirken hata oluştu." }, { status: 500, headers });
+  } catch (error) {
+    console.error("Contact form request failed", error);
+    return NextResponse.json({ message: "İstek işlenirken hata oluştu. Lütfen doğrudan meliheken@moxera.com.tr adresine yazın." }, { status: 500, headers });
   }
 }

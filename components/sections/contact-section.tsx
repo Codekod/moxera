@@ -122,8 +122,8 @@ export function ContactSection() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      const data = (await response.json()) as { message?: string };
-      setMessage(data.message ?? "Mesajınız alındı. En kısa sürede dönüş sağlayacağız.");
+      const data = (await response.json().catch(() => null)) as { message?: string } | null;
+      setMessage(data?.message ?? "Mesajınız alındı. En kısa sürede dönüş sağlayacağız.");
       setMessageType(response.ok ? "success" : "error");
       if (response.ok) event.currentTarget.reset();
     } catch {
