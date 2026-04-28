@@ -99,6 +99,13 @@ function getFromEmail() {
   return configuredFrom;
 }
 
+function parseEmailList(value?: string) {
+  return (value || "")
+    .split(",")
+    .map((email) => email.trim())
+    .filter(Boolean);
+}
+
 export function OPTIONS(request: Request) {
   return new NextResponse(null, { status: 204, headers: getCorsHeaders(request) });
 }
@@ -128,7 +135,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ message: "Mail servisi yapılandırılmamış. Lütfen yöneticiyle iletişime geçin." }, { status: 500, headers });
     }
 
-    const to = process.env.CONTACT_TO_EMAIL || "meliheken@moxera.com.tr";
+    const to = parseEmailList(process.env.CONTACT_TO_EMAIL);
+    if (to.length === 0) {
+      to.push("meliheken@moxera.com.tr");
+    }
+    const bcc = parseEmailList(process.env.CONTACT_BCC_EMAIL);
     const from = getFromEmail();
     const safeName = escapeHtml(body.fullName);
     const safeCompany = escapeHtml(body.companyName || "-");
@@ -145,13 +156,25 @@ export async function POST(request: Request) {
       <p><strong>İhtiyaç Detayı:</strong></p>
       <p>${safeDetails}</p>
     `;
+    const emailText = [
+      "YENI PROJE TALEBI",
+      `Ad Soyad: ${body.fullName}`,
+      `Firma: ${body.companyName || "-"}`,
+      `Telefon: ${body.phone || "-"}`,
+      `E-posta: ${body.email}`,
+      "",
+      "Ihtiyac Detayi:",
+      body.details
+    ].join("\n");
 
-    const { error } = await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from,
       to,
+      bcc: bcc.length > 0 ? bcc : undefined,
       replyTo: body.email,
       subject: `Moxera yeni talep: ${body.fullName}`,
-      html: emailHtml
+      html: emailHtml,
+      text: emailText
     });
 
     if (error) {
@@ -161,6 +184,7 @@ export async function POST(request: Request) {
         { status: 502, headers }
       );
     }
+    console.log("Resend contact email accepted", { id: data?.id, to, bcc });
 
     return NextResponse.json(
       {
