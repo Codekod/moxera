@@ -67,8 +67,15 @@ function escapeHtml(value = "") {
 
 function getFromEmail() {
   const configuredFrom = process.env.CONTACT_FROM_EMAIL?.trim();
-  if (!configuredFrom || configuredFrom.includes("onboarding@resend.dev")) {
-    return "Moxera <hello@moxera.com.tr>";
+  const defaultFrom = "Moxera <hello@moxera.com.tr>";
+  if (!configuredFrom) {
+    return defaultFrom;
+  }
+  if (!configuredFrom.toLowerCase().includes("@moxera.com.tr")) {
+    return defaultFrom;
+  }
+  if (configuredFrom.includes("onboarding@resend.dev")) {
+    return defaultFrom;
   }
   return configuredFrom;
 }
