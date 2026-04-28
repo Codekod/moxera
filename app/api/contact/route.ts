@@ -12,8 +12,8 @@ type ContactPayload = {
 
 const resendApiKey = process.env.RESEND_API_KEY;
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
-const WINDOW_MS = 10 * 60 * 1000;
-const MAX_REQUESTS = 5;
+const WINDOW_MS = 60 * 1000;
+const MAX_REQUESTS = 12;
 const requestStore = new Map<string, { count: number; resetAt: number }>();
 const allowedOrigins = new Set([
   "https://moxera.com.tr",
@@ -43,16 +43,16 @@ function getClientIp(request: Request) {
   return request.headers.get("x-real-ip") || "unknown";
 }
 
-function isRateLimited(ip: string) {
+function isRateLimited(key: string) {
   const now = Date.now();
-  const record = requestStore.get(ip);
+  const record = requestStore.get(key);
   if (!record || record.resetAt < now) {
-    requestStore.set(ip, { count: 1, resetAt: now + WINDOW_MS });
+    requestStore.set(key, { count: 1, resetAt: now + WINDOW_MS });
     return false;
   }
   if (record.count >= MAX_REQUESTS) return true;
   record.count += 1;
-  requestStore.set(ip, record);
+  requestStore.set(key, record);
   return false;
 }
 
@@ -87,11 +87,6 @@ export function OPTIONS(request: Request) {
 export async function POST(request: Request) {
   const headers = getCorsHeaders(request);
   try {
-    const ip = getClientIp(request);
-    if (isRateLimited(ip)) {
-      return NextResponse.json({ message: "Çok fazla istek gönderildi. Lütfen biraz sonra tekrar deneyin." }, { status: 429, headers });
-    }
-
     const body = (await request.json()) as ContactPayload;
 
     if (!body.fullName || !body.email || !body.details) {
@@ -99,6 +94,15 @@ export async function POST(request: Request) {
     }
     if (body.website) {
       return NextResponse.json({ message: "Talebiniz alındı." }, { status: 200, headers });
+    }
+
+    const ip = getClientIp(request);
+    const rateLimitKey = `${ip}:${body.email.toLowerCase().trim()}`;
+    if (isRateLimited(rateLimitKey)) {
+      return NextResponse.json(
+        { message: "Çok fazla istek gönderildi. Lütfen bir dakika sonra tekrar deneyin." },
+        { status: 429, headers: { ...headers, "Retry-After": "60" } }
+      );
     }
 
     if (!resend) {
