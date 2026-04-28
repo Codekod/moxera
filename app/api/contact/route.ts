@@ -87,7 +87,8 @@ export function OPTIONS(request: Request) {
 export async function POST(request: Request) {
   const headers = getCorsHeaders(request);
   try {
-    const body = (await request.json()) as ContactPayload;
+    const rawBody = await request.text();
+    const body = JSON.parse(rawBody) as ContactPayload;
 
     if (!body.fullName || !body.email || !body.details) {
       return NextResponse.json({ message: "Zorunlu alanlar eksik." }, { status: 400, headers });

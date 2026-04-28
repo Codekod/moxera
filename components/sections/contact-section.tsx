@@ -119,7 +119,7 @@ export function ContactSection() {
     try {
       const response = await fetch(getContactEndpoint(), {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        cache: "no-store",
         body: JSON.stringify(payload)
       });
       const data = (await response.json().catch(() => null)) as { message?: string } | null;
