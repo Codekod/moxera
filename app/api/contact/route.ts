@@ -56,6 +56,25 @@ function isRateLimited(key: string) {
   return false;
 }
 
+async function readContactPayload(request: Request): Promise<ContactPayload> {
+  const contentType = request.headers.get("content-type") || "";
+
+  if (contentType.includes("multipart/form-data") || contentType.includes("application/x-www-form-urlencoded")) {
+    const formData = await request.formData();
+    return {
+      fullName: String(formData.get("fullName") ?? ""),
+      companyName: String(formData.get("companyName") ?? ""),
+      phone: String(formData.get("phone") ?? ""),
+      email: String(formData.get("email") ?? ""),
+      details: String(formData.get("details") ?? ""),
+      website: String(formData.get("website") ?? "")
+    };
+  }
+
+  const rawBody = await request.text();
+  return JSON.parse(rawBody) as ContactPayload;
+}
+
 function escapeHtml(value = "") {
   return value
     .replace(/&/g, "&amp;")
@@ -87,8 +106,7 @@ export function OPTIONS(request: Request) {
 export async function POST(request: Request) {
   const headers = getCorsHeaders(request);
   try {
-    const rawBody = await request.text();
-    const body = JSON.parse(rawBody) as ContactPayload;
+    const body = await readContactPayload(request);
 
     if (!body.fullName || !body.email || !body.details) {
       return NextResponse.json({ message: "Zorunlu alanlar eksik." }, { status: 400, headers });

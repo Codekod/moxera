@@ -49,12 +49,6 @@ const socialIcons = [
   }
 ];
 
-function getContactEndpoint() {
-  if (typeof window === "undefined") return "/api/contact";
-  if (window.location.hostname === "moxera.com.tr") return "https://www.moxera.com.tr/api/contact";
-  return "/api/contact";
-}
-
 export function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const { isMobile, shouldReduceMotion, motionTier } = useMotionProfile();
@@ -98,7 +92,8 @@ export function ContactSection() {
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
     const payload = {
       fullName: String(formData.get("fullName") ?? ""),
       companyName: String(formData.get("companyName") ?? ""),
@@ -117,15 +112,15 @@ export function ContactSection() {
     setIsSending(true);
     setMessage(null);
     try {
-      const response = await fetch(getContactEndpoint(), {
+      const response = await fetch("/api/contact", {
         method: "POST",
         cache: "no-store",
-        body: JSON.stringify(payload)
+        body: formData
       });
       const data = (await response.json().catch(() => null)) as { message?: string } | null;
       setMessage(data?.message ?? "Mesajınız alındı. En kısa sürede dönüş sağlayacağız.");
       setMessageType(response.ok ? "success" : "error");
-      if (response.ok) event.currentTarget.reset();
+      if (response.ok) form.reset();
     } catch {
       setMessage("Bir hata oluştu. Lütfen daha sonra tekrar deneyin.");
       setMessageType("error");
