@@ -15,7 +15,12 @@ const resend = resendApiKey ? new Resend(resendApiKey) : null;
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_REQUESTS = 5;
 const requestStore = new Map<string, { count: number; resetAt: number }>();
-const allowedOrigins = new Set(["https://moxera.com.tr", "https://www.moxera.com.tr"]);
+const allowedOrigins = new Set([
+  "https://moxera.com.tr",
+  "https://www.moxera.com.tr",
+  "http://moxera.com.tr",
+  "http://www.moxera.com.tr"
+]);
 
 function getCorsHeaders(request: Request) {
   const origin = request.headers.get("origin");
