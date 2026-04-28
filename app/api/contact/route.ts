@@ -65,6 +65,14 @@ function escapeHtml(value = "") {
     .replace(/'/g, "&#039;");
 }
 
+function getFromEmail() {
+  const configuredFrom = process.env.CONTACT_FROM_EMAIL?.trim();
+  if (!configuredFrom || configuredFrom.includes("onboarding@resend.dev")) {
+    return "Moxera <hello@moxera.com.tr>";
+  }
+  return configuredFrom;
+}
+
 export function OPTIONS(request: Request) {
   return new NextResponse(null, { status: 204, headers: getCorsHeaders(request) });
 }
@@ -91,7 +99,7 @@ export async function POST(request: Request) {
     }
 
     const to = process.env.CONTACT_TO_EMAIL || "meliheken@moxera.com.tr";
-    const from = process.env.CONTACT_FROM_EMAIL || "Moxera <onboarding@resend.dev>";
+    const from = getFromEmail();
     const safeName = escapeHtml(body.fullName);
     const safeCompany = escapeHtml(body.companyName || "-");
     const safePhone = escapeHtml(body.phone || "-");
