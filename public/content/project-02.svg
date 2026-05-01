@@ -1,0 +1,32 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" fill="#07101F"/>
+  <rect x="86" y="86" width="1428" height="828" rx="42" fill="url(#paint0_linear_2_2)" stroke="#1E2C4D"/>
+  <rect x="156" y="168" width="360" height="574" rx="34" fill="#0D1630"/>
+  <rect x="552" y="168" width="890" height="254" rx="34" fill="#0D1630"/>
+  <rect x="552" y="456" width="890" height="286" rx="34" fill="#0B1428"/>
+  <circle cx="302" cy="370" r="122" fill="url(#paint1_linear_2_2)"/>
+  <rect x="226" y="554" width="220" height="22" rx="11" fill="#EDF2FF"/>
+  <rect x="226" y="598" width="176" height="18" rx="9" fill="#6A77A7"/>
+  <rect x="226" y="634" width="194" height="18" rx="9" fill="#53618F"/>
+  <rect x="610" y="222" width="386" height="30" rx="15" fill="#63E3D7"/>
+  <rect x="610" y="282" width="664" height="24" rx="12" fill="#EDF2FF"/>
+  <rect x="610" y="326" width="598" height="18" rx="9" fill="#6775A8"/>
+  <rect x="610" y="510" width="548" height="34" rx="17" fill="#EDF2FF"/>
+  <rect x="610" y="572" width="760" height="20" rx="10" fill="#6674A8"/>
+  <rect x="610" y="612" width="700" height="20" rx="10" fill="#51608E"/>
+  <path d="M1126 674C1182 626 1261 598 1352 598C1383 598 1412 601 1440 608V742H1126V674Z" fill="url(#paint2_radial_2_2)"/>
+  <defs>
+    <linearGradient id="paint0_linear_2_2" x1="800" y1="86" x2="800" y2="914" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101A34"/>
+      <stop offset="1" stop-color="#091120"/>
+    </linearGradient>
+    <linearGradient id="paint1_linear_2_2" x1="180" y1="248" x2="424" y2="492" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#63E3D7"/>
+      <stop offset="1" stop-color="#5F6DFF"/>
+    </linearGradient>
+    <radialGradient id="paint2_radial_2_2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1283 670) rotate(90) scale(120 181)">
+      <stop stop-color="#63E3D7"/>
+      <stop offset="1" stop-color="#63E3D7" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
