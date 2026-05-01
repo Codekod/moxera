@@ -536,6 +536,7 @@ main > section {
   color: var(--teal-300);
   font-weight: 600;
   letter-spacing: 0.01em;
+  transition: opacity 180ms ease;
 }
 
 .hero-actions {
@@ -1153,7 +1154,10 @@ main > section {
   }
 
   .site-nav {
+    position: sticky;
     top: 10px;
+    padding-top: 10px;
+    margin-bottom: 34px;
   }
 
   .nav-shell {
@@ -1164,6 +1168,25 @@ main > section {
     min-height: auto;
     padding: 14px;
     border-radius: 28px;
+  }
+
+  .nav-shell.nav-shell--scrolled {
+    min-height: auto;
+    padding: 10px 12px;
+    gap: 10px;
+    border-radius: 24px;
+  }
+
+  .nav-shell.nav-shell--scrolled .nav-logo-link {
+    display: none;
+  }
+
+  .nav-shell.nav-shell--scrolled .nav-cta {
+    display: none;
+  }
+
+  .nav-shell.nav-shell--scrolled .nav-links {
+    min-height: 48px;
   }
 
   .nav-links {
@@ -1212,7 +1235,7 @@ main > section {
 
   .hero-layout {
     min-height: auto;
-    padding-top: 192px;
+    padding-top: 22px;
     padding-bottom: 80px;
     grid-template-columns: 1fr;
   }
@@ -1272,7 +1295,7 @@ main > section {
   }
 
   .services-layout {
-    padding: 92px 0 70px;
+    padding: 56px 0 70px;
   }
 
   .services-track-viewport {
@@ -1299,7 +1322,7 @@ main > section {
   }
 
   .projects-pin > .page-wrap {
-    padding-top: 92px;
+    padding-top: 56px;
   }
 
   .projects-gallery-viewport {
@@ -1343,7 +1366,7 @@ main > section {
   }
 
   .hero-layout {
-    padding-top: 214px;
+    padding-top: 18px;
   }
 
   .button-primary,

@@ -1,13 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import TextPlugin from "gsap/TextPlugin";
+import { LandingNav } from "@/components/landing-nav";
 import { MoxeraMark } from "@/components/moxera-mark";
 import { MoxeraWordmark } from "@/components/moxera-wordmark";
 import { siteContent } from "@/content/site-content";
@@ -17,10 +17,10 @@ gsap.registerPlugin(
   ScrollToPlugin,
   SplitText,
   DrawSVGPlugin,
-  TextPlugin,
 );
 
 export function OrbitLanding() {
+  const [dynamicPhraseIndex, setDynamicPhraseIndex] = useState(0);
   const rootRef = useRef<HTMLDivElement>(null);
   const heroSceneRef = useRef<HTMLElement>(null);
   const servicesSceneRef = useRef<HTMLElement>(null);
@@ -49,6 +49,15 @@ export function OrbitLanding() {
       leave: () => void;
     }> = [];
     let handleNavResize: (() => void) | null = null;
+    let dynamicPhraseInterval: number | null = null;
+
+    if (!reduceMotion && siteContent.hero.dynamicPhrases.length > 1) {
+      dynamicPhraseInterval = window.setInterval(() => {
+        setDynamicPhraseIndex(
+          (index) => (index + 1) % siteContent.hero.dynamicPhrases.length,
+        );
+      }, 2600);
+    }
 
     const ctx = gsap.context(() => {
       const splitReveal = (selector: string, start = "top 86%") => {
@@ -143,19 +152,6 @@ export function OrbitLanding() {
           stagger: 0.18,
         });
 
-        const dynamicPhrases = siteContent.hero.dynamicPhrases;
-        if (dynamicPhrases.length > 1) {
-          const textTl = gsap.timeline({ repeat: -1, repeatDelay: 0.35 });
-          dynamicPhrases.forEach((phrase, index) => {
-            textTl
-              .to(".js-dynamic-phrase", {
-                text: phrase,
-                duration: index === 0 ? 0.01 : 1.1,
-                ease: "none",
-              })
-              .to({}, { duration: 0.85 });
-          });
-        }
       }
 
       mm.add("(min-width: 901px)", () => {
@@ -715,6 +711,9 @@ export function OrbitLanding() {
       if (handleNavResize) {
         window.removeEventListener("resize", handleNavResize);
       }
+      if (dynamicPhraseInterval) {
+        window.clearInterval(dynamicPhraseInterval);
+      }
       if (handleMove) {
         heroVisual.removeEventListener("pointermove", handleMove);
       }
@@ -730,39 +729,7 @@ export function OrbitLanding() {
 
   return (
     <div ref={rootRef} className="premium-shell">
-      <header className="site-nav">
-        <div className="nav-shell js-nav-shell">
-          <a href="#hero" className="nav-logo-link" aria-label="Moxera ana sayfa">
-            <Image
-              src="/brand/moxera-light.svg"
-              alt="Moxera"
-              width={248}
-              height={54}
-              priority
-              className="nav-logo"
-              style={{ width: "100%", height: "auto" }}
-            />
-          </a>
-          <nav className="nav-links js-nav-menu" aria-label="Bolumler">
-            <span className="nav-active-pill js-nav-active-pill" aria-hidden />
-            {siteContent.nav.links.map((link) => (
-              <a key={link.href} href={link.href} className="nav-link js-nav-link">
-                <span className="nav-link-track-wrap">
-                  <span className="nav-link-track js-nav-link-track">
-                    <span className="nav-link-text">{link.label}</span>
-                    <span className="nav-link-text nav-link-text-alt" aria-hidden="true">
-                      {link.label}
-                    </span>
-                  </span>
-                </span>
-              </a>
-            ))}
-          </nav>
-          <a className="nav-cta js-nav-cta" href={siteContent.nav.cta.href}>
-            {siteContent.nav.cta.label}
-          </a>
-        </div>
-      </header>
+      <LandingNav />
 
       <main>
             <section id="hero" ref={heroSceneRef} className="hero-scene">
@@ -786,7 +753,7 @@ export function OrbitLanding() {
                     <p className="hero-dynamic">
                       <span>Moxera</span>
                       <strong className="js-dynamic-phrase">
-                        {siteContent.hero.dynamicPhrases[0]}
+                        {siteContent.hero.dynamicPhrases[dynamicPhraseIndex]}
                       </strong>
                     </p>
                     <div className="hero-actions js-hero-actions">
@@ -968,30 +935,13 @@ export function OrbitLanding() {
                   <p className="section-copy">{siteContent.protocol.copy}</p>
                 </div>
                 <div className="protocol-grid">
-                  <article className="protocol-card js-reveal">
-                    <span>Motion logic</span>
-                    <strong>SplitText + DrawSVG + scrub timeline</strong>
-                    <p>
-                      Hero, services ve projects akisi tek bir motion sistemine
-                      baglandi.
-                    </p>
-                  </article>
-                  <article className="protocol-card js-reveal">
-                    <span>UI layer</span>
-                    <strong>Parallax + staged glass cards</strong>
-                    <p>
-                      Kaydirma hizina gore davranan kartlar ile premium derinlik
-                      hissi olusturuldu.
-                    </p>
-                  </article>
-                  <article className="protocol-card js-reveal">
-                    <span>Content ready</span>
-                    <strong>Text ve media tek yerden duzenlenebilir</strong>
-                    <p>
-                      Icerik alanlari saha verisiyle hizli guncelleme icin sade
-                      tutuldu.
-                    </p>
-                  </article>
+                  {siteContent.protocol.items.map((item) => (
+                    <article key={item.label} className="protocol-card js-reveal">
+                      <span>{item.label}</span>
+                      <strong>{item.title}</strong>
+                      <p>{item.body}</p>
+                    </article>
+                  ))}
                 </div>
               </div>
             </section>
@@ -1004,7 +954,12 @@ export function OrbitLanding() {
                     {siteContent.contact.title}
                   </h2>
                 </div>
-                <a className="button-primary" href={`mailto:${siteContent.contact.email}`}>
+                <a
+                  className="button-primary"
+                  href={`mailto:${siteContent.contact.email}?subject=${encodeURIComponent(
+                    siteContent.contact.subject,
+                  )}`}
+                >
                   {siteContent.contact.email}
                 </a>
               </div>
