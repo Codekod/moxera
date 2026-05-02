@@ -95,7 +95,7 @@ export const siteContent = {
         title: "Noter Pusulasi",
         body: "Hukuk ve noter sureclerinde bilgi akisini sadelestiren, kullaniciyi dogru adima yonlendiren dijital urun deneyimi.",
         image: "/content/project-01.svg",
-        video: "/content/noterpusulasi1.mp4",
+        video: "/content/noter-pusulasi-product-demo.mp4?v=20260502",
         metrics: ["Product video ready", "Guided user flow"],
         summary: "Noter islemlerinde dijital yon bulma",
       },
