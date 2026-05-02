@@ -38,11 +38,11 @@
     {
       "title": "Noter Pusulası",
       "type": "Dijital ürün geliştirme",
-      "summary": "Hukuk süreçlerinde bilgi akışını sadeleştiren, işlem temposunu yükselten ve kullanıcıyı doğru adıma yönlendiren ürün deneyimi.",
-      "mediaLabel": "Ürün akışı ve karar mantığı",
+      "summary": "Noter işlemlerinde doğru bilgiye ulaşmayı kolaylaştıran, kullanıcıyı adım adım yönlendiren ve dijital başvuru deneyimini sadeleştiren ürün geliştirme hattı.",
+      "mediaLabel": "Gerçek arayüzlerden ürün akışı",
       "media": {
         "kind": "video",
-        "src": "/images/cases/noter-pusulasi-flow.mp4",
+        "src": "/images/cases/noter-pusulasi-product-demo.mp4?v=20260502",
         "poster": "/images/cases/noter-pusulasi-poster.jpg",
         "aspectRatio": "16:9",
         "alt": "Noter Pusulası ürün arayüz akışı"
