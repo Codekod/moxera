@@ -85,21 +85,22 @@ export const siteContent = {
     ],
   },
   projects: {
-    kicker: "Proof stack",
-    title: "Her proje; algi, sistem ve olcum katmanlariyla ele alinir.",
+    kicker: "Urun gelistirme hatti",
+    title: "Fikirden yayina uzanan urunleri gercek ekranlariyla gelistiriyoruz.",
     copy:
-      "Premium hissi yalnizca motion ile degil, net hedef, guven sinyali ve takip edilebilir ciktilarla olusur. Projeleri bu uc eksende kurguluyoruz.",
+      "Her urunu hedef kullanici, bilgi akisi, arayuz ritmi ve lansman ihtiyacina gore ele aliyoruz. Tasarim, otomasyon ve tanitim materyalleri ayni gelistirme hattinda ilerliyor.",
     items: [
       {
-        label: "Signal 01",
-        title: "Launch systems that feel expensive",
-        body: "Yeni bir sirketin ilk temasini guven veren, net teklif sunan ve talep toplamaya hazir bir urun sahnesine tasiyoruz.",
+        label: "Product 01",
+        title: "Noter Pusulasi",
+        body: "Hukuk ve noter sureclerinde bilgi akisini sadelestiren, kullaniciyi dogru adima yonlendiren dijital urun deneyimi.",
         image: "/content/project-01.svg",
-        metrics: ["+42% qualified lead", "6-week go-live"],
-        summary: "Ilk temas / guven / net pozisyon",
+        video: "/content/noterpusulasi1.mp4",
+        metrics: ["Product video ready", "Guided user flow"],
+        summary: "Noter islemlerinde dijital yon bulma",
       },
       {
-        label: "Signal 02",
+        label: "System 02",
         title: "Operational surfaces with depth",
         body: "Arka plandaki karmasayi tek panel mantigina indirip daha hizli karar alan ekipler icin kontrol katmani olusturuyoruz.",
         image: "/content/project-02.svg",
@@ -107,7 +108,7 @@ export const siteContent = {
         summary: "Tek panelde karar ve akis",
       },
       {
-        label: "Signal 03",
+        label: "Launch 03",
         title: "Demand-focused digital systems",
         body: "Acilis ekrani, bilgi ritmi ve CTA kurgusunu beraber optimize ederek daha nitelikli ilgi ve talep uretiyoruz.",
         image: "/content/project-03.svg",

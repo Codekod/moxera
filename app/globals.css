@@ -1029,6 +1029,16 @@ main > section {
   opacity: 0.92;
 }
 
+.project-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.94;
+}
+
 .project-progress-rail {
   width: 100%;
   height: 4px;

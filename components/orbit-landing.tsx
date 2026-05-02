@@ -904,13 +904,28 @@ export function OrbitLanding() {
                           </div>
                           <div className="project-slide-media">
                             <div className="project-image-shell js-project-image-shell">
-                              <Image
-                                src={project.image}
-                                alt={project.title}
-                                fill
-                                className="project-image"
-                                sizes="(max-width: 900px) 100vw, 48vw"
-                              />
+                              {"video" in project ? (
+                                <video
+                                  className="project-video"
+                                  autoPlay
+                                  loop
+                                  muted
+                                  playsInline
+                                  preload="metadata"
+                                  aria-label={`${project.title} urun videosu`}
+                                >
+                                  <source src={project.video} type="video/mp4" />
+                                  Tarayiciniz video etiketini desteklemiyor.
+                                </video>
+                              ) : (
+                                <Image
+                                  src={project.image}
+                                  alt={project.title}
+                                  fill
+                                  className="project-image"
+                                  sizes="(max-width: 900px) 100vw, 48vw"
+                                />
+                              )}
                             </div>
                           </div>
                         </article>
